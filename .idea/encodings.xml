@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/kr/co/bizframe/ebxml/ebms/app/kepco/tax/daemon/common/ChangeStatus.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/kr/co/bizframe/ebxml/ebms/app/kepco/tax/daemon/common/ChangeTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/kr/co/bizframe/ebxml/ebms/app/kepco/tax/daemon/run/CheckExcelLoadData.java" charset="x-windows-949" />
+  </component>
+</project>

@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="etaxDeamon-lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/castor-0.9.4.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/classes12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/classes12_9i.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ebms-2_2_0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jakarta-regexp-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j-1.2.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ojdbc14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/taxbinding.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xalan.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xercesImpl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xml-apis.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
