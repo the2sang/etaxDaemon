@@ -16,35 +16,35 @@ import java.io.Serializable;
  */
 public class TaxReceiptVO extends Object implements Serializable {
  
-	private String uuid = "";					//¹®¼­¹øÈ£
+	private String uuid = "";					//ë¬¸ì„œë²ˆí˜¸
 	
-	private String biz_id = "";					//°ø»ç¾÷Ã¼»ç¾÷ÀÚ¹øÈ£
+	private String biz_id = "";					//ê³µì‚¬ì—…ì²´ì‚¬ì—…ìë²ˆí˜¸
  
-	private String const_no = "";				//°ø»ç¹øÈ£
+	private String const_no = "";				//ê³µì‚¬ë²ˆí˜¸
 	
-	private String amt1 = "";					//°è±â°ø»çºñ
+	private String amt1 = "";					//ê³„ê¸°ê³µì‚¬ë¹„
 
-	private String amt2 = "";					//ÀÎÀÔ¼±°ø»çºñ
+	private String amt2 = "";					//ì¸ì…ì„ ê³µì‚¬ë¹„
 	
-	private String amt3 = "";					//°è±âÇÔºÎ¼³ºñ 20101004 Ãß°¡
+	private String amt3 = "";					//ê³„ê¸°í•¨ë¶€ì„¤ë¹„ 20101004 ì¶”ê°€
 
-	private String receipt_no = "";				//Á¢¼ö¹øÈ£
+	private String receipt_no = "";				//ì ‘ìˆ˜ë²ˆí˜¸
 
-	private String receipt_kind = "";			//Á¢¼öÁ¾·ù¸í
+	private String receipt_kind = "";			//ì ‘ìˆ˜ì¢…ë¥˜ëª…
 
-	private String cust_name = "";				//°í°´¸í
+	private String cust_name = "";				//ê³ ê°ëª…
 
-	private String address = "";				//ÁÖ¼Ò
+	private String address = "";				//ì£¼ì†Œ
 		
-	private String const_date = "";				//½Ã°øÀÏÀÚ
+	private String const_date = "";				//ì‹œê³µì¼ì
 	
-	private String prof_cons_no = "";			//¼öÀÍÀû°ø»ç¹øÈ£
+	private String prof_cons_no = "";			//ìˆ˜ìµì ê³µì‚¬ë²ˆí˜¸
 	
-	private String prof_comp_amt = "";			//¼öÀÍÀû°ø»çºñ
+	private String prof_comp_amt = "";			//ìˆ˜ìµì ê³µì‚¬ë¹„
 
-	private String matrbill_comp_amt = "";		//µµ±ŞÀç·áºñ
+	private String matrbill_comp_amt = "";		//ë„ê¸‰ì¬ë£Œë¹„
 	
-	private String comp_amt = "";				//µµ±Ş°ø»çºñ
+	private String comp_amt = "";				//ë„ê¸‰ê³µì‚¬ë¹„
 	
 	
 	public String getAmt3() {

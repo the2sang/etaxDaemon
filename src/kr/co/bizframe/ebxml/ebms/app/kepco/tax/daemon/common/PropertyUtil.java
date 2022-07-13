@@ -82,7 +82,7 @@ public class PropertyUtil {
         if (path == null)
             return path;
 
-        // ¼­ºê ÇÁ·Î±×·¥À» È£ÃâÇÑ´Ù.
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ñ´ï¿½.
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < path.length(); i++) {
             if (path.charAt(i) == '/')
@@ -113,15 +113,15 @@ public class PropertyUtil {
         if (os_name.toUpperCase().indexOf("WINDOW") == -1) {
             try {
                 System.out.println("********** Execute [ chmod 744 " + file + " ]");
-                // ¼­ºê ÇÁ·Î±×·¥À» È£ÃâÇÑ´Ù.
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ñ´ï¿½.
                 Runtime rt1 = Runtime.getRuntime();
                 String envs[] = null;
 
                 rt1.exec("chmod 744 " + file, envs);
 
-                // ¸í·É¾î°¡ ¼öÇàµÉ¶§±îÁö ½Ã°£ÀÌ Á¶±Ý ÇÊ¿äÇÏ´Ù.
-                // µû¶ó¼­ Àá±ñ sleep ÇÑ´Ù...
-                java.lang.Thread.sleep(80);
+                // ï¿½ï¿½É¾î°¡ ï¿½ï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½.
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ sleep ï¿½Ñ´ï¿½...
+                Thread.sleep(80);
 
             } catch (Exception e) {
                 System.out.println("[JarUtil][setExecuteMode] Cannot execute [ chmod 744 " + file + " ]");

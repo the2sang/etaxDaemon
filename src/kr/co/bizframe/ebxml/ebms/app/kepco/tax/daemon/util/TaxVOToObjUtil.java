@@ -236,23 +236,23 @@ public class TaxVOToObjUtil {
 //        purchase.setDocument_DateTime(new Document_DateTime());
 //        purchase.setDocument_Identifier(new Document_Identifier());
 //        info.getDocumentReferences().setPurchaseOrderReference(purchase);
-// 2006.04.28 ÀÌÁ¦Áß
+// 2006.04.28 ì´ì œì¤‘
         InvoiceDocumentReference invoice = new InvoiceDocumentReference();
         Document_DateTime ref_inv_doc_date = new Document_DateTime();
         ref_inv_doc_date.setContent(mainVO.getRef_inv_doc_date());
         invoice.setDocument_DateTime(ref_inv_doc_date);
 
         Document_Identifier ref_inv_doc_id = new Document_Identifier();
-        //ref_inv_doc_id.setContent(mainVO.getRef_inv_doc_id());		// ¼öÁ¤ 200912 ±èÇö½Â
-        ref_inv_doc_id.setContent(mainVO.getNts_issue_id());			//±¹¼¼Ã»¿¬°è½ÂÀÎ¹øÈ£
+        //ref_inv_doc_id.setContent(mainVO.getRef_inv_doc_id());		// ìˆ˜ì • 200912 ê¹€í˜„ìŠ¹
+        ref_inv_doc_id.setContent(mainVO.getNts_issue_id());			//êµ­ì„¸ì²­ì—°ê³„ìŠ¹ì¸ë²ˆí˜¸
         invoice.setDocument_Identifier(ref_inv_doc_id);
         info.getDocumentReferences().setInvoiceDocumentReference(invoice);
 
         OtherDocumentReference other = new OtherDocumentReference();
         other.setDocument_DateTime(new Document_DateTime());
         Document_Identifier ref_oth_doc_id = new Document_Identifier();
-        //ref_oth_doc_id.setContent(mainVO.getRef_other_doc_id());	// ¼öÁ¤ 200912 ±èÇö½Â
-        ref_oth_doc_id.setContent(mainVO.getModify_code()); 		// ¼öÁ¤»çÀ¯ÄÚµå
+        //ref_oth_doc_id.setContent(mainVO.getRef_other_doc_id());	// ìˆ˜ì • 200912 ê¹€í˜„ìŠ¹
+        ref_oth_doc_id.setContent(mainVO.getModify_code()); 		// ìˆ˜ì •ì‚¬ìœ ì½”ë“œ
         other.setDocument_Identifier(ref_oth_doc_id);
         info.getDocumentReferences().setOtherDocumentReference(other);
 
@@ -262,8 +262,8 @@ public class TaxVOToObjUtil {
         purchase.setDocument_DateTime(pur_inv_doc_date);
 
         Document_Identifier pur_inv_doc_id = new Document_Identifier();
-        //pur_inv_doc_id.setContent(mainVO.getRef_pur_ord_id());	// ¼öÁ¤ 200912 ±èÇö½Â // ÂüÁ¶ÁÖ¹®ÀÏÀÚ
-        pur_inv_doc_id.setContent(mainVO.getDoc_type_detail());		// ¼¼±İ°è»ê¼­ ¹ßÇàÁ¾·ù v3
+        //pur_inv_doc_id.setContent(mainVO.getRef_pur_ord_id());	// ìˆ˜ì • 200912 ê¹€í˜„ìŠ¹ // ì°¸ì¡°ì£¼ë¬¸ì¼ì
+        pur_inv_doc_id.setContent(mainVO.getDoc_type_detail());		// ì„¸ê¸ˆê³„ì‚°ì„œ ë°œí–‰ì¢…ë¥˜ v3
         purchase.setDocument_Identifier(pur_inv_doc_id);
         info.getDocumentReferences().setPurchaseOrderReference(purchase);
 
@@ -271,7 +271,7 @@ public class TaxVOToObjUtil {
         import_req_id.setContent(mainVO.getImport_reg_id());
         info.setImportDeclaration_Identifier(import_req_id);
 
-// 2006.04.28 ÀÌÁ¦Áß
+// 2006.04.28 ì´ì œì¤‘
 
         Volume_Identifier volume = new Volume_Identifier();
         volume.setContent(mainVO.getVolum_id());
@@ -302,7 +302,7 @@ public class TaxVOToObjUtil {
         quantity.setContent(new BigDecimal(CommonUtil.nullToZero(mainVO.getTot_improt_cnt())));
         info.setTotalImport_Quantity(quantity);
 
-//      ERP ¿¬°è Ãß°¡ Ç×¸ñ
+//      ERP ì—°ê³„ ì¶”ê°€ í•­ëª©
         System.out.println("############################33");
         System.out.println("metaVO.getConstruct_no()::::::::::"+metaVO.getConstruct_no());
         info.setExtension(new Extension());
@@ -345,8 +345,8 @@ public class TaxVOToObjUtil {
         info.setBusiness(new Business());
 
         Organization_Identifier orgIdentifier = new Organization_Identifier();
-        //orgIdentifier.setContent(vo.getBuyer_biz_id());	// ¼öÁ¤ 200912 ±èÇö½Â
-        orgIdentifier.setContent(vo.getBuyer_biz_cd()); 	// °ø±Ş¹Ş´ÂÀÚÁ¾»ç¾÷Àå¹øÈ£
+        //orgIdentifier.setContent(vo.getBuyer_biz_id());	// ìˆ˜ì • 200912 ê¹€í˜„ìŠ¹
+        orgIdentifier.setContent(vo.getBuyer_biz_cd()); 	// ê³µê¸‰ë°›ëŠ”ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸
         info.getBusiness().addOrganization_Identifier(orgIdentifier);
 
         Organization_Name orgName = new Organization_Name();
@@ -407,8 +407,8 @@ public class TaxVOToObjUtil {
         info.setBusiness(new Business());
 
         Organization_Identifier orgIdentifier = new Organization_Identifier();
-        //orgIdentifier.setContent(vo.getSupplier_biz_id()); // ¼öÁ¤ 200912 ±èÇö½Â
-        orgIdentifier.setContent(vo.getSupplier_biz_cd()); // °ø±ŞÀÚÁ¾»ç¾÷Àå¹øÈ£
+        //orgIdentifier.setContent(vo.getSupplier_biz_id()); // ìˆ˜ì • 200912 ê¹€í˜„ìŠ¹
+        orgIdentifier.setContent(vo.getSupplier_biz_cd()); // ê³µê¸‰ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸
         info.getBusiness().addOrganization_Identifier(orgIdentifier);
 
         Organization_Name orgName = new Organization_Name();

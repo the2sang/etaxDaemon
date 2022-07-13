@@ -123,7 +123,7 @@ public class TaxContentsDao {
                 contentsBlob = ((OracleResultSet) rs).getBLOB(2);
             }
             OutputStream cos = contentsBlob.getBinaryOutputStream();
-            //contents¸¦ insert;
+            //contentsë¥¼ insert;
             if(vo.getContents() != null){
                 ByteArrayInputStream bais = new ByteArrayInputStream(vo.getContents());
                 byte[] buffer = new byte[5000];
@@ -134,7 +134,7 @@ public class TaxContentsDao {
                 cos.close();
                 bais.close();
             }
-            //signature¸¦ insert
+            //signatureë¥¼ insert
             rs.close();
             ps.close();
         }catch (SQLException e){

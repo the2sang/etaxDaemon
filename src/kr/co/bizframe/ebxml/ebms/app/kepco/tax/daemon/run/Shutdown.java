@@ -25,7 +25,7 @@ public class Shutdown extends Thread {
             _port = Integer.parseInt((String)props.getProperty("demon.shutdown.port"));
             
         }catch(NumberFormatException e){
-            System.out.println("CRON PROPERTYÀÇ  CRON.SHUTDONW.PORT¸¦ Á¤È®È÷ ÁöÁ¤ÇØ ÁÖ¼¼¿ä.\n");
+            System.out.println("CRON PROPERTYì˜  CRON.SHUTDONW.PORTë¥¼ ì •í™•íˆ ì§€ì •í•´ ì£¼ì„¸ìš”.\n");
             isSafe = false;
             System.exit(-1);
             e.printStackTrace();
@@ -53,10 +53,10 @@ public class Shutdown extends Thread {
         try {
             server = new Socket(_ip, _port);
             
-// ÁöÁ¤µÈ ÁÖ¼Ò¿Í Æ÷Æ®¸¦ ÀÌ¿ëÇÏ¿© ¼ÒÄÏÀ» »ı¼ºÇÑ ÈÄ ¼­¹ö¿¡ ¿¬°á±îÁö ÇÑ´Ù.
+// ì§€ì •ëœ ì£¼ì†Œì™€ í¬íŠ¸ë¥¼ ì´ìš©í•˜ì—¬ ì†Œì¼“ì„ ìƒì„±í•œ í›„ ì„œë²„ì— ì—°ê²°ê¹Œì§€ í•œë‹¤.
             input = server.getInputStream();
             
-// ¿¬°áµÈ ¼ÒÄÏ¿¡¼­ ÀÔ·Â ½ºÆ®¸²À» ¾ò´Â´Ù.
+// ì—°ê²°ëœ ì†Œì¼“ì—ì„œ ì…ë ¥ ìŠ¤íŠ¸ë¦¼ì„ ì–»ëŠ”ë‹¤.
             output = new PrintStream(server.getOutputStream());
             output.write(_sendData,0,_sendData.length);
             server.close();
@@ -66,7 +66,7 @@ public class Shutdown extends Thread {
             System.err.println("Exception in sending data to server" + e);
             e.printStackTrace();
             try {
-                server.close(); // ¿¹¿Ü°¡ ¹ß»ıÇÏ¸é ¿¬°áµÈ ¼ÒÄÏÀ» ´İ´Â´Ù.
+                server.close(); // ì˜ˆì™¸ê°€ ë°œìƒí•˜ë©´ ì—°ê²°ëœ ì†Œì¼“ì„ ë‹«ëŠ”ë‹¤.
             } catch (Exception e1) {
                 logger.debug("Exception in sending data to server" + e1);
             }

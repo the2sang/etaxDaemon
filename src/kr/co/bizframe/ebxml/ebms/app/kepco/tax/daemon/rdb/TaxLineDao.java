@@ -228,7 +228,7 @@ public class TaxLineDao {
         return data;
     }
     
-    // 2006.06.30 ¿Ã¡¶¡ﬂ
+    // 2006.06.30 Ïù¥Ï†úÏ§ë
     public void delete(String uuid, int no, Connection con) throws SQLException, TaxInvoiceException {
         System.out.println("[START UPDATE ETS_TAX_LINE_INFO_TB]");
         PreparedStatement ps = null;

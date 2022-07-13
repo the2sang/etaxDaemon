@@ -18,7 +18,7 @@ import kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.vo.TaxLineVO;
 import kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.vo.TaxMailVO;
 import kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.vo.TaxPersonVO;
 import kr.co.bizframe.ebxml.ebms.message.handler.MSHException;
-import kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.common.CommonUtil;
+
 
 
 public class ChangeStatus {
@@ -26,57 +26,57 @@ public class ChangeStatus {
 	
 	
 	/*
-	 * ÀúÀåµÈ ¼¼±İ°è»ê¼­Á¶È¸
+	 * ì €ì¥ëœ ì„¸ê¸ˆê³„ì‚°ì„œì¡°íšŒ
 	 */
 	
 
 	/*
-	 * ¼¼±İ°è»ê¼­ »óÅÂ »óÅÂ°ª ¼³¸í CFR È®ÀÎ¿äÃ» CFS È®ÀÎÀü¼º CFC È®ÀÎÃë¼Ò DEL Æó±â END Á¤»ó¿Ï·á REJ Ãë¼Ò¿Ï·á
+	 * ì„¸ê¸ˆê³„ì‚°ì„œ ìƒíƒœ ìƒíƒœê°’ ì„¤ëª… CFR í™•ì¸ìš”ì²­ CFS í™•ì¸ì „ì„± CFC í™•ì¸ì·¨ì†Œ DEL íê¸° END ì •ìƒì™„ë£Œ REJ ì·¨ì†Œì™„ë£Œ
 	 */
 	
 	
-//20180619 »ç¿ëÇÏÁö ¾Ê´Â method¶ó¼­ comment Ã³¸® 
+//20180619 ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” methodë¼ì„œ comment ì²˜ë¦¬ 
 /*
 	public String sendPublishBySupplier(TaxInvoiceVO taxVO) throws TaxInvoiceException, SQLException, MSHException {
 		String mailTitle = "";
 		String retMsg = "";
 		if (taxVO.getMeta().getDoc_state().equals("CFR")) {
 			taxVO.getMeta().setDoc_state("CFR");
-			mailTitle = "¼¼±İ°è»ê¼­ È®ÀÎ¿äÃ» ÀÔ´Ï´Ù.";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œ í™•ì¸ìš”ì²­ ì…ë‹ˆë‹¤.";
 			this.sendToBuyer(taxVO, mailTitle);
 //			 kdn
 			sendToKDN(taxVO, "CFR");
-			retMsg = "¼¼±İ°è»ê¼­ È®ÀÎ¿äÃ»ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œ í™•ì¸ìš”ì²­ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		}
 
 		if (taxVO.getMeta().getDoc_state().equals("CFS")) {
-			mailTitle = "¼¼±İ°è»ê¼­ È®ÀÎÀü¼Û ÀÔ´Ï´Ù.";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œ í™•ì¸ì „ì†¡ ì…ë‹ˆë‹¤.";
 			taxVO.getMeta().setDoc_state("SED");
 			this.sendToSupplier(taxVO, mailTitle);
-			retMsg = "¼¼±İ°è»ê¼­ ¼Û½Å´ë±âÁß ÀÔ´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œ ì†¡ì‹ ëŒ€ê¸°ì¤‘ ì…ë‹ˆë‹¤.";
 		}
 
 		if (taxVO.getMeta().getDoc_state().equals("CFC")) {
 			taxVO.getMeta().setDoc_state("CFC");
-			mailTitle = "¼¼±İ°è»ê¼­  Ãë¼Ò¿äÃ»  ÀÔ´Ï´Ù.";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œ  ì·¨ì†Œìš”ì²­  ì…ë‹ˆë‹¤.";
 			this.sendToSupplier(taxVO, mailTitle);
-			retMsg = "¼¼±İ°è»ê¼­ Ãë¼Ò¿äÃ»ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œ ì·¨ì†Œìš”ì²­ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		}
 
 		if (taxVO.getMeta().getDoc_state().equals("DEL")) {
 			taxVO.getMeta().setDoc_state("DEL");
-			mailTitle = "¼¼±İ°è»ê¼­°¡ Æó±â µÇ¾ú½À´Ï´Ù.";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œê°€ íê¸° ë˜ì—ˆìŠµë‹ˆë‹¤.";
 			this.sendToSupplier(taxVO, mailTitle);
 //			 kdn
 			sendToKDN(taxVO, "DEL");
-			retMsg = "¼¼±İ°è»ê¼­°¡ Æó±â ¿äÃ»ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œê°€ íê¸° ìš”ì²­ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		}
 
 		if (taxVO.getMeta().getDoc_state().equals("WM")) {
 			taxVO.getMeta().setDoc_state("WM");
-			mailTitle = "¼¼±İ°è»ê¼­  È®ÀÎÃë¼Ò ÀÔ´Ï´Ù.(¼¼±İ°è»ê¼­´Â ÀÛ¼ºÁßÀÎ »óÅÂ·Î º¯°æµÇ¾ú½À´Ï´Ù.)";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œ  í™•ì¸ì·¨ì†Œ ì…ë‹ˆë‹¤.(ì„¸ê¸ˆê³„ì‚°ì„œëŠ” ì‘ì„±ì¤‘ì¸ ìƒíƒœë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.)";
 			this.sendToSupplier(taxVO, mailTitle);
-			retMsg = "¼¼±İ°è»ê¼­ Ãë¼ÒÈ®ÀÎÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œ ì·¨ì†Œí™•ì¸ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		}
 		return retMsg;
 	}
@@ -87,46 +87,46 @@ public class ChangeStatus {
 		if (taxVO.getMeta().getDoc_state().equals("CFR")) {
 			taxVO.getMeta().setDoc_state("CFR");
 			System.out.println("sendPublishByBuyer::: CFR:::" + taxVO.getMeta().getDoc_state());
-			mailTitle = "¼¼±İ°è»ê¼­ È®ÀÎ¿äÃ» ÀÔ´Ï´Ù.";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œ í™•ì¸ìš”ì²­ ì…ë‹ˆë‹¤.";
 			this.sendToSupplier(taxVO, mailTitle);
 //			 kdn
 			sendToKDN(taxVO, "CFR");
-			retMsg = "¼¼±İ°è»ê¼­ È®ÀÎ¿äÃ»ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œ í™•ì¸ìš”ì²­ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		}
 
 		if (taxVO.getMeta().getDoc_state().equals("CFS")) {
 			taxVO.getMeta().setDoc_state("SED");
-			mailTitle = "¼¼±İ°è»ê¼­ È®ÀÎÀü¼Û ÀÔ´Ï´Ù.";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œ í™•ì¸ì „ì†¡ ì…ë‹ˆë‹¤.";
 			this.sendToBuyer(taxVO, mailTitle);
-			retMsg = "¼¼±İ°è»ê¼­ ¼Û½Å´ë±âÁß ÀÔ´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œ ì†¡ì‹ ëŒ€ê¸°ì¤‘ ì…ë‹ˆë‹¤.";
 		}
 
 		if (taxVO.getMeta().getDoc_state().equals("CFC")) {
 			taxVO.getMeta().setDoc_state("CFC");
-			mailTitle = "¼¼±İ°è»ê¼­  Ãë¼Ò¿äÃ»  ÀÔ´Ï´Ù.";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œ  ì·¨ì†Œìš”ì²­  ì…ë‹ˆë‹¤.";
 			this.sendToBuyer(taxVO, mailTitle);
-			retMsg = "¼¼±İ°è»ê¼­ Ãë¼Ò¿äÃ»ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œ ì·¨ì†Œìš”ì²­ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		}
 
 		if (taxVO.getMeta().getDoc_state().equals("DEL")) {
 			taxVO.getMeta().setDoc_state("DEL");
-			mailTitle = "¼¼±İ°è»ê¼­°¡ Æó±â µÇ¾ú½À´Ï´Ù.";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œê°€ íê¸° ë˜ì—ˆìŠµë‹ˆë‹¤.";
 			this.sendToBuyer(taxVO, mailTitle);
 //			 kdn
 			sendToKDN(taxVO, "DEL");
-			retMsg = "¼¼±İ°è»ê¼­°¡ Æó±â ¿äÃ»ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œê°€ íê¸° ìš”ì²­ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		}
 		if (taxVO.getMeta().getDoc_state().equals("WM")) {
 			taxVO.getMeta().setDoc_state("WM");
-			mailTitle = "¼¼±İ°è»ê¼­  È®ÀÎÃë¼Ò ÀÔ´Ï´Ù.(¼¼±İ°è»ê¼­´Â ÀÛ¼ºÁßÀÎ »óÅÂ·Î º¯°æµÇ¾ú½À´Ï´Ù.)";
+			mailTitle = "ì„¸ê¸ˆê³„ì‚°ì„œ  í™•ì¸ì·¨ì†Œ ì…ë‹ˆë‹¤.(ì„¸ê¸ˆê³„ì‚°ì„œëŠ” ì‘ì„±ì¤‘ì¸ ìƒíƒœë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.)";
 			this.sendToBuyer(taxVO, mailTitle);
-			retMsg = "¼¼±İ°è»ê¼­ Ãë¼ÒÈ®ÀÎÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.";
+			retMsg = "ì„¸ê¸ˆê³„ì‚°ì„œ ì·¨ì†Œí™•ì¸ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.";
 		}
 		return retMsg;
 	}
 
 	public void sendToSupplier(TaxInvoiceVO taxVO, String title) throws TaxInvoiceException {
-		//2015.12.07 ³»¼±°è±â ¸ŞÀÏº¸³½ÀÌ¸¦ °è¾àÀÚ·Î º¯°æ CDH
+		//2015.12.07 ë‚´ì„ ê³„ê¸° ë©”ì¼ë³´ë‚¸ì´ë¥¼ ê³„ì•½ìë¡œ ë³€ê²½ CDH
 		//TaxMailVO mailVO = new TaxMailVO(taxVO.getUuid(), "supplier",taxVO.getMain().getDoc_date());
 		TaxMailVO mailVO = new TaxMailVO(taxVO.getUuid(), "supplier",taxVO.getMain().getDoc_date(),taxVO.getMeta().getContractor_name(),taxVO.getMeta().getContractor_email(),taxVO.getMeta().getContractor_phone());
 		mailVO.setTitile(title);
@@ -141,7 +141,7 @@ public class ChangeStatus {
 //	            System.out.println("linevo.getname"+lineVO.getName());
 //	            
 //	        }
-//2015.12.07 ³»¼±°è±â ¸ŞÀÏº¸³½ÀÌ¸¦ °è¾àÀÚ·Î º¯°æ CDH
+//2015.12.07 ë‚´ì„ ê³„ê¸° ë©”ì¼ë³´ë‚¸ì´ë¥¼ ê³„ì•½ìë¡œ ë³€ê²½ CDH
 //		mailVO.setFromMail(taxVO.getMain().getBuyer_contactor_email());
 //		mailVO.setFromName(taxVO.getMain().getBuyer_contactor_name());
 		mailVO.setFromMail(taxVO.getMeta().getContractor_email());
@@ -156,18 +156,18 @@ public class ChangeStatus {
 //			TaxPersonVO personVO = personDao.selectPersonById(taxVO.getMeta().getReceiver_id(), "N");
 			TaxPersonVO personVO = personDao.selectPersonByIdnCompId(taxVO.getMeta().getReceiver_comp_id(), taxVO.getMeta().getReceiver_id(), "N");
 
-//			¸ŞÀÏ,¹®ÀÚº¸³»±â
+//			ë©”ì¼,ë¬¸ìë³´ë‚´ê¸°
 			mailDao.sendMail(mailVO);
 			//smsDao.sendSMS_new(personVO.getHp(),taxVO.getUuid()); 
 			
-			//20180212 À±±Ô¹Ì sms->lms
+			//20180212 ìœ¤ê·œë¯¸ sms->lms
 			System.out.println("==================LMS Start===========================");
-			//20180619 ¹Ú»óÁ¾ 
-			// poller.properies LMS.SEND.LEVEL °ªÀ» ÂüÁ¶
-			//         Y - EAI_TAX_HEADER_INFO_TB.SMS_YN = Y  ¸¸ ¼ÛºÎ
-            //         YorNULL - EAI_TAX_HEADER_INFO_TB.SMS_YN = Y or null ¼ÛºÎ
-            //         YorNorNULL - EAI_TAX_HEADER_INFO_TB.SMS_YN = Y or N or null ¼ÛºÎ
-			// KEY_POWEREDI.EAI_TAX_HEADER_INFO_TB.SMS_YN °ªÀÌ YÀÎ °æ¿ì¸¸ LMS ¼Û½Å
+			//20180619 ë°•ìƒì¢… 
+			// poller.properies LMS.SEND.LEVEL ê°’ì„ ì°¸ì¡°
+			//         Y - EAI_TAX_HEADER_INFO_TB.SMS_YN = Y  ë§Œ ì†¡ë¶€
+            //         YorNULL - EAI_TAX_HEADER_INFO_TB.SMS_YN = Y or null ì†¡ë¶€
+            //         YorNorNULL - EAI_TAX_HEADER_INFO_TB.SMS_YN = Y or N or null ì†¡ë¶€
+			// KEY_POWEREDI.EAI_TAX_HEADER_INFO_TB.SMS_YN ê°’ì´ Yì¸ ê²½ìš°ë§Œ LMS ì†¡ì‹ 
 			String LMS_SEND_LEVEL = CommonUtil.getProperty("LMS.SEND.LEVEL");
 			String sms_yn = taxVO.getSms_yn();
 			boolean LMS = true;
@@ -191,9 +191,9 @@ public class ChangeStatus {
 							   mailVO.getLineName(),
 							   "F" , taxVO
 							   );
-			   System.out.println("==================LMS ¼Û½Å ¿Ï·á ");
+			   System.out.println("==================LMS ì†¡ì‹  ì™„ë£Œ ");
             }else{
-			   System.out.println("==================LMS ¼Û½Å Á¦¿ÜÃ³¸®");
+			   System.out.println("==================LMS ì†¡ì‹  ì œì™¸ì²˜ë¦¬");
             }							   
 			System.out.println("==================LMS End===========================");
 			
@@ -201,11 +201,11 @@ public class ChangeStatus {
 			taxDao.setStatus(taxVO.getUuid(), taxVO.getMeta().getDoc_state());
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "¹®¼­ »óÅÂ º¯°æ ÇÁ·Î¼¼½º Ã³¸®Áß¿¡ ¿¡·¯ ¹ß»ı ÇÏ¿´½À´Ï´Ù.");
+			throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "ë¬¸ì„œ ìƒíƒœ ë³€ê²½ í”„ë¡œì„¸ìŠ¤ ì²˜ë¦¬ì¤‘ì— ì—ëŸ¬ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		}
 	}
 
-		//2015.12.07 ³»¼±°è±â ¸ŞÀÏº¸³½ÀÌ¸¦ °è¾àÀÚ·Î º¯°æ CDH
+		//2015.12.07 ë‚´ì„ ê³„ê¸° ë©”ì¼ë³´ë‚¸ì´ë¥¼ ê³„ì•½ìë¡œ ë³€ê²½ CDH
 	public void sendToBuyer(TaxInvoiceVO taxVO, String title) throws TaxInvoiceException {
 //		TaxMailVO mailVO = new TaxMailVO(taxVO.getUuid(), "buyer",taxVO.getMain().getDoc_date());
 		TaxMailVO mailVO = new TaxMailVO(taxVO.getUuid(), "buyer",taxVO.getMain().getDoc_date(),"","","");
@@ -224,7 +224,7 @@ public class ChangeStatus {
 			}
 
 			mailVO.setTitile(title);
-//2015.12.07 ³»¼±°è±â ¸ŞÀÏº¸³½ÀÌ¸¦ °è¾àÀÚ·Î º¯°æ CDH			
+//2015.12.07 ë‚´ì„ ê³„ê¸° ë©”ì¼ë³´ë‚¸ì´ë¥¼ ê³„ì•½ìë¡œ ë³€ê²½ CDH			
 //			mailVO.setToName(personVO.getName());
 //			mailVO.setToMail(personVO.getEmail());
 			mailVO.setToName(taxVO.getMeta().getContractor_name());
@@ -234,17 +234,17 @@ public class ChangeStatus {
 			mailVO.setFromMail(taxVO.getMain().getSupplier_contactor_email());
 			mailVO.setDocUuid(taxVO.getUuid());
 
-//			¸ŞÀÏº¸³»±â
+//			ë©”ì¼ë³´ë‚´ê¸°
 			mailDao.sendMail(mailVO);
 
-			// smsDao.sendSMS(personVO.getHp()); ÇÑÀü´ã´çÀÚ´Â ¹®ÀÚ ¾È¹ŞÀ½
+			// smsDao.sendSMS(personVO.getHp()); í•œì „ë‹´ë‹¹ìëŠ” ë¬¸ì ì•ˆë°›ìŒ
 
 			TaxManagementDao taxDao = new TaxManagementDao();
 			taxDao.setStatus(taxVO.getUuid(), taxVO.getMeta().getDoc_state());
 
 		} catch (Exception e) {
 			e.printStackTrace();   
-			throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "¹®¼­ »óÅÂ º¯°æ ÇÁ·Î¼¼½º Ã³¸®Áß¿¡ ¿¡·¯ ¹ß»ı ÇÏ¿´½À´Ï´Ù.");
+			throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "ë¬¸ì„œ ìƒíƒœ ë³€ê²½ í”„ë¡œì„¸ìŠ¤ ì²˜ë¦¬ì¤‘ì— ì—ëŸ¬ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		}
 	}  
 
@@ -252,19 +252,19 @@ public class ChangeStatus {
 
 		try {
 			if ( Integer.parseInt(taxVO.getMain().getDoc_date()) > 20090131 ) {
-	//			KDN ÀÎÁö Ã¼Å©
+	//			KDN ì¸ì§€ ì²´í¬
 				TaxCompanyNewManagerDao comDao = new TaxCompanyNewManagerDao();
 				boolean YN = comDao.getBiznumInfo(taxVO.getMain().getSupplier_biz_id(), "KDN");
 
 				if (YN) {
-	//				KDN ¿¬°è»óÅÂ Å×ÀÌºí ÀÎ¼­Æ®
+	//				KDN ì—°ê³„ìƒíƒœ í…Œì´ë¸” ì¸ì„œíŠ¸
 					TaxStatusInfoManagementDao statusDao = new TaxStatusInfoManagementDao();
 					statusDao.insertStatusInfo(taxVO.getUuid(),status,"KDN");
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "KDN ¿¬°è»óÅÂÁ¤º¸ ÀÔ·Â Ã³¸®Áß¿¡ ¿¡·¯°¡ ¹ß»ı ÇÏ¿´½À´Ï´Ù.");
+			throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "KDN ì—°ê³„ìƒíƒœì •ë³´ ì…ë ¥ ì²˜ë¦¬ì¤‘ì— ì—ëŸ¬ê°€ ë°œìƒ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		}
 	}
 

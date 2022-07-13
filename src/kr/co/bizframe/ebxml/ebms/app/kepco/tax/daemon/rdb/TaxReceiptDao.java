@@ -39,7 +39,7 @@ public class TaxReceiptDao{
             con.setAutoCommit(false);
             ps = con.prepareStatement(sql);
 
-            if(!"".equals(vo.getAmt3())) vo.setAmt1(""); //20101006 Ãß°¡
+            if(!"".equals(vo.getAmt3())) vo.setAmt1(""); //20101006 ì¶”ê°€
             
             ps.setString(1, vo.getUuid());
             ps.setString(2, vo.getBiz_id());

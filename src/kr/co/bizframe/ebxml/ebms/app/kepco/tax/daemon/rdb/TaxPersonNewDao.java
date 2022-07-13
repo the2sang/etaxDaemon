@@ -17,7 +17,7 @@ public class TaxPersonNewDao {
 	public Hashtable getOutterInfoForExcelPublish(String bizNO, Hashtable compHt, Connection con) throws SQLException, TaxInvoiceException
 	{
 		System.out.println("[START getAdminSupplierList in TaxSupplierDao]");
-		//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+		//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 		String BUSI_ENC = CommonUtil.getString("BUSI_ENC");
 		String sql = "";
 		PreparedStatement ps = null;
@@ -27,26 +27,26 @@ public class TaxPersonNewDao {
 //				if(i!=0) whereIn += ",";
 //				whereIn += "ENCODE_SF@USER_LINK('"+(String)bizList.get(i)+"')";
 //			}
-			//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH			
+			//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH			
 			if(BUSI_ENC.equals("1")){  
 				sql =
-				//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+				//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 				"    SELECT DECODE_SF64@D_EDI2SRM(BUSINESS_NO) BIZ_ID, KORNAME,  OWNER_NAME, A.ADDR1 ||' '|| A.ADDR2 AS ADDR,	"   +
 //				"    SELECT DECODE_SF_SNM(BUSINESS_NO) BIZ_ID, KORNAME,  OWNER_NAME, A.ADDR1 ||' '|| A.ADDR2 AS ADDR,  			"   +
 				"    BUSINESS_STATUS, INDUSTRY_TYPE , c.USER_ID ,   c.USER_NAME,       c.TEL_NO,     c.EMAIL 					"   +
 				"    , A.TEL_NO AS TEL, A.MOB_NUMBER , A.EMAIL AS MAIL															"	+
-				//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+				//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //				"    FROM TP_SUPPLIER_TBL@USER_LINK A, TP_OWNERLST_TBL@USER_LINK B   ,TP_EXUSER_TBL@USER_LINK C       			"   +
 				"    FROM TP_SUPPLIER_TBL_VIEW A, TP_OWNERLST_TBL_VIEW B   ,TP_EXUSER_TBL_VIEW C 				      			"   +
 //				"	 , TP_EXUSER_TBL_20101001@USER_LINK D																		"	+
-				//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+				//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 				"    WHERE A.BUSINESS_NO = ENCODE_SF64@D_EDI2SRM(?)																"   +
 //				"    WHERE A.BUSINESS_NO = ENCODE_SF_SNM(?)																		"   +
 				"    AND A.SUPPLIER_NO = B.SUPPLIER_NO  																		"   +
 				"    AND A.SUPPLIER_NO = c.SUPPLIER_NO																			"   +
 				"    AND B.SUPPLIER_NO = c.SUPPLIER_NO  																		"   +
 //				"	 AND C.SUPPLIER_NO = D.SUPPLIER_NO  																		"	+
-						//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+						//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 				"     AND B.ID = A.ID																			"   +
 				"    AND OWNER_PRIOR = '1'																						"	+
 				"	 AND A.STATUS != 'D' 																						"	+
@@ -54,19 +54,19 @@ public class TaxPersonNewDao {
 				" 	 order by  c.tax_sms_yn asc																					" ;
 			}else{
 				sql =
-				//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+				//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 				"    SELECT BUSINESS_NO BIZ_ID, KORNAME,  OWNER_NAME, A.ADDR1 ||' '|| A.ADDR2 AS ADDR,  						"   +
 //				"    SELECT DECODE_SF_SNM(BUSINESS_NO) BIZ_ID, KORNAME,  OWNER_NAME, A.ADDR1 ||' '|| A.ADDR2 AS ADDR,  			"   +
 				"    BUSINESS_STATUS, INDUSTRY_TYPE , c.USER_ID ,   c.USER_NAME,       c.TEL_NO,     c.EMAIL 					"   +
 				"    , A.TEL_NO AS TEL, A.MOB_NUMBER , A.EMAIL AS MAIL															"	+
-				//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+				//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //				"    FROM TP_SUPPLIER_TBL@USER_LINK A, TP_OWNERLST_TBL@USER_LINK B   ,TP_EXUSER_TBL@USER_LINK C       			"   +
 				"    FROM TP_SUPPLIER_TBL_VIEW A, TP_OWNERLST_TBL_VIEW B   ,TP_EXUSER_TBL_VIEW C 				      			"   +
 //				"	 , TP_EXUSER_TBL_20101001@USER_LINK D																		"	+
-				//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+				//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 				"    WHERE A.BUSINESS_NO = ?																					"   +
 //				"    WHERE A.BUSINESS_NO = ENCODE_SF_SNM(?)																		"   +
-				//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+				//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 				"    AND B.ID = A.ID																			"   +
 				"    AND A.SUPPLIER_NO = B.SUPPLIER_NO  																		"   +
 				"    AND A.SUPPLIER_NO = c.SUPPLIER_NO																			"   +
@@ -134,7 +134,7 @@ public class TaxPersonNewDao {
 	public ArrayList getOutCompUserByBizId(String biz_id, Connection con) throws SQLException, TaxInvoiceException {
 		System.out.println("[CompUserList]");
 		ArrayList data = new ArrayList();
-		//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+		//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 		String BUSI_ENC = CommonUtil.getString("BUSI_ENC");
 		String sql = "";
 		PreparedStatement ps = null;
@@ -142,26 +142,26 @@ public class TaxPersonNewDao {
 			if(BUSI_ENC.equals("1")){
 				sql =
 //					"  SELECT DECODE_SF@USER_LINK(A.REGISTER_NO), DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME, 	"	+
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 					"  SELECT A.USER_ID, DECODE_SF64@D_EDI2SRM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME, 							"	+
 //					"  SELECT A.USER_ID, DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME, 									"	+
 					"         A.DEPT, A.TEL_NO,	A.MOBILE, 																			"	+
 					"         A.EMAIL, B.KORNAME, A.SUPPLIER_NO,																	"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH  Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH  ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //					" 		  'N' COMP_TYPE, DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM, A.tax_sms_yn 							"   +
 //					" 		  'N' COMP_TYPE, DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM, A.tax_sms_yn 									"   +
 					" 		  'N' COMP_TYPE, A.tax_sms_yn 																			"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					"    FROM TP_EXUSER_TBL@USER_LINK A,																			"   +
 //					"         TP_SUPPLIER_TBL@USER_LINK B,																			"   +
 //					"  	   	 TP_OWNERLST_TBL@USER_LINK C																			"   +
 					"    FROM TP_EXUSER_TBL_VIEW A,																					"   +
 					"         TP_SUPPLIER_TBL_VIEW B,																				"   +
 					"  	   	  TP_OWNERLST_TBL_VIEW C																				"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 					"   WHERE BUSINESS_NO = ENCODE_SF64@D_EDI2SRM(?)																"   +
 //					"   WHERE BUSINESS_NO = ENCODE_SF_SNM(?)																		"   +
-					//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+					//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 					"     AND C.ID = B.ID																			"   +
 					"     AND A.SUPPLIER_NO = B.SUPPLIER_NO																			"   +
 					"     AND A.SUPPLIER_NO = C.SUPPLIER_NO																			"	+
@@ -172,26 +172,26 @@ public class TaxPersonNewDao {
 			}else{
 				sql =
 //					"  SELECT DECODE_SF@USER_LINK(A.REGISTER_NO), DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,	"	+
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 					"  SELECT A.USER_ID, BUSINESS_NO AS BUSINESS_NO,  A.USER_NAME, 													"	+
 //					"  SELECT A.USER_ID, DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME, 									"	+
 					"         A.DEPT, A.TEL_NO,	A.MOBILE, 																			"	+
 					"         A.EMAIL, B.KORNAME, A.SUPPLIER_NO,																	"	+
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH  Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH  ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //					" 		  'N' COMP_TYPE, DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM, A.tax_sms_yn 							"   +
 //					" 		  'N' COMP_TYPE, DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM, A.tax_sms_yn 									"   +
 					" 		  'N' COMP_TYPE, A.tax_sms_yn 																			"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					"    FROM TP_EXUSER_TBL@USER_LINK A,																			"   +
 //					"         TP_SUPPLIER_TBL@USER_LINK B,																			"   +
 //					"  	   	 TP_OWNERLST_TBL@USER_LINK C																			"   +
 					"    FROM TP_EXUSER_TBL_VIEW A,																					"   +
 					"         TP_SUPPLIER_TBL_VIEW B,																				"   +
 					"  	   	  TP_OWNERLST_TBL_VIEW C																				"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 					"   WHERE BUSINESS_NO = ?																						"   +
 //					"   WHERE BUSINESS_NO = ENCODE_SF_SNM(?)																		"   +
-					//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+					//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 					"     AND C.ID = B.ID																			"   +
 					"     AND A.SUPPLIER_NO = B.SUPPLIER_NO																			"   +
 					"     AND A.SUPPLIER_NO = C.SUPPLIER_NO																			" 	+
@@ -220,7 +220,7 @@ public class TaxPersonNewDao {
 				vo.setEmail(CommonUtil.justNullToBlank(rs.getString(7)));
 
 				vo.setComp_type(CommonUtil.justNullToBlank(rs.getString(10)));
-//  Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+//  ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //				vo.setJumin_num(CommonUtil.justNullToBlank(rs.getString(11)));
 //				vo.setTax_smsYN(CommonUtil.justNullToBlank(rs.getString(12)));
 				vo.setTax_smsYN(CommonUtil.justNullToBlank(rs.getString(11)));
@@ -245,9 +245,9 @@ public class TaxPersonNewDao {
 		PreparedStatement ps = null;
 		try {
 			String sql =
-			//	" SELECT SUBSTR(SABUN, 3,10),  '»ç¾÷ÀÚ¹øÈ£', NAME, "   +
+			//	" SELECT SUBSTR(SABUN, 3,10),  'ì‚¬ì—…ìžë²ˆí˜¸', NAME, "   +
 			//	"        OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3 , OFC_TEL2,  HP, "   +
-			//	" 	     E_MAIL,                '»ç¾÷¼Ò¸í', '»ç¾÷ÀÚ¹øÈ£',"   +
+			//	" 	     E_MAIL,                'ì‚¬ì—…ì†Œëª…', 'ì‚¬ì—…ìžë²ˆí˜¸',"   +
 			//	" 	     'K',                    JUMIN_NO"   +
 			//	"   FROM POMASTT1@USER_LINK A,"   +
 			//	"        POOFCDT4@USER_LINK B"   +
@@ -256,9 +256,9 @@ public class TaxPersonNewDao {
 			//	"    AND NAME = ?"  ;
 
 			//2014.07.11
-			"SELECT SUBSTR(SABUN, 3,10), '»ç¾÷ÀÚ¹øÈ£', NAME, " +
+			"SELECT SUBSTR(SABUN, 3,10), 'ì‚¬ì—…ìžë²ˆí˜¸', NAME, " +
 			"		OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3, " +
-			"		OFC_TEL2,  HP, E_MAIL, '»ç¾÷¼Ò¸í', '»ç¾÷ÀÚ¹øÈ£', 'K', '' JUMIN_NO " +
+			"		OFC_TEL2,  HP, E_MAIL, 'ì‚¬ì—…ì†Œëª…', 'ì‚¬ì—…ìžë²ˆí˜¸', 'K', '' JUMIN_NO " +
 			"	FROM EAI_KEPCO_EMP_VIEW A, " +
 			"		 EAI_KEPCO_DEP_VIEW B  " +
 			"	WHERE A.SOSOK_CD = B.OF_CODE " +
@@ -308,9 +308,9 @@ public class TaxPersonNewDao {
 		PreparedStatement ps = null;
 		try {
 			String sql =
-			//	" SELECT SUBSTR(SABUN, 3,10),  '»ç¾÷ÀÚ¹øÈ£', NAME, "   +
+			//	" SELECT SUBSTR(SABUN, 3,10),  'ì‚¬ì—…ìžë²ˆí˜¸', NAME, "   +
 			//	"        OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3 , OFC_TEL2,  HP, "   +
-			//	" 	     E_MAIL,                '»ç¾÷¼Ò¸í', '»ç¾÷ÀÚ¹øÈ£',"   +
+			//	" 	     E_MAIL,                'ì‚¬ì—…ì†Œëª…', 'ì‚¬ì—…ìžë²ˆí˜¸',"   +
 			//	" 	     'K',                    JUMIN_NO"   +
 			//	"   FROM POMASTT1@USER_LINK A,"   +
 			//	"        POOFCDT4@USER_LINK B"   +
@@ -321,9 +321,9 @@ public class TaxPersonNewDao {
 				//"    AND SABUN = (select GET_10DGT_SABUN( ? )  from dual) "  ;
 
 			//2014.07.11
-			"SELECT SUBSTR(SABUN, 3,10), '»ç¾÷ÀÚ¹øÈ£', NAME, " +
+			"SELECT SUBSTR(SABUN, 3,10), 'ì‚¬ì—…ìžë²ˆí˜¸', NAME, " +
 			"		OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3, " +
-			"		OFC_TEL2,  HP, E_MAIL, '»ç¾÷¼Ò¸í', '»ç¾÷ÀÚ¹øÈ£', 'K', '' JUMIN_NO " +
+			"		OFC_TEL2,  HP, E_MAIL, 'ì‚¬ì—…ì†Œëª…', 'ì‚¬ì—…ìžë²ˆí˜¸', 'K', '' JUMIN_NO " +
 			"	FROM EAI_KEPCO_EMP_VIEW A, " +
 			"		 EAI_KEPCO_DEP_VIEW B  " +
 			"	WHERE A.SOSOK_CD = B.OF_CODE " +
@@ -373,8 +373,8 @@ public class TaxPersonNewDao {
 		try {
 
 			String sql =
-			" SELECT EMP_NO,  '»ç¾÷ÀÚ¹øÈ£', EMP_NAME,  ORG_NAME1 ||' '|| ORG_NAME2 ||' '|| ORG_NAME3,  FIRM_TELNO,  MOBILE, EMAIL, 'D' , EMP_NO " +
-//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+			" SELECT EMP_NO,  'ì‚¬ì—…ìžë²ˆí˜¸', EMP_NAME,  ORG_NAME1 ||' '|| ORG_NAME2 ||' '|| ORG_NAME3,  FIRM_TELNO,  MOBILE, EMAIL, 'D' , EMP_NO " +
+//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //    		" FROM TP_INSA_TBL@USER_LINK " +
     		" FROM TP_INSA_TBL_VIEW " +
     		" WHERE FIRM_NO=? " +
@@ -421,7 +421,7 @@ public class TaxPersonNewDao {
 	public ArrayList selectOutterUserByName(String name, Connection con) throws SQLException, TaxInvoiceException {
 		System.out.println("[selectHanjunUserByName]");
 		ArrayList data = new ArrayList();
-		//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+		//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 		String BUSI_ENC = CommonUtil.getString("BUSI_ENC");
 		String sql = "";
 		PreparedStatement ps = null;
@@ -429,17 +429,17 @@ public class TaxPersonNewDao {
 			if(BUSI_ENC.equals("1")){			
 				sql =
 //					"   SELECT DISTINCT DECODE_SF@USER_LINK(A.REGISTER_NO), DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,	"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 					"   SELECT DISTINCT A.USER_ID, DECODE_SF64@D_EDI2SRM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,							"   +
 //					"   SELECT DISTINCT A.USER_ID, DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,									"   +
 					"          A.DEPT, A.TEL_NO,	A.MOBILE,																				"   +
 					"          A.EMAIL, B.KORNAME, A.SUPPLIER_NO,																			"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-					//Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+					//ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //					"  		  'N' COMP_TYPE, DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM													"   +
 					"  		  'N' COMP_TYPE																									"   +
 //					"  		  'N' COMP_TYPE, DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM															"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					"     FROM TP_EXUSER_TBL A,																								"   +
 //					"          TP_SUPPLIER_TBL@USER_LINK B,																					"   +
 //					"   	   	 TP_OWNERLST_TBL@USER_LINK C																				"   +
@@ -448,23 +448,23 @@ public class TaxPersonNewDao {
 					"   	   TP_OWNERLST_TBL_VIEW C																						"   +
 					"    WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																				"   +
 					"      AND A.SUPPLIER_NO = C.SUPPLIER_NO																				"   +
-					//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+					//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 					"    AND C.ID = B.ID																			"   +
 					" 	 AND A.USER_NAME = ? 																								"  ;
 			}else{
 				sql =
 //					"   SELECT DISTINCT DECODE_SF@USER_LINK(A.REGISTER_NO), DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,	"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 					"   SELECT DISTINCT A.USER_ID, BUSINESS_NO AS BUSINESS_NO,  A.USER_NAME,												"   +
 //					"   SELECT DISTINCT A.USER_ID, DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,									"   +
 					"          A.DEPT, A.TEL_NO,	A.MOBILE,																				"   +
 					"          A.EMAIL, B.KORNAME, A.SUPPLIER_NO,																			"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-					//Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+					//ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //					"  		  'N' COMP_TYPE, DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM													"   +
 					"  		  'N' COMP_TYPE																									"   +
 //					"  		  'N' COMP_TYPE, DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM															"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					"     FROM TP_EXUSER_TBL A,																								"   +
 //					"          TP_SUPPLIER_TBL@USER_LINK B,																					"   +
 //					"   	   	 TP_OWNERLST_TBL@USER_LINK C"   +
@@ -473,7 +473,7 @@ public class TaxPersonNewDao {
 					"   	   TP_OWNERLST_TBL_VIEW C																						"   +
 					"    WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																				"   +
 					"      AND A.SUPPLIER_NO = C.SUPPLIER_NO																				"   +
-					//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+					//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 					"    AND C.ID = B.ID																			"   +
 					" 	 AND A.USER_NAME = ? 																								"  ;
 			}
@@ -497,7 +497,7 @@ public class TaxPersonNewDao {
 				vo.setEmail(CommonUtil.justNullToBlank(rs.getString(7)));
 
 				vo.setComp_type(CommonUtil.justNullToBlank(rs.getString(10)));
-//  Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+//  ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //				vo.setJumin_num(CommonUtil.justNullToBlank(rs.getString(11)));
 
 				data.add(vo);
@@ -613,7 +613,7 @@ public class TaxPersonNewDao {
 
 	            if (buyerCompCode.equals("00")) {
 		        	String sql =
-		            //	" SELECT SUBSTR(SABUN, 3,10), '»ç¾÷ÀÚ¹øÈ£',   NAME, " +
+		            //	" SELECT SUBSTR(SABUN, 3,10), 'ì‚¬ì—…ìžë²ˆí˜¸',   NAME, " +
 		            //	"        OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3 ,  OFC_TEL2, E_MAIL,   " +
 		            //	"        'K',                  PARENT_ID,   LINK_ID "   +
 		            //	"   FROM POMASTT1@USER_LINK A,"   +
@@ -624,7 +624,7 @@ public class TaxPersonNewDao {
 		            //	"    AND C.PARENT_ID = ?"  ;
 
 		        		//2014.07.10
-		        		"SELECT SUBSTR(SABUN, 3,10), '»ç¾÷ÀÚ¹øÈ£', NAME, " +
+		        		"SELECT SUBSTR(SABUN, 3,10), 'ì‚¬ì—…ìžë²ˆí˜¸', NAME, " +
 		        		"		OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3, " +
 		        		"		OFC_TEL2, E_MAIL, 'K', PARENT_ID, LINK_ID " +
 		        		"	FROM EAI_KEPCO_EMP_VIEW A, " +
@@ -640,8 +640,8 @@ public class TaxPersonNewDao {
 	            } else {
 
 		            String sql =
-			            " SELECT EMP_NO,  '»ç¾÷ÀÚ¹øÈ£', EMP_NAME,  ORG_NAME1 ||' '|| ORG_NAME2 ||' '|| ORG_NAME3,  FIRM_TELNO,  EMAIL, 'D', PARENT_ID, LINK_ID  " +
-//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+			            " SELECT EMP_NO,  'ì‚¬ì—…ìžë²ˆí˜¸', EMP_NAME,  ORG_NAME1 ||' '|| ORG_NAME2 ||' '|| ORG_NAME3,  FIRM_TELNO,  EMAIL, 'D', PARENT_ID, LINK_ID  " +
+//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					" FROM TP_INSA_TBL@USER_LINK,		" +
 					" FROM TP_INSA_TBL_VIEW,		" +
 			            " 	  ETS_TAX_OFTEN_USE_INFO_TB 	" +
@@ -743,16 +743,16 @@ public class TaxPersonNewDao {
 	    public TaxPersonVO selectPersonById(String id, String comp_type, Connection con) throws SQLException, TaxInvoiceException {
 	        System.out.println("[START selectUserById]");
 	        TaxPersonVO vo = new TaxPersonVO();
-			//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+			//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 			String BUSI_ENC = CommonUtil.getString("BUSI_ENC");	        
 	        PreparedStatement ps = null;
 	        try{
 	            String sql = "";
 	            if(comp_type.equals("00")){
 	            	sql =
-//	            		"  SELECT SUBSTR(EMP_NO, 3,10),        '»ç¾÷ÀÚ¹øÈ£',   USER_NAME, "   +
+//	            		"  SELECT SUBSTR(EMP_NO, 3,10),        'ì‚¬ì—…ìžë²ˆí˜¸',   USER_NAME, "   +
 //	            		"         ORG_NAME DEPT,               A.TEL_NO,     MOBILE, " +
-//	            		"         EMAIL,                       USER,         '»ç¾÷ÀÚ¹øÈ£',    "   +
+//	            		"         EMAIL,                       USER,         'ì‚¬ì—…ìžë²ˆí˜¸',    "   +
 //	            		" 		  'K',                         DECODE_SF@USER_LINK(REGISTER_NO) JUMIN_NUM"   +
 //	            		"    FROM TP_INUSER_TBL@USER_LINK A,"   +
 //	            		" 	      TP_FIRMORG_TBL@USER_LINK B"   +
@@ -760,9 +760,9 @@ public class TaxPersonNewDao {
 //	            		"     AND A.ORG_ID = B.ORG_ID"   +
 //	            		"     AND SUBSTR(EMP_NO, 3,10) = ?"  ;
 
-	            	//	" SELECT SUBSTR(SABUN, 3,10),  '»ç¾÷ÀÚ¹øÈ£', NAME, "   +
+	            	//	" SELECT SUBSTR(SABUN, 3,10),  'ì‚¬ì—…ìžë²ˆí˜¸', NAME, "   +
 	            	//	"        OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3 ,  OFC_TEL2,    HP,"   +
-	            	//	" 	   E_MAIL,                USER,        '»ç¾÷ÀÚ¹øÈ£',"   +
+	            	//	" 	   E_MAIL,                USER,        'ì‚¬ì—…ìžë²ˆí˜¸',"   +
 	            	//	" 	   'K', JUMIN_NO"   +
 	            	//	"   FROM POMASTT1@USER_LINK A,"   +
 	            	//	"        POOFCDT4@USER_LINK B"   +
@@ -772,9 +772,9 @@ public class TaxPersonNewDao {
 	            	//	"    AND SABUN = (select GET_10DGT_SABUN( ? )  from dual) "  ;
 
 	            	//2014.07.11
-	            	"SELECT SUBSTR(SABUN, 3,10), '»ç¾÷ÀÚ¹øÈ£', NAME, " +
+	            	"SELECT SUBSTR(SABUN, 3,10), 'ì‚¬ì—…ìžë²ˆí˜¸', NAME, " +
 	            	"		OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3, " +
-	            	"		OFC_TEL2, HP, E_MAIL, USER, '»ç¾÷ÀÚ¹øÈ£', 'K', '' JUMIN_NO " +
+	            	"		OFC_TEL2, HP, E_MAIL, USER, 'ì‚¬ì—…ìžë²ˆí˜¸', 'K', '' JUMIN_NO " +
 	            	"	FROM EAI_KEPCO_EMP_VIEW A, " +
 	            	"		 EAI_KEPCO_DEP_VIEW B " +
 	            	"	WHERE A.SOSOK_CD = B.OF_CODE " +
@@ -784,11 +784,11 @@ public class TaxPersonNewDao {
 //		            System.out.println("get id:"+id);
 		            ps.setString(1, id);
 
-			    //³²µ¿¹ßÀü
+			    //ë‚¨ë™ë°œì „
 	            }else if(comp_type.equals("01")){
 	            	sql =
-	            		" SELECT EMP_NO,  '»ç¾÷ÀÚ¹øÈ£', EMP_NAME,  ORG_NAME1 ||' '|| ORG_NAME2 ||' '|| ORG_NAME3,  FIRM_TELNO,  MOBILE, EMAIL, 'EBIZ_EX','»ç¾÷ÀÚ¹øÈ£', 'D' , EMP_NO " +
-//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	            		" SELECT EMP_NO,  'ì‚¬ì—…ìžë²ˆí˜¸', EMP_NAME,  ORG_NAME1 ||' '|| ORG_NAME2 ||' '|| ORG_NAME3,  FIRM_TELNO,  MOBILE, EMAIL, 'EBIZ_EX','ì‚¬ì—…ìžë²ˆí˜¸', 'D' , EMP_NO " +
+//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					" FROM TP_INSA_TBL@USER_LINK " +
 					" FROM TP_INSA_TBL_VIEW " +
 	            		" WHERE EMP_NO = ? " +
@@ -803,17 +803,17 @@ public class TaxPersonNewDao {
 	    			if(BUSI_ENC.equals("1")){	
 		            	sql =
 //	            			"   SELECT DECODE_SF@USER_LINK(A.REGISTER_NO),  DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,	"   +
-		            		//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+		            		//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 		            		"   SELECT A.USER_ID,  DECODE_SF64@D_EDI2SRM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,							"   +
 //							"   SELECT A.USER_ID,  DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,									"   +
 			            	"          A.DEPT,                              A.TEL_NO,	                                      A.MOBILE,		"   +
 			            	"          A.EMAIL,                             B.KORNAME,                                        A.SUPPLIER_NO,"   +
-			            	//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-			            	// Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+			            	//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+			            	// ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //							"  		  'N' COMP_TYPE,                        DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM					"   +
 							"  		  'N' COMP_TYPE																							"   +
 //							"  		  'N' COMP_TYPE,                        DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM							"   +
-							//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+							//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //	            			"     FROM TP_EXUSER_TBL A,																						"   +
 //	            			"          TP_SUPPLIER_TBL@USER_LINK B,																			"   +
 //	            			"   	   	 TP_OWNERLST_TBL@USER_LINK C																		"   +
@@ -823,23 +823,23 @@ public class TaxPersonNewDao {
 			            	"    WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																		"   +
 			            	"      AND A.SUPPLIER_NO = C.SUPPLIER_NO																		"   +
 //	            			" 	 AND A.REGISTER_NO = ENCODE_SF@USER_LINK( ? )																"  ;
-							//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+							//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 							"   AND C.ID = B.ID																			"   +
 			            	" 	 AND A.USER_ID =  ? 																						"  ;
 	    			}else{
 	    				sql =
 //	            			"   SELECT DECODE_SF@USER_LINK(A.REGISTER_NO),  DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,	"   +
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 	    					"   SELECT A.USER_ID,  BUSINESS_NO AS BUSINESS_NO,  A.USER_NAME,												"   +
 //							"   SELECT A.USER_ID,  DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,									"   +
 	    					"          A.DEPT,                              A.TEL_NO,	                                      A.MOBILE,		"   +
 	    					"          A.EMAIL,                             B.KORNAME,                                        A.SUPPLIER_NO,"	+
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-	    					// Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+	    					// ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //							"  		  'N' COMP_TYPE,                        DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM					"   +
 	    					"  		  'N' COMP_TYPE																							"   +
 //							"  		  'N' COMP_TYPE,                        DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM							"   +
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //	            			"     FROM TP_EXUSER_TBL A,																						"   +
 //	            			"          TP_SUPPLIER_TBL@USER_LINK B,																			"   +
 //	            			"   	   	 TP_OWNERLST_TBL@USER_LINK C																		"   +
@@ -849,7 +849,7 @@ public class TaxPersonNewDao {
 	    					"    WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																		"   +
 	    					"      AND A.SUPPLIER_NO = C.SUPPLIER_NO																		"   +
 //	            			" 	 AND A.REGISTER_NO = ENCODE_SF@USER_LINK( ? )																"  ;
-							//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+							//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 							"    AND C.ID = B.ID																			"   +
 	    					" 	 AND A.USER_ID =  ? 																						"  ;
 	    			}
@@ -871,7 +871,7 @@ public class TaxPersonNewDao {
 	                vo.setEmail(CommonUtil.justNullToBlank(rs.getString(7)));
 
 	                vo.setComp_type(CommonUtil.justNullToBlank(rs.getString(10)));
-//  Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+//  ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //	                vo.setJumin_num(CommonUtil.justNullToBlank(rs.getString(11)));
 	            }
 	            ps.close();
@@ -886,7 +886,7 @@ public class TaxPersonNewDao {
 
 	    public TaxPersonVO selectPersonByIdnCompId(String comp_id, String id, String comp_type, Connection con) throws SQLException, TaxInvoiceException {
 	        System.out.println("[START selectUserById]");
-			//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+			//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 			String BUSI_ENC = CommonUtil.getString("BUSI_ENC");	
 	        TaxPersonVO vo = new TaxPersonVO();
 	        PreparedStatement ps = null;
@@ -894,18 +894,18 @@ public class TaxPersonNewDao {
 	            String sql = "";
 	            if(comp_type.equals("K")){
 	            	sql =
-//	            		"  SELECT SUBSTR(EMP_NO, 3,10),        '»ç¾÷ÀÚ¹øÈ£',   USER_NAME, "   +
+//	            		"  SELECT SUBSTR(EMP_NO, 3,10),        'ì‚¬ì—…ìžë²ˆí˜¸',   USER_NAME, "   +
 //	            		"         ORG_NAME DEPT,               A.TEL_NO,     MOBILE, " +
-//	            		"         EMAIL,                       USER,         '»ç¾÷ÀÚ¹øÈ£',    "   +
+//	            		"         EMAIL,                       USER,         'ì‚¬ì—…ìžë²ˆí˜¸',    "   +
 //	            		" 		  'K',                         DECODE_SF@USER_LINK(REGISTER_NO) JUMIN_NUM"   +
 //	            		"    FROM TP_INUSER_TBL@USER_LINK A,"   +
 //	            		" 	      TP_FIRMORG_TBL@USER_LINK B"   +
 //	            		"   WHERE A.FIRM_NO = B.FIRM_NO"   +
 //	            		"     AND A.ORG_ID = B.ORG_ID"   +
 //	            		"     AND SUBSTR(EMP_NO, 3,10) = ?"  ;
-	            	//	" SELECT SUBSTR(SABUN, 3,10),  '»ç¾÷ÀÚ¹øÈ£', NAME, "   +
+	            	//	" SELECT SUBSTR(SABUN, 3,10),  'ì‚¬ì—…ìžë²ˆí˜¸', NAME, "   +
 	            	//	"        OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3 ,  OFC_TEL2,    HP,"   +
-	            	//	" 	   E_MAIL,                USER,        '»ç¾÷ÀÚ¹øÈ£',"   +
+	            	//	" 	   E_MAIL,                USER,        'ì‚¬ì—…ìžë²ˆí˜¸',"   +
 	            	//	" 	   'K', JUMIN_NO, 'K'    "   +
 	            	//	"   FROM POMASTT1@USER_LINK A,"   +
 	            	//	"        POOFCDT4@USER_LINK B"   +
@@ -915,9 +915,9 @@ public class TaxPersonNewDao {
 	            	//"    AND  SABUN = (select GET_10DGT_SABUN( ? )  from dual) "  ;
 
 	            	//2014.07.11
-	            	"SELECT SUBSTR(SABUN, 3,10), '»ç¾÷ÀÚ¹øÈ£', NAME, " +
+	            	"SELECT SUBSTR(SABUN, 3,10), 'ì‚¬ì—…ìžë²ˆí˜¸', NAME, " +
 	            	"		OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3, " +
-	            	"		OFC_TEL2, HP, E_MAIL, USER, '»ç¾÷ÀÚ¹øÈ£', 'K', '' JUMIN_NO " +
+	            	"		OFC_TEL2, HP, E_MAIL, USER, 'ì‚¬ì—…ìžë²ˆí˜¸', 'K', '' JUMIN_NO " +
 	            	"	FROM EAI_KEPCO_EMP_VIEW A, " +
 	            	"		 EAI_KEPCO_EMP_VIEW B " +
 	            	"	WHERE A.SOSOK_CD = B.OF_CODE " +
@@ -931,18 +931,18 @@ public class TaxPersonNewDao {
 	    			if(BUSI_ENC.equals("1")){	            	
 		            	sql =
 //	            			"   SELECT DECODE_SF@USER_LINK(A.REGISTER_NO),  DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,		"   +
-		            		//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+		            		//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 							"   SELECT A.USER_ID,  DECODE_SF64@D_EDI2SRM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,								"   +
 //							"   SELECT A.USER_ID,  DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,										"   +
 			            	"          A.DEPT,                              A.TEL_NO,	                                      A.MOBILE,			"   +
 			            	"          A.EMAIL,                             B.KORNAME,                                        A.SUPPLIER_NO,	"   +
-			            	//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-			            	//Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+			            	//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+			            	//ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //							"  		  'N' COMP_TYPE,                        DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM						"   +
 							"  		  'N' COMP_TYPE																								"   +
 //							"  		  'N' COMP_TYPE,                        DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM								"   +
-			            	"		  ,B.MOB_NUMBER  																							"	+	// 20101011 Ãß°¡
-			            	//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+			            	"		  ,B.MOB_NUMBER  																							"	+	// 20101011 ì¶”ê°€
+			            	//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //	            			"     FROM TP_EXUSER_TBL A, 																						"   +
 //	            			"          TP_SUPPLIER_TBL@USER_LINK B, 																			"   +
 //			            	"   	   TP_OWNERLST_TBL@USER_LINK C 																				"   +
@@ -951,9 +951,9 @@ public class TaxPersonNewDao {
 			            	"   	   TP_OWNERLST_TBL_VIEW C 																					"   +
 			            	"    WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																			"   +
 			            	"      AND A.SUPPLIER_NO = C.SUPPLIER_NO																			"   +
-							//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+							//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 							"      	AND C.ID = B.ID																			"   +
-			            	//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+			            	//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 			            	"      AND B.BUSINESS_NO = ENCODE_SF64@D_EDI2SRM(?)																	"   +
 //							"      AND B.BUSINESS_NO = ENCODE_SF_SNM(?)																			"   +
 //	     			       	" 	   AND A.REGISTER_NO = ENCODE_SF@USER_LINK( ? )																	"  ;
@@ -961,18 +961,18 @@ public class TaxPersonNewDao {
 	    			}else{
 	    				sql =
 //	            			"   SELECT DECODE_SF@USER_LINK(A.REGISTER_NO),  DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,		"   +
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 	    					"   SELECT A.USER_ID,  BUSINESS_NO AS BUSINESS_NO,  A.USER_NAME,													"   +
 //							"   SELECT A.USER_ID,  DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,										"   +
 	    					"          A.DEPT,                              A.TEL_NO,	                                      A.MOBILE,			"   +
 	    					"          A.EMAIL,                             B.KORNAME,                                        A.SUPPLIER_NO,	"   +
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-	    					//Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+	    					//ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //							"  		  'N' COMP_TYPE,                        DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM						"   +
 	    					"  		  'N' COMP_TYPE																								"   +
 //							"  		  'N' COMP_TYPE,                        DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM								"   +
-	    					"		  ,B.MOB_NUMBER  																							"	+	// 20101011 Ãß°¡
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	    					"		  ,B.MOB_NUMBER  																							"	+	// 20101011 ì¶”ê°€
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //	            			"     FROM TP_EXUSER_TBL A, 																						"   +
 //	            			"          TP_SUPPLIER_TBL@USER_LINK B, 																			"   +
 //			            	"   	   TP_OWNERLST_TBL@USER_LINK C 																				"   +
@@ -981,9 +981,9 @@ public class TaxPersonNewDao {
 	    					"   	   TP_OWNERLST_TBL_VIEW C 																					"   +
 	    					"    WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																			"   +
 	    					"      AND A.SUPPLIER_NO = C.SUPPLIER_NO																			"   +
-							//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+							//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 							"      	AND C.ID = B.ID																			"   +
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 	    					"      AND B.BUSINESS_NO = ?																						"   +
 //							"      AND B.BUSINESS_NO = ENCODE_SF_SNM(?)																			"   +
 //	     			       	" 	   AND A.REGISTER_NO = ENCODE_SF@USER_LINK( ? )																	"  ;
@@ -1004,7 +1004,7 @@ public class TaxPersonNewDao {
 	                vo.setDept(CommonUtil.justNullToBlank(rs.getString(4)));
 	                vo.setTel(CommonUtil.justNullToBlank(rs.getString(5)));
 
-	                if(!"".equals(CommonUtil.justNullToBlank(rs.getString(6)))){ // 20101011 Ãß°¡
+	                if(!"".equals(CommonUtil.justNullToBlank(rs.getString(6)))){ // 20101011 ì¶”ê°€
 	                	vo.setHp(CommonUtil.justNullToBlank(rs.getString(6)));
 	                }else{
 	                	vo.setHp(CommonUtil.justNullToBlank(rs.getString(11)));
@@ -1012,7 +1012,7 @@ public class TaxPersonNewDao {
 
 	                vo.setEmail(CommonUtil.justNullToBlank(rs.getString(7)));
 	                vo.setComp_type(CommonUtil.justNullToBlank(rs.getString(10)));
-//  Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+//  ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //	                vo.setJumin_num(CommonUtil.justNullToBlank(rs.getString(11)));
 	            }
 	            ps.close();
@@ -1027,7 +1027,7 @@ public class TaxPersonNewDao {
 
 	    public TaxPersonVO selectExUserByLoingId(String id, Connection con) throws SQLException, TaxInvoiceException {
 	        System.out.println("[START selectExUserByLoingId]");
-			//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+			//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 			String BUSI_ENC = CommonUtil.getString("BUSI_ENC");	
 			String sql = "";
 	        TaxPersonVO vo = new TaxPersonVO();
@@ -1036,17 +1036,17 @@ public class TaxPersonNewDao {
     			if(BUSI_ENC.equals("1")){
 		            sql =
 //	  		          	"    SELECT DECODE_SF@USER_LINK(A.REGISTER_NO), DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,	"	+
-		            	//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+		            	//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 						"    SELECT A.USER_ID, DECODE_SF64@D_EDI2SRM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,							"   +
 //						"    SELECT A.USER_ID, DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,									"   +
 		            	"           A.DEPT, A.TEL_NO,	A.MOBILE,																		"   +
 		            	"           A.EMAIL, B.KORNAME, A.SUPPLIER_NO,																	"   +
-		            	//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-		            	//Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+		            	//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+		            	//ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //          		 	"   		  'N' COMP_TYPE, DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM										"   +
 		            	"   		  'N' COMP_TYPE																						"   +
 //	      		      	"   		  'N' COMP_TYPE, DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM												"   +
-		            	//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+		            	//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //	          		  	"      FROM TP_EXUSER_TBL A,																					"   +
 //	        	    	"           TP_SUPPLIER_TBL@USER_LINK B,																		"   +
 //	      		      	"    	   	TP_OWNERLST_TBL@USER_LINK C																			"   +
@@ -1055,23 +1055,23 @@ public class TaxPersonNewDao {
 		            	"    	   	TP_OWNERLST_TBL_VIEW C																				"   +
 		            	"     WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																		"   +
 		            	"       AND A.SUPPLIER_NO = C.SUPPLIER_NO																		"   +
-						//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+						//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 						"     AND C.ID = B.ID																			"   +
 		            	"  	  AND A.USER_ID = ? 																						"   ;
     			}else{
     				sql =
 //	  		          	"    SELECT DECODE_SF@USER_LINK(A.REGISTER_NO), DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,	"	+
-    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
     					"    SELECT A.USER_ID, BUSINESS_NO AS BUSINESS_NO,  A.USER_NAME,												"   +
 //						"    SELECT A.USER_ID, DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,									"   +
     					"           A.DEPT, A.TEL_NO,	A.MOBILE,																		"   +
     					"           A.EMAIL, B.KORNAME, A.SUPPLIER_NO,																	"   +
-    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-    					//Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+    					//ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //          		 	"   		  'N' COMP_TYPE, DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM										"   +
     					"   		  'N' COMP_TYPE																						"   +
 //	      		      	"   		  'N' COMP_TYPE, DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM												"   +
-    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //	          		  	"      FROM TP_EXUSER_TBL A,																					"   +
 //	        	    	"           TP_SUPPLIER_TBL@USER_LINK B,																		"   +
 //	      		      	"    	   	TP_OWNERLST_TBL@USER_LINK C																			"   +
@@ -1080,7 +1080,7 @@ public class TaxPersonNewDao {
     					"    	   	TP_OWNERLST_TBL_VIEW C																				"   +
     					"     WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																		"   +
     					"       AND A.SUPPLIER_NO = C.SUPPLIER_NO																		"   +
-						//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+						//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 						"     AND C.ID = B.ID																			"   +
     					"  	  AND A.USER_ID = ? 																						"   ;
     			}
@@ -1101,7 +1101,7 @@ public class TaxPersonNewDao {
 	                vo.setHp(CommonUtil.justNullToBlank(rs.getString(8)));
 
 	                vo.setComp_type(CommonUtil.justNullToBlank(rs.getString(9)));
-//  Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+//  ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //	                vo.setJumin_num(CommonUtil.justNullToBlank(rs.getString(10)));
 	            }
 	            ps.close();
@@ -1118,7 +1118,7 @@ public class TaxPersonNewDao {
 
 	    public TaxPersonVO selectPersonByLoginID(String id, String comp_type, Connection con) throws SQLException, TaxInvoiceException {
 	        System.out.println("[START selectPersonByLoginID]");
-			//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+			//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 			String BUSI_ENC = CommonUtil.getString("BUSI_ENC");	
 	        TaxPersonVO vo = new TaxPersonVO();
 	        PreparedStatement ps = null;
@@ -1128,7 +1128,7 @@ public class TaxPersonNewDao {
 	            	sql =
 
 	            		//2014.07.11
-	            		"SELECT SUBSTR(SABUN, 3,10), '»ç¾÷ÀÚ¹øÈ£', NAME, " +
+	            		"SELECT SUBSTR(SABUN, 3,10), 'ì‚¬ì—…ìžë²ˆí˜¸', NAME, " +
 	            		"		OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3, " +
 	            		"		OFC_TEL2, E_MAIL, HP, USER, 'K', '' JUMIN_NO " +
 	            		"	FROM EAI_KEPCO_EMP_VIEW A, " +
@@ -1136,7 +1136,7 @@ public class TaxPersonNewDao {
 	            		"	WHERE A.SOSOK_CD = B.OF_CODE " +
 	            		"		AND SUBSTR(SABUN, 3,10) = SUBSTR(?, 3,10) ";
 
-	            		//	" SELECT SUBSTR(SABUN, 3,10),  '»ç¾÷ÀÚ¹øÈ£', NAME, "   +
+	            		//	" SELECT SUBSTR(SABUN, 3,10),  'ì‚¬ì—…ìžë²ˆí˜¸', NAME, "   +
 	            		//	"        OF_HAN1 ||' '|| OF_HAN2 ||' '|| OF_HAN3 ,   OFC_TEL2,   E_MAIL,"   +
 	            		//	" 	       HP,             USER,        "   +
 	            		//	" 	   'K', JUMIN_NO"   +
@@ -1148,7 +1148,7 @@ public class TaxPersonNewDao {
 	            		//"    AND SABUN = (select GET_10DGT_SABUN( SUBSTR(?, 3,10) )  from dual) " ;
 
 	            		//SUBSTR(?, 3,10)"  ;
-//	            		"   SELECT SUBSTR(EMP_NO, 3,10),        '»ç¾÷ÀÚ¹øÈ£', USER_NAME,"   +
+//	            		"   SELECT SUBSTR(EMP_NO, 3,10),        'ì‚¬ì—…ìžë²ˆí˜¸', USER_NAME,"   +
 //	            		"          ORG_NAME DEPT, A.TEL_NO,     EMAIL,"   +
 //	            		"           MOBILE, USER,         "   +
 //	            		"  		'K',           DECODE_SF@USER_LINK(REGISTER_NO) JUMIN_NUM"   +
@@ -1161,11 +1161,11 @@ public class TaxPersonNewDao {
 //		            System.out.println("get id:"+id);
 		            ps.setString(1, id);
 
-		        //³²µ¿¹ßÀü
+		        //ë‚¨ë™ë°œì „
 	            }else if(comp_type.equals("D")){
 	            	sql =
-	            		" SELECT EMP_NO,  '»ç¾÷ÀÚ¹øÈ£', EMP_NAME,  ORG_NAME1 ||' '|| ORG_NAME2 ||' '|| ORG_NAME3,  FIRM_TELNO,  EMAIL, MOBILE, 'EBIZ_EX', 'D' , EMP_NO " +
-//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	            		" SELECT EMP_NO,  'ì‚¬ì—…ìžë²ˆí˜¸', EMP_NAME,  ORG_NAME1 ||' '|| ORG_NAME2 ||' '|| ORG_NAME3,  FIRM_TELNO,  EMAIL, MOBILE, 'EBIZ_EX', 'D' , EMP_NO " +
+//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					" FROM TP_INSA_TBL@USER_LINK " +
 					" FROM TP_INSA_TBL_VIEW " +
 	            		" WHERE EMP_NO = SUBSTR(?, 3,10) " +
@@ -1180,17 +1180,17 @@ public class TaxPersonNewDao {
 	    			if(BUSI_ENC.equals("1")){
 		            	sql =
 //		            		"    SELECT DECODE_SF@USER_LINK(A.REGISTER_NO), DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,	"   +
-		            		//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+		            		//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 		            		"    SELECT A.USER_ID, DECODE_SF64@D_EDI2SRM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,							"   +
 //		            		"    SELECT A.USER_ID, DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,									"   +
 		            		"           A.DEPT, A.TEL_NO,	A.EMAIL,																		"   +
 		            		"           A.MOBILE,  B.KORNAME,  																				"   +
-		            		//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-		            		//Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+		            		//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+		            		//ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //		            		"   		  'N' COMP_TYPE, DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM										"   +
 		            		"   		  'N' COMP_TYPE																						"   +
 //		            		"   		  'N' COMP_TYPE, DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM												"   +
-		            		//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+		            		//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //		            		"      FROM TP_EXUSER_TBL A,																					"   +
 //	 		           		"           TP_SUPPLIER_TBL@USER_LINK B,																		"   +
 //	 		           		"    	   	TP_OWNERLST_TBL@USER_LINK C																			"   +
@@ -1199,23 +1199,23 @@ public class TaxPersonNewDao {
 		            		"    	   	TP_OWNERLST_TBL_VIEW C																				"   +
 		            		"     WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																		"   +
 		            		"       AND A.SUPPLIER_NO = C.SUPPLIER_NO																		"   +
-							//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+							//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 							"     AND C.ID = B.ID																			"   +
 		            		" 	  AND A.USER_ID = ? 																						"   ;
 	    			}else{
 	    				sql =
 //		            		"    SELECT DECODE_SF@USER_LINK(A.REGISTER_NO), DECODE_SF@USER_LINK(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,	"   +
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 	    					"    SELECT A.USER_ID, BUSINESS_NO AS BUSINESS_NO,  A.USER_NAME,												"   +
 //		            		"    SELECT A.USER_ID, DECODE_SF_SNM(BUSINESS_NO) AS BUSINESS_NO,  A.USER_NAME,									"   +
 	    					"           A.DEPT, A.TEL_NO,	A.EMAIL,																		"   +
 	    					"           A.MOBILE,  B.KORNAME,  																				"   +
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
-	    					//Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
+	    					//ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //		            		"   		  'N' COMP_TYPE, DECODE_SF64@D_EDI2SRM(A.REGISTER_NO) JUMIN_NUM										"   +
 	    					"   		  'N' COMP_TYPE																						"   +
 //		            		"   		  'N' COMP_TYPE, DECODE_SF_SNM(A.REGISTER_NO) JUMIN_NUM												"   +
-	    					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	    					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //		            		"      FROM TP_EXUSER_TBL A,																					"   +
 //	 		           		"           TP_SUPPLIER_TBL@USER_LINK B,																		"   +
 //	 		           		"    	   	TP_OWNERLST_TBL@USER_LINK C																			"   +
@@ -1224,7 +1224,7 @@ public class TaxPersonNewDao {
 	    					"    	   	TP_OWNERLST_TBL_VIEW C																				"   +
 	    					"     WHERE A.SUPPLIER_NO = B.SUPPLIER_NO																		"   +
 	    					"       AND A.SUPPLIER_NO = C.SUPPLIER_NO																		"   +
-							//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+							//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 							"     AND C.ID = B.ID																			"   +
 	    					" 	  AND A.USER_ID = ? 																						"   ;
 	    				
@@ -1246,7 +1246,7 @@ public class TaxPersonNewDao {
 	                vo.setHp(CommonUtil.justNullToBlank(rs.getString(7)));
 
 	                vo.setComp_type(CommonUtil.justNullToBlank(rs.getString(9)));
-//  Ãß°¡ »óÇ× : ÁÖ¹Î¹øÈ£ »©±â
+//  ì¶”ê°€ ìƒí•­ : ì£¼ë¯¼ë²ˆí˜¸ ë¹¼ê¸°
 //	                vo.setJumin_num(CommonUtil.justNullToBlank(rs.getString(10)));
 	            }
 	            ps.close();
@@ -1264,7 +1264,7 @@ public class TaxPersonNewDao {
 	        String key = null;
 	        PreparedStatement ps = null;
 	        try{
-//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //	            String sql = "  select DECODE_SF64@D_EDI2SRM(keycode) as key from tp_deskey@USER_LINK "   ;
 	            String sql = "  select DECODE_SF64@D_EDI2SRM(keycode) as key from tp_deskey_view "   ;
 

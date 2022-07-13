@@ -162,7 +162,7 @@ public class TaxCompanyNewManagerDao {
         return data;
     }
 	
-//	 KDN ERP¿¬°è °ü·Ã »ç¾÷ÀÚ¹øÈ£ °ü¸® 
+//	 KDN ERPì—°ê³„ ê´€ë ¨ ì‚¬ì—…ìë²ˆí˜¸ ê´€ë¦¬ 
 	public boolean getBiznumInfo(String biznum, String comp) throws SQLException, TaxInvoiceException {
 		System.out.println("[START getBiznumInfo]");
 		Connection con = null;

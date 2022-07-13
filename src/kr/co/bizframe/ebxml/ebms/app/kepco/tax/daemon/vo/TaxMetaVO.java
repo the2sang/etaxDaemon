@@ -78,44 +78,44 @@ public class TaxMetaVO extends Object implements Serializable {
 
 	private String tax_gubun = "";
 
-	// ¼¼±İ°è»ê¼­ ERP ¿¬°è Ãß°¡ Ç×¸ñµé
-	// °è¾àÀÚ »ç¹ø
+	// ì„¸ê¸ˆê³„ì‚°ì„œ ERP ì—°ê³„ ì¶”ê°€ í•­ëª©ë“¤
+	// ê³„ì•½ì ì‚¬ë²ˆ
 	private String contractor_id = "";
 
-	// °è¾à¹øÈ£
+	// ê³„ì•½ë²ˆí˜¸
 	private String contract_no = "";
 
-	// °ø»ç¹øÈ£
+	// ê³µì‚¬ë²ˆí˜¸
 	private String construct_no = "";
 
-	// ±â¼ºÂ÷¼ö
+	// ê¸°ì„±ì°¨ìˆ˜
 	private String kisung_chg_no = "";
 
-	// º¸°í¼­ ±¸ºĞ
+	// ë³´ê³ ì„œ êµ¬ë¶„
 	private String report_type = "";
 
-	// °Ë¼öÀÚ »ç¹ø
+	// ê²€ìˆ˜ì ì‚¬ë²ˆ
 	private String inspector_id = "";
 
 	//
 	private String ext_process_status_code = "";
 
-	// ÇÑÀü , ¹ßÀü»ç ÄÚµå
+	// í•œì „ , ë°œì „ì‚¬ ì½”ë“œ
 	private String comp_code = "";
 
-	// À§Å¹°ø»ç¹øÈ£
+	// ìœ„íƒê³µì‚¬ë²ˆí˜¸
 	private String ext_consign_construct_no = "";
 
-	// À§Å¹°ø»ç±İ¾×
+	// ìœ„íƒê³µì‚¬ê¸ˆì•¡
 	private String ext_consign_construct_amount = "";
 
-	// ¼öÀÍÀû°ø»ç¹øÈ£
+	// ìˆ˜ìµì ê³µì‚¬ë²ˆí˜¸
 	private String ext_revenue_construct_no = "";
 
-	// ¼öÀÍÀû °ø»çºñ
+	// ìˆ˜ìµì  ê³µì‚¬ë¹„
 	private String ext_revenue_construct_amount = "";
 
-	//2015.12.07 ³»¼±°è±â ¸ŞÀÏº¸³½ÀÌ¸¦ °è¾àÀÚ·Î º¯°æ CDH
+	//2015.12.07 ë‚´ì„ ê³„ê¸° ë©”ì¼ë³´ë‚¸ì´ë¥¼ ê³„ì•½ìë¡œ ë³€ê²½ CDH
 	private String contractor_email = "";
 	
 	private String contractor_name = "";

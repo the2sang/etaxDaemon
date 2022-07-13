@@ -34,7 +34,7 @@ import kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.vo.TaxPersonVO;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class TaxSMSManagementDao {
-	public static String SMS_SENDER_NAME = "°ü¸®ÀÚ";
+	public static String SMS_SENDER_NAME = "ê´€ë¦¬ì";
 	public static String SMS_SENDER_TEL1 = "0619317583";
 	public static String SMS_SENDER_TEL2 = "0613451249";
 	
@@ -57,7 +57,7 @@ public class TaxSMSManagementDao {
         }
         catch(Exception e) {
             e.printStackTrace();
-//            throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "SMS DB¼­¹ö CONNECTION »ı¼º½Ã ¿¡·¯ ");
+//            throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "SMS DBì„œë²„ CONNECTION ìƒì„±ì‹œ ì—ëŸ¬ ");
         }
 		return conn;
     }
@@ -99,24 +99,24 @@ public String sendSMS_new(String hp, String uuid) throws TaxInvoiceException{
 	        	con = DBConn.getConnection();
 	        	con.setAutoCommit(false);
 	        	
-	        	/* ip Á¤º¸ÀĞ¾î¿È */
+	        	/* ip ì •ë³´ì½ì–´ì˜´ */
 				String serverIP = InetAddress.getLocalHost().getHostAddress();
 				/* Test server */
 				if("168.78.201.224".equals(serverIP)){
 					hp = "01087348869";
-					System.out.println("sendSMS.TEST server ÀÔ´Ï´Ù.");
+					System.out.println("sendSMS.TEST server ì…ë‹ˆë‹¤.");
 				}else{
-					System.out.println("sendSMS.¿î¿µÀÔ´Ï´Ù. hp="+hp);
+					System.out.println("sendSMS.ìš´ì˜ì…ë‹ˆë‹¤. hp="+hp);
 				}
 				System.out.println("sendSMS.hp=>"+hp);
 				
 	            int nResult = -1;
 	            StringBuffer mailQuery = new StringBuffer();
-				//2016.04.26 CDH  º¯°æ³»¿ë : SMS Àü¼Û Å×ÀÌºí º¯°æ
+				//2016.04.26 CDH  ë³€ê²½ë‚´ìš© : SMS ì „ì†¡ í…Œì´ë¸” ë³€ê²½
 //	            mailQuery.append(
 //	            "  insert into em_tran@CYBER_SMS_LNK( tran_pr, tran_phone, tran_callback, tran_status, tran_date, tran_msg, tran_etc1, tran_etc2, tran_etc3, tran_etc4 ) "+
-////	            "  values ( em_tran_pr.nextval@CYBER_SMS_LNK, ?, '0619317583', '1', sysdate, ?, 'ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', 'ÇÏÁö¾ğ', '0619317583', '5009') "
-//	            "  values ( em_tran_pr.nextval@CYBER_SMS_LNK, ?, '"+SMS_SENDER_TEL1+"', '1', sysdate, ?, 'ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', '"+SMS_SENDER_NAME+"', '"+SMS_SENDER_TEL1+"', '5009') "
+////	            "  values ( em_tran_pr.nextval@CYBER_SMS_LNK, ?, '0619317583', '1', sysdate, ?, 'í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', 'í•˜ì§€ì–¸', '0619317583', '5009') "
+//	            "  values ( em_tran_pr.nextval@CYBER_SMS_LNK, ?, '"+SMS_SENDER_TEL1+"', '1', sysdate, ?, 'í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', '"+SMS_SENDER_NAME+"', '"+SMS_SENDER_TEL1+"', '5009') "
 //	            );            
 	            mailQuery.append(
 	            "  INSERT INTO IF_EM_TRAN( ID, TRAN_PR, TRAN_PHONE, TRAN_CALLBACK, TRAN_STATUS" +
@@ -124,7 +124,7 @@ public String sendSMS_new(String hp, String uuid) throws TaxInvoiceException{
 	            "						 , TRAN_ETC4, TRAN_TYPE, TABLE_GB, IF_STATUS, CREATE_ID" +
 	            "						 , CREATE_DT, UPDATE_ID, UPDATE_DT  ) "+
 	            "  VALUES ( 'S'||IF_EM_TRAN_ID.NEXTVAL,'', ?, '"+SMS_SENDER_TEL1+"', '1'" +
-	            		"	, sysdate, ?, 'ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', '"+SMS_SENDER_NAME+"', '"+SMS_SENDER_TEL1+"'" +
+	            		"	, sysdate, ?, 'í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', '"+SMS_SENDER_NAME+"', '"+SMS_SENDER_TEL1+"'" +
 	            		"   , '5009', '4', '', '', 'TaxSMSManagementDao'" +
 	            		"	,SYSDATE, '', '') "
 	            );                     
@@ -132,7 +132,7 @@ public String sendSMS_new(String hp, String uuid) throws TaxInvoiceException{
 	            
 	            if(!CommonUtil.nullToBlank(hp).equals("")){
 	                pstmt.setString(1, hp.replaceAll("-",""));
-	                pstmt.setString(2, "ÇÑÀüÀüÀÚÁ¶´Ş(https://srm.kepco.net)¿¡¼­ ±Í»çÀÇ ¼¼±İ°è»ê¼­¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù. "+t_uuid);
+	                pstmt.setString(2, "í•œì „ì „ìì¡°ë‹¬(https://srm.kepco.net)ì—ì„œ ê·€ì‚¬ì˜ ì„¸ê¸ˆê³„ì‚°ì„œë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤. "+t_uuid);
 	                nResult = pstmt.executeUpdate();
 	            }
 	            if(nResult > 0) {
@@ -149,7 +149,7 @@ public String sendSMS_new(String hp, String uuid) throws TaxInvoiceException{
 	            	con.rollback();
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
-	//                throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "¸ŞÀÏ SMS ¹®ÀÚ Àü¼Û½Ã ¿¡·¯ ");
+	//                throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "ë©”ì¼ SMS ë¬¸ì ì „ì†¡ì‹œ ì—ëŸ¬ ");
 	            }
 	        } finally {
 	            if(pstmt != null)
@@ -166,16 +166,16 @@ public String sendSMS_new(String hp, String uuid) throws TaxInvoiceException{
         return msg;
     }
 
-public String sendLMS(String phone, //¼ö½Å¹øÈ£
-		  			  String uuid, //¹®¼­¹øÈ£
-		  			  String issueDay, //ÀÛ¼­ÀÏÀÚ
-		  			  String comName, //¾÷Ã¼¸í
-		  			  String chaAmt, //°ø±Ş°¡¾×
-		  			  String taxAmt, //¼¼¾×
-		  			  String graAmt, //ÃÑ±İ¾×
-		  			  String email,//¼ö½ÅÀÌ¸ŞÀÏ
-		  			  String itemName,//Ç°¸ñ¸í
-		  			  //Æó±â7ÀÏÀü ±¸ºĞÄÚµå F:Ã³À½ ¹ßÇà¾È³» D:Æó±â7ÀÏÀü ¾È³»
+public String sendLMS(String phone, //ìˆ˜ì‹ ë²ˆí˜¸
+		  			  String uuid, //ë¬¸ì„œë²ˆí˜¸
+		  			  String issueDay, //ì‘ì„œì¼ì
+		  			  String comName, //ì—…ì²´ëª…
+		  			  String chaAmt, //ê³µê¸‰ê°€ì•¡
+		  			  String taxAmt, //ì„¸ì•¡
+		  			  String graAmt, //ì´ê¸ˆì•¡
+		  			  String email,//ìˆ˜ì‹ ì´ë©”ì¼
+		  			  String itemName,//í’ˆëª©ëª…
+		  			  //íê¸°7ì¼ì „ êµ¬ë¶„ì½”ë“œ F:ì²˜ìŒ ë°œí–‰ì•ˆë‚´ D:íê¸°7ì¼ì „ ì•ˆë‚´
 		  			  String gubun , TaxInvoiceVO taxVO) throws TaxInvoiceException{
 	
 //	hp = "01046299932";
@@ -209,7 +209,7 @@ public String sendLMS(String phone, //¼ö½Å¹øÈ£
 	
 	if(sms_yn.equals("Y") && (!sms_tel.equals(""))){
 		sms_call_number = sms_tel;
-		sms_msg = "\n - ÇÑÀü´ã´çÀÚ : "+ sms_name +"\n - ´ã´çÀÚÀüÈ­¹øÈ£ : "+sms_call_number+"";
+		sms_msg = "\n - í•œì „ë‹´ë‹¹ì : "+ sms_name +"\n - ë‹´ë‹¹ìì „í™”ë²ˆí˜¸ : "+sms_call_number+"";
 	}
 	
 	
@@ -234,25 +234,25 @@ public String sendLMS(String phone, //¼ö½Å¹øÈ£
         	con = DBConn.getConnection();
         	con.setAutoCommit(false);
 			//System.out.println("email============================>"+email);
-        	/* ip Á¤º¸ÀĞ¾î¿È */
+        	/* ip ì •ë³´ì½ì–´ì˜´ */
 			String serverIP = InetAddress.getLocalHost().getHostAddress();
 			/* Test server */
 			if("168.78.201.224".equals(serverIP)){
 				phone = "01087348869";
 				email ="person1697@hanmail.net";
-				System.out.println("sendSMS.TEST server ÀÔ´Ï´Ù.");
+				System.out.println("sendSMS.TEST server ì…ë‹ˆë‹¤.");
 			}else{
-				System.out.println("sendLMS.¿î¿µÀÔ´Ï´Ù. phone="+phone);
+				System.out.println("sendLMS.ìš´ì˜ì…ë‹ˆë‹¤. phone="+phone);
 			}
 			
 			
 			if(gubun.equals("F")){
-            	sms_body1 = comName+" ±Í»ç¿¡ ¹ßÇàµÈ ´ë±İÃ»±¸¼­ ¹ßÇà¿äÃ» µå¸³´Ï´Ù.";
+            	sms_body1 = comName+" ê·€ì‚¬ì— ë°œí–‰ëœ ëŒ€ê¸ˆì²­êµ¬ì„œ ë°œí–‰ìš”ì²­ ë“œë¦½ë‹ˆë‹¤.";
 			}else{
-				sms_body1= comName+" ±Í»ç¿¡ ¹ßÇàµÈ ´ë±İÃ»±¸¼­ ¹ßÇà¿äÃ» µå¸³´Ï´Ù. ¹Ì¹ßÇà½Ã 7ÀÏÈÄ ÀÚµ¿Æó±â µË´Ï´Ù.";
+				sms_body1= comName+" ê·€ì‚¬ì— ë°œí–‰ëœ ëŒ€ê¸ˆì²­êµ¬ì„œ ë°œí–‰ìš”ì²­ ë“œë¦½ë‹ˆë‹¤. ë¯¸ë°œí–‰ì‹œ 7ì¼í›„ ìë™íê¸° ë©ë‹ˆë‹¤.";
 			}			
-            sms_body2 = "#¼¼±İ°è»ê¼­ ³»¿ª \n - ÀÛ¼ºÀÏÀÚ : "+issueDay2+"\n - ´ë»óÇ°¸ñ : "+itemName+"\n - ±İ¾× : "+CommonUtil.moneyFormat(graAmt)+"¿ø"+"("+CommonUtil.moneyFormat(chaAmt)+"¿ø"+"+"+CommonUtil.moneyFormat(taxAmt)+"¿ø"+")\n - ¹®¼­¹øÈ£ : "+t_uuid +sms_msg ;
-            sms_body3="#¼¼±İ°è»ê¼­ ¹ßÇà ¹æ¹ı\n  (2°¡ÁöÁß ¼±ÅÃÇØ¼­ »ç¿ëÇÏ¼¼¿ä)\n - ÀÌ¸ŞÀÏ ¹ßÇà ¹æ¹ı\n  PC¿¡¼­ ±ÍÇÏÀÇ "+email+"¿¡ µµÂøÇÑ ¸ŞÀÏ º»¹®¿¡¼­ ¹ßÇà\n - ½Ã½ºÅÛ ¹ßÇà ¹æ¹ı\n  PC¿¡¼­ ÇÑÀüÀüÀÚÁ¶´Ş(https://srm.kepco.net)>>ÀüÀÚ¼¼±İ°è»ê¼­>>¹ŞÀº¹®¼­ÇÔ¿¡¼­ ¹ßÇà\n (¹ŞÀº¹®¼­ÇÔ¿¡¼­ °Ë»öÁ¶°Ç ÀÛ¼ºÀÏÀÚ¸¦ Á¶Á¤ÇÑ ÈÄ Á¶È¸ ¹Ù¶ø´Ï´Ù.)";
+            sms_body2 = "#ì„¸ê¸ˆê³„ì‚°ì„œ ë‚´ì—­ \n - ì‘ì„±ì¼ì : "+issueDay2+"\n - ëŒ€ìƒí’ˆëª© : "+itemName+"\n - ê¸ˆì•¡ : "+CommonUtil.moneyFormat(graAmt)+"ì›"+"("+CommonUtil.moneyFormat(chaAmt)+"ì›"+"+"+CommonUtil.moneyFormat(taxAmt)+"ì›"+")\n - ë¬¸ì„œë²ˆí˜¸ : "+t_uuid +sms_msg ;
+            sms_body3="#ì„¸ê¸ˆê³„ì‚°ì„œ ë°œí–‰ ë°©ë²•\n  (2ê°€ì§€ì¤‘ ì„ íƒí•´ì„œ ì‚¬ìš©í•˜ì„¸ìš”)\n - ì´ë©”ì¼ ë°œí–‰ ë°©ë²•\n  PCì—ì„œ ê·€í•˜ì˜ "+email+"ì— ë„ì°©í•œ ë©”ì¼ ë³¸ë¬¸ì—ì„œ ë°œí–‰\n - ì‹œìŠ¤í…œ ë°œí–‰ ë°©ë²•\n  PCì—ì„œ í•œì „ì „ìì¡°ë‹¬(https://srm.kepco.net)>>ì „ìì„¸ê¸ˆê³„ì‚°ì„œ>>ë°›ì€ë¬¸ì„œí•¨ì—ì„œ ë°œí–‰\n (ë°›ì€ë¬¸ì„œí•¨ì—ì„œ ê²€ìƒ‰ì¡°ê±´ ì‘ì„±ì¼ìë¥¼ ì¡°ì •í•œ í›„ ì¡°íšŒ ë°”ëë‹ˆë‹¤.)";
             sms_body = sms_body1+"\n\n"+sms_body2+"\n\n"+sms_body3;
             //System.out.println("sms_body========"+sms_body);
             int nResult = -1;
@@ -270,13 +270,13 @@ public String sendLMS(String phone, //¼ö½Å¹øÈ£
             		" ETC4, SKT_PATH1, SKT_PATH2, KT_PATH1, KT_PATH2,  "  +
             		" LGT_PATH1, LGT_PATH2, REPLACE_CNT, REPLACE_MSG, TRANS_YN,   "  +
             		" CREATE_DT, TRANS_DT)  "  +
-            		" VALUES(TO_CHAR(SYSDATE,'YYYYMMDD') , MMS_MSG_P_ID.NEXTVAL,  MMS_MSG_SEQ.NEXTVAL@CYBER_LMS_LNK, 'ÇÑ±¹Àü·Â°ø»ç ÀüÀÚ¼¼±İ°è»ê¼­ ¹ßÇà ¾È³»', ?,   "  +
+            		" VALUES(TO_CHAR(SYSDATE,'YYYYMMDD') , MMS_MSG_P_ID.NEXTVAL,  MMS_MSG_SEQ.NEXTVAL@CYBER_LMS_LNK, 'í•œêµ­ì „ë ¥ê³µì‚¬ ì „ìì„¸ê¸ˆê³„ì‚°ì„œ ë°œí–‰ ì•ˆë‚´', ?,   "  +
             		"	?, '0', SYSDATE, ?, '0',  "  +
             		" '0', '', '', '', '',  "  +
             		" '', '', '', '', '' ,  "  +
             		" '', '43200', '', '', '',  "  +
             		" '', '', '0', '0', '',  "  +
-            		" '', '', ?, '°ü¸®ÀÚ', ?,  "  +
+            		" '', '', ?, 'ê´€ë¦¬ì', ?,  "  +
             		" '', '', '', '', '',  "  +
             		" '', '', '0', '', 'N',  "  +
             		" SYSDATE, '' ) " );                  
@@ -285,10 +285,10 @@ public String sendLMS(String phone, //¼ö½Å¹øÈ£
             if(!CommonUtil.nullToBlank(phone).equals("")){
            		pstmt.setString(1,phone);
             	
-            	//20180320  À¯Á¾ÀÏ  sms ¹ß½ÅÇ¥½Ã µ¿ÀÇ ÇÑ »ç¶÷¿¡ ÇÑÇØ¼­ ...
+            	//20180320  ìœ ì¢…ì¼  sms ë°œì‹ í‘œì‹œ ë™ì˜ í•œ ì‚¬ëŒì— í•œí•´ì„œ ...
             	pstmt.setString(2, sms_call_number);
             	pstmt.setString(3, sms_body);
-            	pstmt.setString(4, "ÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ");
+            	pstmt.setString(4, "ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ");
             	pstmt.setString(5, "0619317583");
             nResult = pstmt.executeUpdate();
             }
@@ -339,34 +339,34 @@ public String sendLMS(String phone, //¼ö½Å¹øÈ£
 	        	con = DBConn.getConnection();
 	        	con.setAutoCommit(false);
 	        	
-	        	/* ip Á¤º¸ÀĞ¾î¿È */
+	        	/* ip ì •ë³´ì½ì–´ì˜´ */
 				String serverIP = InetAddress.getLocalHost().getHostAddress();
 				/* Test server */
 				if("168.78.201.224".equals(serverIP)){
 					hp = "01087348869";
-					System.out.println("sendSMS.TEST server ÀÔ´Ï´Ù.");
+					System.out.println("sendSMS.TEST server ì…ë‹ˆë‹¤.");
 				}else{
-					System.out.println("sendSMS.¿î¿µÀÔ´Ï´Ù. hp="+hp);
+					System.out.println("sendSMS.ìš´ì˜ì…ë‹ˆë‹¤. hp="+hp);
 				}
 				System.out.println("sendSMS.hp=>"+hp);
 				
 	            int nResult = -1;
 	            StringBuffer mailQuery = new StringBuffer();
-				//2016.04.26 CDH  º¯°æ³»¿ë : SMS Àü¼Û Å×ÀÌºí º¯°æ
+				//2016.04.26 CDH  ë³€ê²½ë‚´ìš© : SMS ì „ì†¡ í…Œì´ë¸” ë³€ê²½
 //	            mailQuery.append(
 //	            "  insert into em_tran@CYBER_SMS_LNK( tran_pr, tran_phone, tran_callback, tran_status, tran_date, tran_msg, tran_etc1, tran_etc2, tran_etc3, tran_etc4 ) "+
-////	            "  values ( em_tran_pr.nextval@CYBER_SMS_LNK, ?, '0619317583', '1', sysdate, ?, 'ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', 'ÇÏÁö¾ğ', '0619317583', '5009') "
-//	            "  values ( em_tran_pr.nextval@CYBER_SMS_LNK, ?, '"+SMS_SENDER_TEL1+"', '1', sysdate, ?, 'ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', '"+SMS_SENDER_NAME+"', '"+SMS_SENDER_TEL1+"', '5009') "
+////	            "  values ( em_tran_pr.nextval@CYBER_SMS_LNK, ?, '0619317583', '1', sysdate, ?, 'í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', 'í•˜ì§€ì–¸', '0619317583', '5009') "
+//	            "  values ( em_tran_pr.nextval@CYBER_SMS_LNK, ?, '"+SMS_SENDER_TEL1+"', '1', sysdate, ?, 'í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', '"+SMS_SENDER_NAME+"', '"+SMS_SENDER_TEL1+"', '5009') "
 //	            );            
 	            mailQuery.append(
 	            "  INSERT INTO IF_EM_TRAN( ID, TRAN_PR, TRAN_PHONE, TRAN_CALLBACK, TRAN_STATUS, TRAN_DATE, TRAN_MSG, TRAN_ETC1, TRAN_ETC2, TRAN_ETC3, TRAN_ETC4, TRAN_TYPE, TABLE_GB,IF_STATUS,CREATE_ID,CREATE_DT,UPDATE_ID,UPDATE_DT  ) "+
-	            "  VALUES ( 'S'||IF_EM_TRAN_ID.NEXTVAL,'', ?, '"+SMS_SENDER_TEL1+"', '1', sysdate, ?, 'ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', '"+SMS_SENDER_NAME+"', '"+SMS_SENDER_TEL1+"', '5009','4','','','TaxSMSManagementDao',SYSDATE,'','') "
+	            "  VALUES ( 'S'||IF_EM_TRAN_ID.NEXTVAL,'', ?, '"+SMS_SENDER_TEL1+"', '1', sysdate, ?, 'í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', '"+SMS_SENDER_NAME+"', '"+SMS_SENDER_TEL1+"', '5009','4','','','TaxSMSManagementDao',SYSDATE,'','') "
 	            );                     
 	            pstmt = con.prepareStatement(mailQuery.toString());
 	            
 	            if(!CommonUtil.nullToBlank(hp).equals("")){
 	                pstmt.setString(1, hp.replaceAll("-",""));
-	                pstmt.setString(2, "ÇÑÀüÀüÀÚÁ¶´Ş(https://srm.kepco.net)¿¡¼­ ±Í»çÀÇ ¼¼±İ°è»ê¼­¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù. ");
+	                pstmt.setString(2, "í•œì „ì „ìì¡°ë‹¬(https://srm.kepco.net)ì—ì„œ ê·€ì‚¬ì˜ ì„¸ê¸ˆê³„ì‚°ì„œë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤. ");
 	                nResult = pstmt.executeUpdate();
 	            }
 	            if(nResult > 0) {
@@ -383,7 +383,7 @@ public String sendLMS(String phone, //¼ö½Å¹øÈ£
 	            	con.rollback();
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
-	//                throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "¸ŞÀÏ SMS ¹®ÀÚ Àü¼Û½Ã ¿¡·¯ ");
+	//                throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "ë©”ì¼ SMS ë¬¸ì ì „ì†¡ì‹œ ì—ëŸ¬ ");
 	            }
 	        } finally {
 	            if(pstmt != null)
@@ -425,19 +425,19 @@ public String sendLMS(String phone, //¼ö½Å¹øÈ£
     			
     			con = DBConn.getConnection();
 	            con.setAutoCommit(false);
-				//2016.04.26 CDH  º¯°æ³»¿ë : SMS Àü¼Û Å×ÀÌºí º¯°æ
+				//2016.04.26 CDH  ë³€ê²½ë‚´ìš© : SMS ì „ì†¡ í…Œì´ë¸” ë³€ê²½
                 StringBuffer sb= new StringBuffer()
                 .append("INSERT INTO IF_EM_TRAN(                                                                  \n")
                 .append("    ID, TRAN_PR, TRAN_PHONE, TRAN_CALLBACK, TRAN_STATUS, TRAN_DATE, TRAN_MSG, TRAN_ETC1, TRAN_ETC2, TRAN_ETC3, TRAN_ETC4, TRAN_TYPE, TABLE_GB,IF_STATUS,CREATE_ID,CREATE_DT,UPDATE_ID,UPDATE_DT)                            \n")
                 .append("VALUES(                                                                               \n")
-                .append("    'S'||IF_EM_TRAN_ID.NEXTVAL,'', ?, '0619317583', '1', sysdate, 'ÇÑÀüÀüÀÚÁ¶´Ş(https://srm.kepco.net)¿¡¼­ ±Í»çÀÇ ¼¼±İ°è»ê¼­¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù', 'ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', '°ü¸®ÀÚ', '0619317583', '5009','4','','','TaxSMSManagementDao',SYSDATE,'','')  \n");
+                .append("    'S'||IF_EM_TRAN_ID.NEXTVAL,'', ?, '0619317583', '1', sysdate, 'í•œì „ì „ìì¡°ë‹¬(https://srm.kepco.net)ì—ì„œ ê·€ì‚¬ì˜ ì„¸ê¸ˆê³„ì‚°ì„œë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤', 'í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', 'ê´€ë¦¬ì', '0619317583', '5009','4','','','TaxSMSManagementDao',SYSDATE,'','')  \n");
 //                .append("    TRAN_PR, TRAN_PHONE, TRAN_CALLBACK, TRAN_STATUS, TRAN_DATE,                       \n")
 //                .append("    TRAN_MSG, TRAN_ETC1, TRAN_ETC2, TRAN_ETC3, TRAN_ETC4 )                            \n")
 //                .append("VALUES(                                                                               \n")
 //                .append("    EM_TRAN_PR.NEXTVAL@CYBER_SMS_LNK, ?, '0619317583', '1', SYSDATE,                                          \n")
-//                .append("    'ÇÑÀü°ø±ŞÀÚÆ÷Å»(http://srm.kepco.net)¿¡¼­ ±Í»çÀÇ ¼¼±İ°è»ê¼­¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù','ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', 'ÇÏÁö¾ğ', '0619317583', '5009')  \n");
+//                .append("    'í•œì „ê³µê¸‰ìí¬íƒˆ(http://srm.kepco.net)ì—ì„œ ê·€ì‚¬ì˜ ì„¸ê¸ˆê³„ì‚°ì„œë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤','í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', 'í•˜ì§€ì–¸', '0619317583', '5009')  \n");
 //                //.append("    EM_TRAN_PR.NEXTVAL, ?, '', '1', SYSDATE,                                          \n")
-//                //.append("    'ÇÑÀü°ø±ŞÀÚÆ÷Å»(http://srm.kepco.net)¿¡¼­ ±Í»çÀÇ ¼¼±İ°è»ê¼­¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù','ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ ', '', '', '')  \n");
+//                //.append("    'í•œì „ê³µê¸‰ìí¬íƒˆ(http://srm.kepco.net)ì—ì„œ ê·€ì‚¬ì˜ ì„¸ê¸ˆê³„ì‚°ì„œë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤','í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ ', '', '', '')  \n");
  
 				
                 ps = con.prepareStatement(sb.toString());
@@ -475,11 +475,11 @@ public String sendLMS(String phone, //¼ö½Å¹øÈ£
     	return msg;
     }
     
-//20170213 À±±Ô¹Ì    
+//20170213 ìœ¤ê·œë¯¸    
 public String tax_SendSMS(String phone, String uuid) throws TaxInvoiceException{
     	
     	String msg = "OK";
-    	//20170213 À±±Ô¹Ì (¹®¼­¹øÈ£Ãß°¡)
+    	//20170213 ìœ¤ê·œë¯¸ (ë¬¸ì„œë²ˆí˜¸ì¶”ê°€)
     	String t_uuid ="";
     	//Connection conn = this.getConnection();
     	Connection con = null;
@@ -489,7 +489,7 @@ public String tax_SendSMS(String phone, String uuid) throws TaxInvoiceException{
     	
     	System.out.println("tax_SendSMS=>"+phone);
     	System.out.println("uuid=>"+uuid.substring(9,15));
-    	//20170213 À±±Ô¹Ì (¹®¼­¹øÈ£±æÀÌ Ã¼Å©)
+    	//20170213 ìœ¤ê·œë¯¸ (ë¬¸ì„œë²ˆí˜¸ê¸¸ì´ ì²´í¬)
     	if (uuid.length()>= 15){
     		t_uuid = uuid.substring(9,15);
     		System.out.println("uuid===============>"+t_uuid);
@@ -502,7 +502,7 @@ public String tax_SendSMS(String phone, String uuid) throws TaxInvoiceException{
     			
     			con = DBConn.getConnection();
 	            con.setAutoCommit(false);
-				//2016.04.26 CDH  º¯°æ³»¿ë : SMS Àü¼Û Å×ÀÌºí º¯°æ
+				//2016.04.26 CDH  ë³€ê²½ë‚´ìš© : SMS ì „ì†¡ í…Œì´ë¸” ë³€ê²½
                 StringBuffer sb= new StringBuffer();
                 
                 sb.append("/n         INSERT INTO IF_EM_TRAN");
@@ -513,7 +513,7 @@ public String tax_SendSMS(String phone, String uuid) throws TaxInvoiceException{
                 sb.append("/n         , CREATE_DT, UPDATE_ID, UPDATE_DT");
                 sb.append("/n         )VALUES(");
                 sb.append("/n         'S'||IF_EM_TRAN_ID.NEXTVAL,'', ?, '0619317583', '1'");
-                sb.append("/n         , sysdate, ?, 'ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', '°ü¸®ÀÚ', '0619317583'");
+                sb.append("/n         , sysdate, ?, 'í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', 'ê´€ë¦¬ì', '0619317583'");
                 sb.append("/n         , '5009','4','','','TaxSMSManagementDao'");
                 sb.append("/n         ,SYSDATE,'','')");
                 
@@ -522,16 +522,16 @@ public String tax_SendSMS(String phone, String uuid) throws TaxInvoiceException{
 //                .append("    TRAN_MSG, TRAN_ETC1, TRAN_ETC2, TRAN_ETC3, TRAN_ETC4 )                            \n")
 //                .append("VALUES(                                                                               \n")
 //                .append("    EM_TRAN_PR.NEXTVAL@CYBER_SMS_LNK, ?, '0619317583', '1', SYSDATE,                                          \n")
-//                .append("    'ÇÑÀü°ø±ŞÀÚÆ÷Å»(http://srm.kepco.net)¿¡¼­ ±Í»çÀÇ ¼¼±İ°è»ê¼­¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù','ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ', 'ÇÏÁö¾ğ', '0619317583', '5009')  \n");
+//                .append("    'í•œì „ê³µê¸‰ìí¬íƒˆ(http://srm.kepco.net)ì—ì„œ ê·€ì‚¬ì˜ ì„¸ê¸ˆê³„ì‚°ì„œë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤','í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ', 'í•˜ì§€ì–¸', '0619317583', '5009')  \n");
 //                //.append("    EM_TRAN_PR.NEXTVAL, ?, '', '1', SYSDATE,                                          \n")
-//                //.append("    'ÇÑÀü°ø±ŞÀÚÆ÷Å»(http://srm.kepco.net)¿¡¼­ ±Í»çÀÇ ¼¼±İ°è»ê¼­¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù','ÇÑÀüÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ ', '', '', '')  \n");
+//                //.append("    'í•œì „ê³µê¸‰ìí¬íƒˆ(http://srm.kepco.net)ì—ì„œ ê·€ì‚¬ì˜ ì„¸ê¸ˆê³„ì‚°ì„œë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤','í•œì „ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ ', '', '', '')  \n");
  
 				
                 ps = con.prepareStatement(sb.toString());
                 if("168.78.201.224".equals(serverIP)){
                 	ps.setString(1, "01087348869");
-                	//20170213 À±±Ô¹Ì (¹®¼­¹øÈ£ Ãß°¡)
-                	ps.setString(2, "ÇÑÀüÀüÀÚÁ¶´Ş(https://srm.kepco.net)¿¡¼­ ±Í»çÀÇ ¼¼±İ°è»ê¼­¸¦ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù"+t_uuid);
+                	//20170213 ìœ¤ê·œë¯¸ (ë¬¸ì„œë²ˆí˜¸ ì¶”ê°€)
+                	ps.setString(2, "í•œì „ì „ìì¡°ë‹¬(https://srm.kepco.net)ì—ì„œ ê·€ì‚¬ì˜ ì„¸ê¸ˆê³„ì‚°ì„œë¥¼ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤"+t_uuid);
                 }else{
                 	ps.setString(1, phone.replaceAll("-", ""));
                 }
@@ -564,15 +564,15 @@ public String tax_SendSMS(String phone, String uuid) throws TaxInvoiceException{
     	return msg;
     }
    
-public String tax_SendLMS(String phone, //¼ö½Å¹øÈ£
-		  String uuid, //¹®¼­¹øÈ£
-		  String issueDay, //ÀÛ¼­ÀÏÀÚ
-		  String comName, //¾÷Ã¼¸í
-		  String chaAmt, //°ø±Ş°¡¾×
-		  String taxAmt, //¼¼¾×
-		  String graAmt, //ÃÑ±İ¾×
-		  String email,//¼ö½ÅÀÌ¸ŞÀÏ
-		  String itemName//Ç°¸ñ¸í
+public String tax_SendLMS(String phone, //ìˆ˜ì‹ ë²ˆí˜¸
+		  String uuid, //ë¬¸ì„œë²ˆí˜¸
+		  String issueDay, //ì‘ì„œì¼ì
+		  String comName, //ì—…ì²´ëª…
+		  String chaAmt, //ê³µê¸‰ê°€ì•¡
+		  String taxAmt, //ì„¸ì•¡
+		  String graAmt, //ì´ê¸ˆì•¡
+		  String email,//ìˆ˜ì‹ ì´ë©”ì¼
+		  String itemName//í’ˆëª©ëª…
 		 ) throws TaxInvoiceException{
 
 //hp = "01046299932";
@@ -610,22 +610,22 @@ public String tax_SendLMS(String phone, //¼ö½Å¹øÈ£
 			con = DBConn.getConnection();
 			con.setAutoCommit(false);
 			System.out.println("email============================>"+email);
-			/* ip Á¤º¸ÀĞ¾î¿È */
+			/* ip ì •ë³´ì½ì–´ì˜´ */
 			String serverIP = InetAddress.getLocalHost().getHostAddress();
 			/* Test server */
 			if("168.78.201.224".equals(serverIP)){
 				phone = "01087348869";
 				email ="person1697@hanmail.net";
-				System.out.println("sendSMS.TEST server ÀÔ´Ï´Ù.");
+				System.out.println("sendSMS.TEST server ì…ë‹ˆë‹¤.");
 			}else{
-				System.out.println("sendLMS.¿î¿µÀÔ´Ï´Ù. phone="+phone);
+				System.out.println("sendLMS.ìš´ì˜ì…ë‹ˆë‹¤. phone="+phone);
 			}
 
 
 
-			sms_body1 = comName+" ±Í»ç¿¡ ¹ßÇàµÈ ´ë±İÃ»±¸¼­ ¹ßÇà¿äÃ» µå¸³´Ï´Ù.";			
-			sms_body2 = "#¼¼±İ°è»ê¼­ ³»¿ª \n - ÀÛ¼ºÀÏÀÚ : "+issueDay2+"\n - ´ë»óÇ°¸ñ : "+itemName+"\n - ±İ¾× : "+CommonUtil.moneyFormat(graAmt)+"¿ø"+"("+CommonUtil.moneyFormat(chaAmt)+"¿ø"+"+"+CommonUtil.moneyFormat(taxAmt)+"¿ø"+")\n - ¹®¼­¹øÈ£ : "+t_uuid;
-			sms_body3="#¼¼±İ°è»ê¼­ ¹ßÇà ¹æ¹ı\n  (2°¡ÁöÁß ¼±ÅÃÇØ¼­ »ç¿ëÇÏ¼¼¿ä)\n - ÀÌ¸ŞÀÏ ¹ßÇà ¹æ¹ı\n  PC¿¡¼­ ±ÍÇÏÀÇ "+email+"¿¡ µµÂøÇÑ ¸ŞÀÏ º»¹®¿¡¼­ ¹ßÇà\n - ½Ã½ºÅÛ ¹ßÇà ¹æ¹ı\n  PC¿¡¼­ ÇÑÀüÀüÀÚÁ¶´Ş(https://srm.kepco.net)>>ÀüÀÚ¼¼±İ°è»ê¼­>>¹ŞÀº¹®¼­ÇÔ¿¡¼­ ¹ßÇà\n (¹ŞÀº¹®¼­ÇÔ¿¡¼­ °Ë»öÁ¶°Ç ÀÛ¼ºÀÏÀÚ¸¦ Á¶Á¤ÇÑ ÈÄ Á¶È¸ ¹Ù¶ø´Ï´Ù.)";
+			sms_body1 = comName+" ê·€ì‚¬ì— ë°œí–‰ëœ ëŒ€ê¸ˆì²­êµ¬ì„œ ë°œí–‰ìš”ì²­ ë“œë¦½ë‹ˆë‹¤.";			
+			sms_body2 = "#ì„¸ê¸ˆê³„ì‚°ì„œ ë‚´ì—­ \n - ì‘ì„±ì¼ì : "+issueDay2+"\n - ëŒ€ìƒí’ˆëª© : "+itemName+"\n - ê¸ˆì•¡ : "+CommonUtil.moneyFormat(graAmt)+"ì›"+"("+CommonUtil.moneyFormat(chaAmt)+"ì›"+"+"+CommonUtil.moneyFormat(taxAmt)+"ì›"+")\n - ë¬¸ì„œë²ˆí˜¸ : "+t_uuid;
+			sms_body3="#ì„¸ê¸ˆê³„ì‚°ì„œ ë°œí–‰ ë°©ë²•\n  (2ê°€ì§€ì¤‘ ì„ íƒí•´ì„œ ì‚¬ìš©í•˜ì„¸ìš”)\n - ì´ë©”ì¼ ë°œí–‰ ë°©ë²•\n  PCì—ì„œ ê·€í•˜ì˜ "+email+"ì— ë„ì°©í•œ ë©”ì¼ ë³¸ë¬¸ì—ì„œ ë°œí–‰\n - ì‹œìŠ¤í…œ ë°œí–‰ ë°©ë²•\n  PCì—ì„œ í•œì „ì „ìì¡°ë‹¬(https://srm.kepco.net)>>ì „ìì„¸ê¸ˆê³„ì‚°ì„œ>>ë°›ì€ë¬¸ì„œí•¨ì—ì„œ ë°œí–‰\n (ë°›ì€ë¬¸ì„œí•¨ì—ì„œ ê²€ìƒ‰ì¡°ê±´ ì‘ì„±ì¼ìë¥¼ ì¡°ì •í•œ í›„ ì¡°íšŒ ë°”ëë‹ˆë‹¤.)";
 			sms_body = sms_body1+"\n\n"+sms_body2+"\n\n"+sms_body3;
 			//System.out.println("sms_body========"+sms_body);
 			int nResult = -1;
@@ -643,13 +643,13 @@ public String tax_SendLMS(String phone, //¼ö½Å¹øÈ£
 					" ETC4, SKT_PATH1, SKT_PATH2, KT_PATH1, KT_PATH2,  "  +
 					" LGT_PATH1, LGT_PATH2, REPLACE_CNT, REPLACE_MSG, TRANS_YN,   "  +
 					" CREATE_DT, TRANS_DT)  "  +
-					" VALUES(TO_CHAR(SYSDATE,'YYYYMMDD') , MMS_MSG_P_ID.NEXTVAL,  MMS_MSG_SEQ.NEXTVAL@CYBER_LMS_LNK, 'ÇÑ±¹Àü·Â°ø»ç ÀüÀÚ¼¼±İ°è»ê¼­ ¹ßÇà ¾È³»', ?,   "  +
+					" VALUES(TO_CHAR(SYSDATE,'YYYYMMDD') , MMS_MSG_P_ID.NEXTVAL,  MMS_MSG_SEQ.NEXTVAL@CYBER_LMS_LNK, 'í•œêµ­ì „ë ¥ê³µì‚¬ ì „ìì„¸ê¸ˆê³„ì‚°ì„œ ë°œí–‰ ì•ˆë‚´', ?,   "  +
 					"	?, '0', SYSDATE, ?, '0',  "  +
 					" '0', '', '', '', '',  "  +
 					" '', '', '', '', '' ,  "  +
 					" '', '43200', '', '', '',  "  +
 					" '', '', '0', '0', '',  "  +
-					" '', '', ?, '°ü¸®ÀÚ', ?,  "  +
+					" '', '', ?, 'ê´€ë¦¬ì', ?,  "  +
 					" '', '', '', '', '',  "  +
 					" '', '', '0', '', 'N',  "  +
 			" SYSDATE, '' ) " );                  
@@ -663,7 +663,7 @@ public String tax_SendLMS(String phone, //¼ö½Å¹øÈ£
 			}                      
 			pstmt.setString(2, "0619317583");
 			pstmt.setString(3, sms_body);
-			pstmt.setString(4, "ÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ");
+			pstmt.setString(4, "ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ");
 			pstmt.setString(5, "0619317583");
 			nResult = pstmt.executeUpdate();
 			}

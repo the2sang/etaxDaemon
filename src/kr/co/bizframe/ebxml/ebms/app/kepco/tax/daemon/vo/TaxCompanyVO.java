@@ -38,10 +38,10 @@ public class TaxCompanyVO extends Object implements Serializable {
 
 	private String comp_code = "";
 
-	private String person_id = ""; // »ç¹ø
+	private String person_id = ""; // ì‚¬ë²ˆ
 
-    private String zbran_name	  = ""; //ÇÑÀü-ÁöÁ¡¸í
-    private String buy_regist_id  = ""; //ÇÑÀü Á¾»ç¾÷ÀÚ ¹øÈ£
+    private String zbran_name	  = ""; //í•œì „-ì§€ì ëª…
+    private String buy_regist_id  = ""; //í•œì „ ì¢…ì‚¬ì—…ì ë²ˆí˜¸
 
 	public String getBuy_regist_id() {
 		return buy_regist_id;

@@ -125,19 +125,19 @@ public class TaxMainVO extends Object implements Serializable {
 	private String payment_credit_dc_amt = "";
 
 	private String payment_credit_fc_amt = "";
-	//	 20091109 ¼¼±İ°è»ê¼­ Ãß°¡
-    private String nts_issue_id 	= "";			// ±¹¼¼Ã»¿¬°è½ÂÀÎ¹øÈ£
-    private String bef_nts_issue_id = "";			// ±¹¼¼Ã»¼öÁ¤½ÂÀÎ¹øÈ£
-    private String modify_code 		= "";			// ¼öÁ¤»çÀ¯ÄÚµå
-    private String supplier_biz_cd 	= "";			// °ø±ŞÀÚÁ¾»ç¾÷Àå¹øÈ£
-    private String buyer_biz_cd 	= "";			// °ø±Ş¹Ş´ÂÀÚÁ¾»ç¾÷Àå¹øÈ£
-    private String doc_type_detail	= "";			// ¼¼±İ°è»ê¼­Á¾·ù(3.0)
+	//	 20091109 ì„¸ê¸ˆê³„ì‚°ì„œ ì¶”ê°€
+    private String nts_issue_id 	= "";			// êµ­ì„¸ì²­ì—°ê³„ìŠ¹ì¸ë²ˆí˜¸
+    private String bef_nts_issue_id = "";			// êµ­ì„¸ì²­ìˆ˜ì •ìŠ¹ì¸ë²ˆí˜¸
+    private String modify_code 		= "";			// ìˆ˜ì •ì‚¬ìœ ì½”ë“œ
+    private String supplier_biz_cd 	= "";			// ê³µê¸‰ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸
+    private String buyer_biz_cd 	= "";			// ê³µê¸‰ë°›ëŠ”ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸
+    private String doc_type_detail	= "";			// ì„¸ê¸ˆê³„ì‚°ì„œì¢…ë¥˜(3.0)
     // 200912
-    private String issue_dt = ""; // ¹ßÇàÀÏ½Ã
+    private String issue_dt = ""; // ë°œí–‰ì¼ì‹œ
     // 20100204
-    private String zbran_name = ""; // ÁöÁ¡¸í
+    private String zbran_name = ""; // ì§€ì ëª…
     
-    private String asp_issue_id = "";  //¿ÜºÎ¹ßÇà ¼¼±İ°è»ê¼­
+    private String asp_issue_id = "";  //ì™¸ë¶€ë°œí–‰ ì„¸ê¸ˆê³„ì‚°ì„œ
     
     /**
      * getZbran_name

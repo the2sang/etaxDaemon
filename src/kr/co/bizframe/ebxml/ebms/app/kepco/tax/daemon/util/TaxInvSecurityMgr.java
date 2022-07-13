@@ -114,8 +114,8 @@ public class TaxInvSecurityMgr {
 	}
 	
 	
-	// Æ¯¼ö¹®ÀÚ GET¹æ½Ä ³Ñ±è½Ã ±úÁüÇö»ó ¹æÁö¸¦ À§ÇØ ¹®ÀÚ¿­ encodeÃ³¸®
-	// ¹®Á¦ÀÖ´Â ¹®ÀÚ¿­µé ºó°ø¹é, and¿¬»êÀÚ, + ¿¬»êÀÚ 
+	// íŠ¹ìˆ˜ë¬¸ì GETë°©ì‹ ë„˜ê¹€ì‹œ ê¹¨ì§í˜„ìƒ ë°©ì§€ë¥¼ ìœ„í•´ ë¬¸ìì—´ encodeì²˜ë¦¬
+	// ë¬¸ì œìˆëŠ” ë¬¸ìì—´ë“¤ ë¹ˆê³µë°±, andì—°ì‚°ì, + ì—°ì‚°ì 
 	//  EX)  ~'()! +&12       
 	public String encodeURIComponent(String s)
 	  {
@@ -160,9 +160,9 @@ public class TaxInvSecurityMgr {
 			String plain_BizNo = supBizNo;			
 			String decrypted_BizNo = decrypt(encrypted_BizNo);
 						
-			if (decrypted_BizNo.equals(null) || decrypted_BizNo.equals("")) {  // 20130305 ÀåÁöÈ£ , º¹È£È­ °ª null Ã¼Å©.
+			if (decrypted_BizNo.equals(null) || decrypted_BizNo.equals("")) {  // 20130305 ì¥ì§€í˜¸ , ë³µí˜¸í™” ê°’ null ì²´í¬.
 				
-				System.out.println("º¹¿øµÈ AES ÀÎÁõ°ªÀÌ ¾ø½À´Ï´Ù. »ç¾÷ÀÚ¹øÈ£ : " + plain_BizNo + ", ¾ÏÈ£È­µÈ »ç¾÷ÀÚ¹øÈ£  : " + encrypted_BizNo + ", º¹¿øµÈ »ç¾÷ÀÚ¹øÈ£ : " + decrypted_BizNo);
+				System.out.println("ë³µì›ëœ AES ì¸ì¦ê°’ì´ ì—†ìŠµë‹ˆë‹¤. ì‚¬ì—…ìë²ˆí˜¸ : " + plain_BizNo + ", ì•”í˜¸í™”ëœ ì‚¬ì—…ìë²ˆí˜¸  : " + encrypted_BizNo + ", ë³µì›ëœ ì‚¬ì—…ìë²ˆí˜¸ : " + decrypted_BizNo);
 									
 			} else {
 				
@@ -171,13 +171,13 @@ public class TaxInvSecurityMgr {
 					AesResult = true;
 					ln_Status = "TRUE";
 					
-					System.out.println("»ç¾÷ÀÚ¹øÈ£		: " + plain_BizNo);
-					System.out.println("¾ÏÈ£È­µÈ »ç¾÷ÀÚ¹øÈ£  : " + encrypted_BizNo);
-					System.out.println("º¹¿øµÈ »ç¾÷ÀÚ¹øÈ£ 	: " + decrypted_BizNo);
+					System.out.println("ì‚¬ì—…ìë²ˆí˜¸		: " + plain_BizNo);
+					System.out.println("ì•”í˜¸í™”ëœ ì‚¬ì—…ìë²ˆí˜¸  : " + encrypted_BizNo);
+					System.out.println("ë³µì›ëœ ì‚¬ì—…ìë²ˆí˜¸ 	: " + decrypted_BizNo);
 				
 				} else {
 					
-					System.out.println("AES ÀÎÁõ°ªÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù. »ç¾÷ÀÚ¹øÈ£ : " + plain_BizNo + ", ¾ÏÈ£È­µÈ »ç¾÷ÀÚ¹øÈ£  : " + encrypted_BizNo + ", º¹¿øµÈ »ç¾÷ÀÚ¹øÈ£ 	: " + decrypted_BizNo);
+					System.out.println("AES ì¸ì¦ê°’ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ì‚¬ì—…ìë²ˆí˜¸ : " + plain_BizNo + ", ì•”í˜¸í™”ëœ ì‚¬ì—…ìë²ˆí˜¸  : " + encrypted_BizNo + ", ë³µì›ëœ ì‚¬ì—…ìë²ˆí˜¸ 	: " + decrypted_BizNo);
 				}
 				
 			}
@@ -222,9 +222,9 @@ public class TaxInvSecurityMgr {
 			String plain_uid = Uuid;					
 			String decrypted_uuid = decrypt(encrypted_uuid);
 			
-			if (decrypted_uuid.equals(null) || decrypted_uuid.equals("")) {  // 20130305 ÀåÁöÈ£ , º¹È£È­ °ª null Ã¼Å©.
+			if (decrypted_uuid.equals(null) || decrypted_uuid.equals("")) {  // 20130305 ì¥ì§€í˜¸ , ë³µí˜¸í™” ê°’ null ì²´í¬.
 				
-				System.out.println("º¹¿øµÈ AES ÀÎÁõ°ªÀÌ ¾ø½À´Ï´Ù. ¹®¼­¹øÈ£ : " + plain_uid + ", ¾ÏÈ£È­µÈ ¹®¼­¹øÈ£  : " + encrypted_uuid + ", º¹¿øµÈ ¹®¼­¹øÈ£ : " + decrypted_uuid);
+				System.out.println("ë³µì›ëœ AES ì¸ì¦ê°’ì´ ì—†ìŠµë‹ˆë‹¤. ë¬¸ì„œë²ˆí˜¸ : " + plain_uid + ", ì•”í˜¸í™”ëœ ë¬¸ì„œë²ˆí˜¸  : " + encrypted_uuid + ", ë³µì›ëœ ë¬¸ì„œë²ˆí˜¸ : " + decrypted_uuid);
 				
 			} else {
 				
@@ -233,13 +233,13 @@ public class TaxInvSecurityMgr {
 					AesResult = true;
 					ln_Status = "TRUE";	
 					
-					System.out.println("¹®¼­¹øÈ£: " + plain_uid);
-					System.out.println("¾ÏÈ£È­µÈ ¹®¼­¹øÈ£  : " + encrypted_uuid);
-					System.out.println("º¹¿øµÈ ¹®¼­¹øÈ£ 	: " + decrypted_uuid);
+					System.out.println("ë¬¸ì„œë²ˆí˜¸: " + plain_uid);
+					System.out.println("ì•”í˜¸í™”ëœ ë¬¸ì„œë²ˆí˜¸  : " + encrypted_uuid);
+					System.out.println("ë³µì›ëœ ë¬¸ì„œë²ˆí˜¸ 	: " + decrypted_uuid);
 					
 				
 				} else {					
-					System.out.println("AES ÀÎÁõ°ªÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù. ¹®¼­¹øÈ£ : " + plain_uid + ", ¾ÏÈ£È­µÈ ¹®¼­¹øÈ£  : " + encrypted_uuid + ", º¹¿øµÈ ¹®¼­¹øÈ£ 	: " + decrypted_uuid);
+					System.out.println("AES ì¸ì¦ê°’ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë¬¸ì„œë²ˆí˜¸ : " + plain_uid + ", ì•”í˜¸í™”ëœ ë¬¸ì„œë²ˆí˜¸  : " + encrypted_uuid + ", ë³µì›ëœ ë¬¸ì„œë²ˆí˜¸ 	: " + decrypted_uuid);
 				}
 			
 			}

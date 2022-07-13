@@ -462,7 +462,7 @@ public class TaxMetaDao {
 
     public String isUniqueVoucherSICode(TaxMetaVO vo, Connection con) throws SQLException, TaxInvoiceException
     {
-        System.out.println("ÆÇ¸Å SI TAXINVOICE °¡ UNIQUE ÇÑÁö Ã¼Å©");
+        System.out.println("íŒë§¤ SI TAXINVOICE ê°€ UNIQUE í•œì§€ ì²´í¬");
         String isExist = "Y";
         PreparedStatement ps = null;
         try{
@@ -493,7 +493,7 @@ public class TaxMetaDao {
 
     public String isUniqueSysTypeInfo(String bizId, String SystemTypeSel, String ConstructNoSel, String ReportTypeSel, String KisungChgNoSel, String uuid, Connection con) throws SQLException, TaxInvoiceException
     {
-        System.out.println("¾÷¹«Á¤º¸°¡ UNIQUE ÇÑÁö Ã¼Å©");
+        System.out.println("ì—…ë¬´ì •ë³´ê°€ UNIQUE í•œì§€ ì²´í¬");
         String isExist = "Y";
         PreparedStatement ps = null;
         try{
@@ -552,28 +552,28 @@ public class TaxMetaDao {
         	if("168.78.201.224".equals(serverIP)){
         		sql =
                 	" select BIZ_NO, CONS_NO, REQ_NO, PROF_CONS_NO, PUB_YMD, BUYER_BIZ_ID, INSPECTOR_ID, CONTRACTOR_ID, CONS_NM, COMP_NO "   +
-                	//Ãß°¡ 200912 KHS
+                	//ì¶”ê°€ 200912 KHS
                 	//" , SUPPLIER_BIZ_CD " +
-                	" , BUYER_BIZ_CD, DOC_TYPE_DETAIL	"+//°ø±ŞÀÚÁ¾»ç¾÷Àå¹øÈ£ //°ø±Ş¹Ş´ÂÀÚÁ¾»ç¾÷Àå¹øÈ£ //¼¼±İ°è»ê¼­Á¾·ù(3.0)
-                	" , REL_SYSTEM_ID		"+ //¿¬°è½Ã½ºÅÛ ID
+                	" , BUYER_BIZ_CD, DOC_TYPE_DETAIL	"+//ê³µê¸‰ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸ //ê³µê¸‰ë°›ëŠ”ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸ //ì„¸ê¸ˆê³„ì‚°ì„œì¢…ë¥˜(3.0)
+                	" , REL_SYSTEM_ID		"+ //ì—°ê³„ì‹œìŠ¤í…œ ID
                 	" from key_powereditest.EAI_TAX_HEADER_INFO_TB "   +
                 	" where STATUS='WRM' "+
                 	//" AND REL_SYSTEM_ID = 'K1ETAX1022'	" +
                 	" AND rownum < 51 order by REQ_NO "   ;
-        		//System.out.println("Å×½ºÆ®¼­¹ö  TaxDaemon");
+        		//System.out.println("í…ŒìŠ¤íŠ¸ì„œë²„  TaxDaemon");
         	}else{
         	*/
             String sql =
         	" select BIZ_NO, CONS_NO, REQ_NO, PROF_CONS_NO, PUB_YMD, BUYER_BIZ_ID, INSPECTOR_ID, CONTRACTOR_ID, CONS_NM, COMP_NO "   +
-        	//Ãß°¡ 200912 KHS
+        	//ì¶”ê°€ 200912 KHS
         	//" , SUPPLIER_BIZ_CD " +
-        	" , BUYER_BIZ_CD, DOC_TYPE_DETAIL	"+//°ø±ŞÀÚÁ¾»ç¾÷Àå¹øÈ£ //°ø±Ş¹Ş´ÂÀÚÁ¾»ç¾÷Àå¹øÈ£ //¼¼±İ°è»ê¼­Á¾·ù(3.0)
-        	" , REL_SYSTEM_ID,SMS_YN , SMS_SENDER_NAME ,SMS_SENDER_TEL 		"+ //¿¬°è½Ã½ºÅÛ ID  20180320 À¯Á¾ÀÏ SMS Ãß°¡ 
+        	" , BUYER_BIZ_CD, DOC_TYPE_DETAIL	"+//ê³µê¸‰ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸ //ê³µê¸‰ë°›ëŠ”ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸ //ì„¸ê¸ˆê³„ì‚°ì„œì¢…ë¥˜(3.0)
+        	" , REL_SYSTEM_ID,SMS_YN , SMS_SENDER_NAME ,SMS_SENDER_TEL 		"+ //ì—°ê³„ì‹œìŠ¤í…œ ID  20180320 ìœ ì¢…ì¼ SMS ì¶”ê°€ 
         	" from EAI_TAX_HEADER_INFO_TB "   +
         	" where STATUS='WRM' "+
         	//" AND REL_SYSTEM_ID = 'K1ETAX1022'	" +
         	" AND rownum < 51 order by REQ_NO "   ;
-           // System.out.println("¿î¿µ¼­¹ö  TaxDaemon");
+           // System.out.println("ìš´ì˜ì„œë²„  TaxDaemon");
         	//}
         	
         		
@@ -593,7 +593,7 @@ public class TaxMetaDao {
             	headerVO.setReq_no(CommonUtil.justNullToBlank(rs.getString("REQ_NO")));
             	headerVO.setCons_nm(CommonUtil.justNullToBlank(rs.getString("CONS_NM")));
             	headerVO.setComp_no(CommonUtil.justNullToBlank(rs.getString("COMP_NO")));
-            	//Ãß°¡ 200912 //°ø±ŞÀÚÁ¾»ç¾÷Àå¹øÈ£ //°ø±Ş¹Ş´ÂÀÚÁ¾»ç¾÷Àå¹øÈ£ //¼¼±İ°è»ê¼­Á¾·ù(3.0)
+            	//ì¶”ê°€ 200912 //ê³µê¸‰ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸ //ê³µê¸‰ë°›ëŠ”ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸ //ì„¸ê¸ˆê³„ì‚°ì„œì¢…ë¥˜(3.0)
             	//headerVO.setSupplier_biz_cd(CommonUtil.justNullToBlank(rs.getString("SUPPLIER_BIZ_CD")));
             	headerVO.setBuyer_biz_cd(CommonUtil.justNullToBlank(rs.getString("BUYER_BIZ_CD")));
             	headerVO.setDoc_type_detail(CommonUtil.justNullToBlank(rs.getString("DOC_TYPE_DETAIL")));
@@ -627,7 +627,7 @@ public class TaxMetaDao {
          	String sql =
          		"  select BIZ_NO, CONS_NO, REQ_NO, CONS_KND_CD, ACPTNO, MATRBILL_COMP_AMT, COMP_AMT, " +
 //         		"	ACPT_KND_NM, CUSTNM, ADDRESS, OPER_YMD, PROF_COMP_AMT " +
-//2015.08.20 vat_amt Ãß°¡(ppa½Ã½ºÅÛ ¼¼¾×°è»ê¹ıÀÌ Æ²·Á¼­ Ãß°¡ÇÔ)          		
+//2015.08.20 vat_amt ì¶”ê°€(ppaì‹œìŠ¤í…œ ì„¸ì•¡ê³„ì‚°ë²•ì´ í‹€ë ¤ì„œ ì¶”ê°€í•¨)          		
          		"	ACPT_KND_NM, CUSTNM, ADDRESS, OPER_YMD, PROF_COMP_AMT, VAT_AMT " +
          		//"  from key_poweredi.EAI_TAX_DETAIL_INFO_TB " +
          		"  from EAI_TAX_DETAIL_INFO_TB " +
@@ -635,7 +635,7 @@ public class TaxMetaDao {
          		"   and CONS_NO	= ? " +
          		"   and REQ_NO	= ? " +
          		//	"	and REL_SYSTEM_ID	= 'K1ETAX1022'	"+
-         		"	AND REL_SYSTEM_ID = ? "+ // Ãß°¡
+         		"	AND REL_SYSTEM_ID = ? "+ // ì¶”ê°€
          		"  order by CONS_KND_CD desc " ;
 
             ps = con.prepareStatement(sql);
@@ -643,7 +643,7 @@ public class TaxMetaDao {
             ps.setString(1, vo.getBiz_no());
             ps.setString(2, vo.getCons_no());
             ps.setString(3, vo.getReq_no());
-            ps.setString(4, vo.getRel_system_id());// Ãß°¡
+            ps.setString(4, vo.getRel_system_id());// ì¶”ê°€
 
             ResultSet rs = ps.executeQuery();
 
@@ -661,7 +661,7 @@ public class TaxMetaDao {
             	detailVO.setAddress(CommonUtil.justNullToBlank(rs.getString("ADDRESS")));
             	detailVO.setOper_ymd(CommonUtil.justNullToBlank(rs.getString("OPER_YMD")));
             	detailVO.setProf_comp_amt(CommonUtil.justNullToBlank(rs.getString("PROF_COMP_AMT")));
-//2015.08.20 vat_amt Ãß°¡(ppa½Ã½ºÅÛ ¼¼¾×°è»ê¹ıÀÌ Æ²·Á¼­ Ãß°¡ÇÔ)
+//2015.08.20 vat_amt ì¶”ê°€(ppaì‹œìŠ¤í…œ ì„¸ì•¡ê³„ì‚°ë²•ì´ í‹€ë ¤ì„œ ì¶”ê°€í•¨)
             	detailVO.setVat_amt(CommonUtil.justNullToBlank(rs.getString("VAT_AMT")));
             	
             	data.add(detailVO);
@@ -699,8 +699,8 @@ public class TaxMetaDao {
             ps.setString(2, vo.getCons_no());
             ps.setString(3, vo.getReq_no());
 
-            System.out.println("¢º¢º¢º UPDATE EAI_TAX_HEADER_INFO_TB SQL : "+ sql);
-            System.out.println("¢º¢º¢º UPDATE input  : vo.getBiz_no"+ vo.getBiz_no()+ "vo.getCons_no "+vo.getCons_no()+"vo.getReq_no"+vo.getReq_no());
+            System.out.println("â–¶â–¶â–¶ UPDATE EAI_TAX_HEADER_INFO_TB SQL : "+ sql);
+            System.out.println("â–¶â–¶â–¶ UPDATE input  : vo.getBiz_no"+ vo.getBiz_no()+ "vo.getCons_no "+vo.getCons_no()+"vo.getReq_no"+vo.getReq_no());
             ps.executeUpdate();
             ps.close();
         }catch(SQLException e){
@@ -740,9 +740,9 @@ public class TaxMetaDao {
             ps.setString(6, errmsg);
             ps.setString(7, vo.getRel_system_id());
 
-            System.out.println("¢º¢º¢ºINSERT EAI_TAX_STATUS_INFO_TB SQL : "+ sql);
-            System.out.println("¢º¢º¢º INPUT : vo.getBiz_no"+ vo.getBiz_no()+"vo.getCons_no "+vo.getCons_no()+"vo.getReq_no"+vo.getReq_no() );
-            System.out.println("¢º¢º¢º INPUT : uuid"+uuid+"status "+status+"status"+status +"errmsg"+errmsg+"vo.getRel_system_id"+vo.getRel_system_id());
+            System.out.println("â–¶â–¶â–¶INSERT EAI_TAX_STATUS_INFO_TB SQL : "+ sql);
+            System.out.println("â–¶â–¶â–¶ INPUT : vo.getBiz_no"+ vo.getBiz_no()+"vo.getCons_no "+vo.getCons_no()+"vo.getReq_no"+vo.getReq_no() );
+            System.out.println("â–¶â–¶â–¶ INPUT : uuid"+uuid+"status "+status+"status"+status +"errmsg"+errmsg+"vo.getRel_system_id"+vo.getRel_system_id());
             ps.executeUpdate();
             ps.close();
         }catch(SQLException e){
@@ -799,7 +799,7 @@ public class TaxMetaDao {
             String sql =
 //            	" UPDATE ETS_TAX_META_INFO_TB SET   "   +
 //                "        DOC_STATE ='DEL',   "   +
-//                "        EXT_DOC_RESULT_MSG ='¹ßÇà ÈÄ 15ÀÏ °æ°ú·Î ÀÚµ¿ Æó±âµÊ'   "   +
+//                "        EXT_DOC_RESULT_MSG ='ë°œí–‰ í›„ 15ì¼ ê²½ê³¼ë¡œ ìë™ íê¸°ë¨'   "   +
 //                "  where DOC_STATE ='CFR' " +
 //	            "   and WRITE_TYPE = 'K' " +
 //	            "   and COMP_CODE = '00' " +
@@ -808,7 +808,7 @@ public class TaxMetaDao {
 
 	            " UPDATE ETS_TAX_META_INFO_TB SET    	"   +
 	            " 	DOC_STATE ='DEL',               	"   +
-	            " 	EXT_DOC_RESULT_MSG ='¹ßÇà ÈÄ 15ÀÏ °æ°ú·Î ÀÚµ¿ Æó±âµÊ' "   +
+	            " 	EXT_DOC_RESULT_MSG ='ë°œí–‰ í›„ 15ì¼ ê²½ê³¼ë¡œ ìë™ íê¸°ë¨' "   +
 	            " where uuid in ( "   +
 	            " 		   select  a.uuid "   +
 	            " 		   from ETS_TAX_META_INFO_TB a, ETS_TAX_MAIN_INFO_TB b "   +
@@ -851,7 +851,7 @@ public class TaxMetaDao {
 			String sql =
                 	" UPDATE EAI_TAX_STATUS_INFO_TB SET " +
                 	" 	STATUS = 'DEL' , EAI_STAT = null, " +
-                	" 	STATUS_MSG ='¹ßÇà ÈÄ 15ÀÏ °æ°ú·Î ÀÚµ¿ Æó±âµÊ' "   +
+                	" 	STATUS_MSG ='ë°œí–‰ í›„ 15ì¼ ê²½ê³¼ë¡œ ìë™ íê¸°ë¨' "   +
                 	" WHERE UUID in ("+whereStr+") " ;
        	
             con.setAutoCommit(false);
@@ -876,8 +876,8 @@ public class TaxMetaDao {
     	logger.debug("[START selectStatusByBasicDate] ");
         ArrayList receiverList = new ArrayList();
         PreparedStatement ps = null;
-        // È®ÀÎ¿äÃ» »óÅÂÀÎ ³»¼±°ÇÀ» °Ë»öÇÔ.¼ö½Å¾÷Ã¼»ç¾÷ÀÚ¹øÈ£,¼ö½ÅÀÚ ¾ÆÀÌµğ return
-        // 7ÀÏÀü ³¯ÀÚ-1
+        // í™•ì¸ìš”ì²­ ìƒíƒœì¸ ë‚´ì„ ê±´ì„ ê²€ìƒ‰í•¨.ìˆ˜ì‹ ì—…ì²´ì‚¬ì—…ìë²ˆí˜¸,ìˆ˜ì‹ ì ì•„ì´ë”” return
+        // 7ì¼ì „ ë‚ ì-1
         try{
             String sql =
             " 		   SELECT  a.RECEIVER_COMP_ID, a.RECEIVER_ID, a.UUID,					\n"   +
@@ -933,7 +933,7 @@ public class TaxMetaDao {
     /* 2009.08.06 */
     public String selectHpByReceiver(String Receiver_comp_id,String Receiver_id,Connection con)throws SQLException, TaxInvoiceException{
     	logger.debug("[START selectHpByReceiver] ");
-		//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºĞ±âÃ³¸® CDH
+		//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 		String BUSI_ENC = CommonUtil.getString("BUSI_ENC");
 		String sql = "";
         PreparedStatement ps = null;
@@ -944,7 +944,7 @@ public class TaxMetaDao {
 	    		"	SELECT 	                                    \n" +
 	    		"  		A.MOBILE,								\n" +
 	    		"		B.MOB_NUMBER							\n" +
-	    		//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	    		//2015.12.02 ì°¨ì„¸ëŒ€ì…ì°° ê´€ë ¨ ì‘ì—…  CDH
 //	    		"	FROM TP_EXUSER_TBL@USER_LINK A, 			\n" +
 //  	  		"	 	 TP_SUPPLIER_TBL@USER_LINK B,   		\n" +
 //    			"   	 TP_OWNERLST_TBL@USER_LINK C   			\n" +
@@ -952,10 +952,10 @@ public class TaxMetaDao {
 	    		"	 	 TP_SUPPLIER_TBL_VIEW B,		   		\n" +
 	    		"   	 TP_OWNERLST_TBL_VIEW C		   			\n" +
 	    		"	WHERE A.SUPPLIER_NO = B.SUPPLIER_NO   		\n" +
-				//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+				//2016.08.17 ì°¨ì„¸ëŒ€ì…ì°° ê´€ë ¨ ì‘ì—… CDH
 				"   AND C.ID = B.ID																			"   +
 	    		"	AND A.SUPPLIER_NO = C.SUPPLIER_NO   		\n" +
-	    		//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+	    		//2015.12.02 ì°¨ì„¸ëŒ€ì…ì°° ê´€ë ¨ ì‘ì—…  CDH
 	    		"	AND B.BUSINESS_NO = ENCODE_SF64@D_EDI2SRM(?)\n" +
 //	    		"	AND B.BUSINESS_NO = ENCODE_SF_SNM(?)  		\n" +
 	    		"   AND A.TAX_SMS_YN = 'Y'						\n" +
@@ -965,7 +965,7 @@ public class TaxMetaDao {
 				"	SELECT 	                                    \n" +
 				"  		A.MOBILE,								\n" +
 				"		B.MOB_NUMBER							\n" +
-				//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+				//2015.12.02 ì°¨ì„¸ëŒ€ì…ì°° ê´€ë ¨ ì‘ì—…  CDH
 //	    		"	FROM TP_EXUSER_TBL@USER_LINK A, 			\n" +
 //  	  		"	 	 TP_SUPPLIER_TBL@USER_LINK B,   		\n" +
 //    			"   	 TP_OWNERLST_TBL@USER_LINK C   			\n" +
@@ -973,10 +973,10 @@ public class TaxMetaDao {
 				"	 	 TP_SUPPLIER_TBL_VIEW B,		   		\n" +
 				"   	 TP_OWNERLST_TBL_VIEW C		   			\n" +
 				"	WHERE A.SUPPLIER_NO = B.SUPPLIER_NO   		\n" +
-				//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+				//2016.08.17 ì°¨ì„¸ëŒ€ì…ì°° ê´€ë ¨ ì‘ì—… CDH
 				"   AND C.ID = B.ID																			"   +
 				"	AND A.SUPPLIER_NO = C.SUPPLIER_NO   		\n" +
-				//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+				//2015.12.02 ì°¨ì„¸ëŒ€ì…ì°° ê´€ë ¨ ì‘ì—…  CDH
 				"	AND B.BUSINESS_NO = ?  						\n" +
 //	    		"	AND B.BUSINESS_NO = ENCODE_SF_SNM(?)  		\n" +
 				"   AND A.TAX_SMS_YN = 'Y'						\n" +
@@ -1004,7 +1004,7 @@ public class TaxMetaDao {
     }
     
    /**
-    * ¹Ìµ¿ÀÇ°Ç °Ë»ö 
+    * ë¯¸ë™ì˜ê±´ ê²€ìƒ‰ 
     * @param con
     * @return
     * @throws SQLException
@@ -1018,47 +1018,47 @@ public class TaxMetaDao {
         	/*
         	sql.append(" SELECT 											\n");
         	sql.append(" 		A.SVC_MANAGE_ID AS MANAGEMENT_ID, --UUID		\n");
-        	sql.append(" 		'1' SEQNO, -- ¼ø¹ø							\n");
-        	sql.append(" 		'2' JOB_DEFINE, -- ¾÷¹«±¸ºĞ 1: MM 2 : FI		\n");
-        	sql.append(" 		ISSUE_ID, -- ±¹¼¼Ã» ½ÂÀÎ¹øÈ£					\n");
+        	sql.append(" 		'1' SEQNO, -- ìˆœë²ˆ							\n");
+        	sql.append(" 		'2' JOB_DEFINE, -- ì—…ë¬´êµ¬ë¶„ 1: MM 2 : FI		\n");
+        	sql.append(" 		ISSUE_ID, -- êµ­ì„¸ì²­ ìŠ¹ì¸ë²ˆí˜¸					\n");
         	sql.append(" 		'2' NTS_REGIST_YN,							\n");
-        	sql.append(" 		'¹Ìµ¿ÀÇ' NTS_REGIST_TXT,						\n");
+        	sql.append(" 		'ë¯¸ë™ì˜' NTS_REGIST_TXT,						\n");
         	sql.append("		ISSUE_DAY									\n");
         	sql.append(" FROM TB_TAX_BILL_INFO A							\n");
-        	sql.append(" WHERE IO_CODE = '2' --ÇÑÀü ±âÁØ 1 ¸ÅÃâ, 2 ¸ÅÀÔ			\n");
-        	sql.append(" AND ONLINE_GUB_CODE = '1' -- ¿Â¶óÀÎ : 1  ¿ÀÇÁ¶óÀÎ : 2	\n");
+        	sql.append(" WHERE IO_CODE = '2' --í•œì „ ê¸°ì¤€ 1 ë§¤ì¶œ, 2 ë§¤ì…			\n");
+        	sql.append(" AND ONLINE_GUB_CODE = '1' -- ì˜¨ë¼ì¸ : 1  ì˜¤í”„ë¼ì¸ : 2	\n");
         	sql.append(" AND ERP_SND_YN IS NULL	--							\n");
         	sql.append(" AND LENGTH(A.SVC_MANAGE_ID) = 16						\n");
         	sql.append(" AND STATUS_CODE='02'								\n");
         	sql.append(" AND ELECTRONIC_REPORT_YN = 'F'						\n");
         	sql.append(" AND INVOICEE_GUB_CODE = '00'						\n");
         	sql.append(" AND A.BILL_TYPE_CODE IN ('0101', '0102', '0103', '0104', '0105', '0201', '0202', '0203', '0204', '0205')	\n");
-        	sql.append("	-- ³¯ÀÚÁ¶°Ç µé¾î°¡¾ßÇÔ 4¿ù1ÀÏÀÌÈÄ	\n");
+        	sql.append("	-- ë‚ ìì¡°ê±´ ë“¤ì–´ê°€ì•¼í•¨ 4ì›”1ì¼ì´í›„	\n");
         	*/
         	
         	/* sql start */
         	sql.append(" SELECT                                                                   										\n");
         	sql.append("     A.SVC_MANAGE_ID AS MANAGEMENT_ID,      --UUID                        										\n");
-        	sql.append("     '1' SEQNO,                          	--¼ø¹ø                        													\n");
-        	sql.append("     '2' JOB_DEFINE,                     	--¾÷¹«±¸ºĞ 1: MM 2 : FI        										\n");
-        	sql.append("     A.ISSUE_ID, 						 	--±¹¼¼Ã» ½ÂÀÎ¹øÈ£														\n");
-        	sql.append("     '2' NTS_REGIST_YN,					 	--¹Ìµ¿ÀÇ°Ç '2'														\n");
-        	sql.append("     '¹Ìµ¿ÀÇ' NTS_REGIST_TXT,			 		--»çÀ¯																\n");
-        	sql.append("     A.ISSUE_DAY							--ÀÛ¼ºÀÏÀÚ															\n");
+        	sql.append("     '1' SEQNO,                          	--ìˆœë²ˆ                        													\n");
+        	sql.append("     '2' JOB_DEFINE,                     	--ì—…ë¬´êµ¬ë¶„ 1: MM 2 : FI        										\n");
+        	sql.append("     A.ISSUE_ID, 						 	--êµ­ì„¸ì²­ ìŠ¹ì¸ë²ˆí˜¸														\n");
+        	sql.append("     '2' NTS_REGIST_YN,					 	--ë¯¸ë™ì˜ê±´ '2'														\n");
+        	sql.append("     'ë¯¸ë™ì˜' NTS_REGIST_TXT,			 		--ì‚¬ìœ 																\n");
+        	sql.append("     A.ISSUE_DAY							--ì‘ì„±ì¼ì															\n");
         	sql.append(" FROM TB_TAX_BILL_INFO A,ETS_TAX_META_INFO_TB B,ETS_TAX_MAIN_INFO_TB C 											\n");
-        	sql.append(" WHERE A.IO_CODE = '2'	               		--ÇÑÀü ±âÁØ 1 ¸ÅÃâ, 2 ¸ÅÀÔ												\n");
-        	sql.append(" AND A.ONLINE_GUB_CODE = '1' 	 			--¿Â¶óÀÎ : 1  ¿ÀÇÁ¶óÀÎ : 2 												\n");
-        	sql.append(" AND A.STATUS_CODE='02'						--»óÅÂ '02'															\n");
-        	sql.append(" AND A.ISSUE_DAY BETWEEN TO_CHAR(SYSDATE-190,'YYYYMMDD') AND TO_CHAR(SYSDATE,'YYYYMMDD')	--±İÀÏ 190ÀÏÀüºÎÅÍ		\n");
-        	sql.append(" AND LENGTH(A.SVC_MANAGE_ID) = 16			--¼¼±İ°è»ê¼­															\n");
-        	sql.append(" AND A.ELECTRONIC_REPORT_YN = 'F' 			--µ¿ÀÇ¾ÈµÊ'F'															\n");
+        	sql.append(" WHERE A.IO_CODE = '2'	               		--í•œì „ ê¸°ì¤€ 1 ë§¤ì¶œ, 2 ë§¤ì…												\n");
+        	sql.append(" AND A.ONLINE_GUB_CODE = '1' 	 			--ì˜¨ë¼ì¸ : 1  ì˜¤í”„ë¼ì¸ : 2 												\n");
+        	sql.append(" AND A.STATUS_CODE='02'						--ìƒíƒœ '02'															\n");
+        	sql.append(" AND A.ISSUE_DAY BETWEEN TO_CHAR(SYSDATE-190,'YYYYMMDD') AND TO_CHAR(SYSDATE,'YYYYMMDD')	--ê¸ˆì¼ 190ì¼ì „ë¶€í„°		\n");
+        	sql.append(" AND LENGTH(A.SVC_MANAGE_ID) = 16			--ì„¸ê¸ˆê³„ì‚°ì„œ															\n");
+        	sql.append(" AND A.ELECTRONIC_REPORT_YN = 'F' 			--ë™ì˜ì•ˆë¨'F'															\n");
         	sql.append(" AND A.INVOICEE_GUB_CODE = '00' 																				\n");
-        	sql.append(" AND A.ERP_SND_YN IS NULL  					--Xml»ı¼º ¾ÈµÈ°Í  														\n");
+        	sql.append(" AND A.ERP_SND_YN IS NULL  					--Xmlìƒì„± ì•ˆëœê²ƒ  														\n");
         	sql.append(" AND A.SVC_MANAGE_ID = B.UUID																					\n");
         	sql.append(" AND A.ISSUE_ID = C.NTS_ISSUE_ID																				\n");
         	sql.append(" AND B.UUID = C.UUID																							\n");
-        	sql.append(" AND A.BILL_TYPE_CODE IN ('0101', '0102', '0103', '0104', '0105', '0201', '0202', '0203', '0204', '0205')--¼¼±İ°è»ê¼­ Á¾·ù  \n");
-        	sql.append(" AND (B.DOC_STATE='REJ' OR B.DOC_STATE='END')	--Ãë¼ÒÀÌ°Å³ª ¿Ï·áµÈ°ÇÁß 												\n");
+        	sql.append(" AND A.BILL_TYPE_CODE IN ('0101', '0102', '0103', '0104', '0105', '0201', '0202', '0203', '0204', '0205')--ì„¸ê¸ˆê³„ì‚°ì„œ ì¢…ë¥˜  \n");
+        	sql.append(" AND (B.DOC_STATE='REJ' OR B.DOC_STATE='END')	--ì·¨ì†Œì´ê±°ë‚˜ ì™„ë£Œëœê±´ì¤‘ 												\n");
         	//sql.append(" AND ");
         	//sql.append("");
         	
@@ -1101,57 +1101,57 @@ public class TaxMetaDao {
         	/*
         	sql.append(" SELECT 																				\n");
         	sql.append(" 		A.SVC_MANAGE_ID AS MANAGEMENT_ID, --UUID											\n");
-        	sql.append("  		'1' SEQNO, -- ¼ø¹ø																\n");
-        	sql.append("  		'2' JOB_DEFINE, -- ¾÷¹«±¸ºĞ 1: MM 2 : FI											\n");
-        	sql.append("  		ISSUE_ID, -- ±¹¼¼Ã» ½ÂÀÎ¹øÈ£														\n");
+        	sql.append("  		'1' SEQNO, -- ìˆœë²ˆ																\n");
+        	sql.append("  		'2' JOB_DEFINE, -- ì—…ë¬´êµ¬ë¶„ 1: MM 2 : FI											\n");
+        	sql.append("  		ISSUE_ID, -- êµ­ì„¸ì²­ ìŠ¹ì¸ë²ˆí˜¸														\n");
         	sql.append("  		(SELECT DECODE(CODE,'99','2','98','2','04','1','97','1') FROM TB_CODE_INFO WHERE CODE_GRP_ID = 'STATUS_CODE' AND CODE = A.STATUS_CODE)NTS_REGIST_YN ,	\n");
-        	sql.append("  		(SELECT DECODE(CODE,'98','¹İ·ÁÃ³¸®','99',CODE_VALUE) FROM TB_CODE_INFO WHERE CODE_GRP_ID = 'STATUS_CODE' AND CODE = A.STATUS_CODE)NTS_REGIST_TXT,		\n");
-        	sql.append("  		ELECTRONIC_REPORT_YN, -- F : Àü¼Û´ë»ó¾Æ´Ô Y : Àü¼Û´ë»ó							\n");
+        	sql.append("  		(SELECT DECODE(CODE,'98','ë°˜ë ¤ì²˜ë¦¬','99',CODE_VALUE) FROM TB_CODE_INFO WHERE CODE_GRP_ID = 'STATUS_CODE' AND CODE = A.STATUS_CODE)NTS_REGIST_TXT,		\n");
+        	sql.append("  		ELECTRONIC_REPORT_YN, -- F : ì „ì†¡ëŒ€ìƒì•„ë‹˜ Y : ì „ì†¡ëŒ€ìƒ							\n");
         	sql.append("  		STATUS_CODE,																	\n");
         	sql.append("		ISSUE_DAY																		\n");
         	sql.append(" FROM TB_TAX_BILL_INFO A 																\n");
-        	sql.append(" WHERE IO_CODE = '2' --ÇÑÀü ±âÁØ 1 ¸ÅÃâ, 2 ¸ÅÀÔ 												\n");
-        	sql.append(" AND ONLINE_GUB_CODE = '1' -- ¿Â¶óÀÎ :1 -- ¿ÀÇÁ¶óÀÎ : 2 									\n");
+        	sql.append(" WHERE IO_CODE = '2' --í•œì „ ê¸°ì¤€ 1 ë§¤ì¶œ, 2 ë§¤ì… 												\n");
+        	sql.append(" AND ONLINE_GUB_CODE = '1' -- ì˜¨ë¼ì¸ :1 -- ì˜¤í”„ë¼ì¸ : 2 									\n");
         	sql.append(" AND ERP_SND_YN IS NULL 																\n");
         	sql.append(" AND LENGTH(A.SVC_MANAGE_ID) = 16 														\n");
         	sql.append(" AND INVOICEE_GUB_CODE = '00'															\n");
         	sql.append(" AND (ELECTRONIC_REPORT_YN = 'N' OR ELECTRONIC_REPORT_YN = 'Y')							\n");
         	sql.append(" AND A.BILL_TYPE_CODE IN ('0101', '0102', '0103', '0104', '0105', '0201', '0202', '0203', '0204', '0205')	\n");
-        	sql.append("	-- ³¯ÀÚÁ¶°Ç µé¾î°¡¾ßÇÔ 4¿ù1ÀÏÀÌÈÄ	\n");
+        	sql.append("	-- ë‚ ìì¡°ê±´ ë“¤ì–´ê°€ì•¼í•¨ 4ì›”1ì¼ì´í›„	\n");
         	sql.append(" AND ( 																					\n");
-        	sql.append("  		STATUS_CODE = '04'  --  ±¹¼¼Ã»Àü¼Û¿Ï·á											\n");
-        	sql.append("  		OR STATUS_CODE='97' --  ±¹¼¼Ã» ÀçÀü¼Û¿Ï·á											\n");
-        	sql.append("  		OR STATUS_CODE='98' -- Ãë¼Ò/¹İ·ÁÃ³¸®												\n");
-        	sql.append("  		OR STATUS_CODE='99' --  Àü¼Û½ÇÆĞ													\n");
+        	sql.append("  		STATUS_CODE = '04'  --  êµ­ì„¸ì²­ì „ì†¡ì™„ë£Œ											\n");
+        	sql.append("  		OR STATUS_CODE='97' --  êµ­ì„¸ì²­ ì¬ì „ì†¡ì™„ë£Œ											\n");
+        	sql.append("  		OR STATUS_CODE='98' -- ì·¨ì†Œ/ë°˜ë ¤ì²˜ë¦¬												\n");
+        	sql.append("  		OR STATUS_CODE='99' --  ì „ì†¡ì‹¤íŒ¨													\n");
         	sql.append("  	  )																					\n");
 			*/
         	
         	/* */
         	sql.append(" SELECT                                                                                  \n");
         	sql.append("       A.SVC_MANAGE_ID AS MANAGEMENT_ID, 					-- UUID                          \n");
-        	sql.append("       '1' SEQNO, 										-- ¼ø¹ø                                                               	 \n");
-        	sql.append("       '2' JOB_DEFINE, 									-- ¾÷¹«±¸ºĞ  1 : MM, 2 : FI        \n");  
-        	sql.append("       A.ISSUE_ID, 										-- ±¹¼¼Ã» ½ÂÀÎ¹øÈ£                                             \n");    
+        	sql.append("       '1' SEQNO, 										-- ìˆœë²ˆ                                                               	 \n");
+        	sql.append("       '2' JOB_DEFINE, 									-- ì—…ë¬´êµ¬ë¶„  1 : MM, 2 : FI        \n");  
+        	sql.append("       A.ISSUE_ID, 										-- êµ­ì„¸ì²­ ìŠ¹ì¸ë²ˆí˜¸                                             \n");    
         	sql.append("       (SELECT DECODE(CODE,'99','2','98','2','04','1','97','1') FROM TB_CODE_INFO WHERE CODE_GRP_ID = 'STATUS_CODE' AND CODE = A.STATUS_CODE)NTS_REGIST_YN ,    \n");
-        	sql.append("       (SELECT DECODE(CODE,'98','¹İ·ÁÃ³¸®','99',CODE_VALUE) FROM TB_CODE_INFO WHERE CODE_GRP_ID = 'STATUS_CODE' AND CODE = A.STATUS_CODE)NTS_REGIST_TXT,         \n");
-        	sql.append("       A.ELECTRONIC_REPORT_YN, 							-- F : Àü¼Û´ë»ó¾Æ´Ô Y : Àü¼Û´ë»ó        \n");  
-        	sql.append("       A.STATUS_CODE,                                   -- »óÅÂÄÚµå	                     \n");
-        	sql.append("       A.ISSUE_DAY,                                      -- ÀÛ¼ºÀÏÀÚ	                     \n"); 
-        	sql.append("	   TO_CHAR(A.ESERO_FINISH_TS, 'YYYYMMDD') AS ESERO_FINISH_TS	--¼¼±İ°è»ê¼­ ±¹¼¼Ã»½Å°í¿Ï·áÀÏ½Ã		\n");
+        	sql.append("       (SELECT DECODE(CODE,'98','ë°˜ë ¤ì²˜ë¦¬','99',CODE_VALUE) FROM TB_CODE_INFO WHERE CODE_GRP_ID = 'STATUS_CODE' AND CODE = A.STATUS_CODE)NTS_REGIST_TXT,         \n");
+        	sql.append("       A.ELECTRONIC_REPORT_YN, 							-- F : ì „ì†¡ëŒ€ìƒì•„ë‹˜ Y : ì „ì†¡ëŒ€ìƒ        \n");  
+        	sql.append("       A.STATUS_CODE,                                   -- ìƒíƒœì½”ë“œ	                     \n");
+        	sql.append("       A.ISSUE_DAY,                                      -- ì‘ì„±ì¼ì	                     \n"); 
+        	sql.append("	   TO_CHAR(A.ESERO_FINISH_TS, 'YYYYMMDD') AS ESERO_FINISH_TS	--ì„¸ê¸ˆê³„ì‚°ì„œ êµ­ì„¸ì²­ì‹ ê³ ì™„ë£Œì¼ì‹œ		\n");
         	sql.append(" FROM TB_TAX_BILL_INFO A, ETS_TAX_META_INFO_TB B, ETS_TAX_MAIN_INFO_TB C                 \n");                                                
-        	sql.append(" WHERE A.IO_CODE = '2' 									-- ÇÑÀü ±âÁØ 1 ¸ÅÃâ, 2 ¸ÅÀÔ                          \n");         
-        	sql.append(" AND A.ONLINE_GUB_CODE = '1' 							-- ¿Â¶óÀÎ :1 -- ¿ÀÇÁ¶óÀÎ : 2       \n");     
-        	sql.append(" AND A.ERP_SND_YN IS NULL                               -- ERP Null ÀÎ°Í                               	  	 \n"); 
+        	sql.append(" WHERE A.IO_CODE = '2' 									-- í•œì „ ê¸°ì¤€ 1 ë§¤ì¶œ, 2 ë§¤ì…                          \n");         
+        	sql.append(" AND A.ONLINE_GUB_CODE = '1' 							-- ì˜¨ë¼ì¸ :1 -- ì˜¤í”„ë¼ì¸ : 2       \n");     
+        	sql.append(" AND A.ERP_SND_YN IS NULL                               -- ERP Null ì¸ê²ƒ                               	  	 \n"); 
         	sql.append(" AND LENGTH(A.SVC_MANAGE_ID) = 16                                                        \n"); 
         	sql.append(" AND A.INVOICEE_GUB_CODE = '00'                                                          \n");  
         	sql.append(" AND (A.ELECTRONIC_REPORT_YN = 'N' OR A.ELECTRONIC_REPORT_YN = 'Y')                      \n");      
-        	sql.append(" AND A.ISSUE_DAY BETWEEN TO_CHAR(SYSDATE-190,'YYYYMMDD') AND TO_CHAR(SYSDATE,'YYYYMMDD')    --±İÀÏ 190ÀÏÀüºÎÅÍ					    \n");
-        	sql.append(" AND A.BILL_TYPE_CODE IN ('0101', '0102', '0103', '0104', '0105', '0201', '0202', '0203', '0204', '0205')  --¼¼±İ°è»ê¼­ Á¾·ùÄÚµå    \n");
+        	sql.append(" AND A.ISSUE_DAY BETWEEN TO_CHAR(SYSDATE-190,'YYYYMMDD') AND TO_CHAR(SYSDATE,'YYYYMMDD')    --ê¸ˆì¼ 190ì¼ì „ë¶€í„°					    \n");
+        	sql.append(" AND A.BILL_TYPE_CODE IN ('0101', '0102', '0103', '0104', '0105', '0201', '0202', '0203', '0204', '0205')  --ì„¸ê¸ˆê³„ì‚°ì„œ ì¢…ë¥˜ì½”ë“œ    \n");
         	sql.append(" AND A.STATUS_CODE IN ('04','97','98','99')    											 \n");
         	sql.append(" AND A.SVC_MANAGE_ID = B.UUID                                                            \n");
         	sql.append(" AND A.ISSUE_ID = C.NTS_ISSUE_ID                                            			 \n");
         	sql.append(" AND B.UUID = C.UUID                                                                     \n");
-        	sql.append(" AND (B.DOC_STATE='REJ' OR B.DOC_STATE='END')    		--Ãë¼ÒÀÌ°Å³ª ¿Ï·áµÈ°ÇÁß			 \n");
+        	sql.append(" AND (B.DOC_STATE='REJ' OR B.DOC_STATE='END')    		--ì·¨ì†Œì´ê±°ë‚˜ ì™„ë£Œëœê±´ì¤‘			 \n");
         	
         	//System.out.println("sql selectTrunce : "+sql.toString());
         	
@@ -1234,7 +1234,7 @@ public class TaxMetaDao {
     }
     
     /**
-     * ´ë»ó list
+     * ëŒ€ìƒ list
      * @param tax_Date
      * @param con
      * @return
@@ -1245,9 +1245,9 @@ public class TaxMetaDao {
     	ArrayList list = new ArrayList();
     	PreparedStatement ps = null;
     	
-    	//System.out.println("µî·ÏÀÏÀÚ tax_Date : "+tax_Date);
+    	//System.out.println("ë“±ë¡ì¼ì tax_Date : "+tax_Date);
     	//tax_Date = "20100706";
-    	//System.out.println("µî·ÏÀÏÀÚ tax_Date : "+tax_Date);
+    	//System.out.println("ë“±ë¡ì¼ì tax_Date : "+tax_Date);
     	
     	try{
     		StringBuffer sql = new StringBuffer();
@@ -1256,7 +1256,7 @@ public class TaxMetaDao {
     		sql.append("   A.IO_CODE, 						\n");
     		sql.append("   A.SVC_MANAGE_ID, 				\n");
     		sql.append("   A.BIZ_MANAGE_ID, 				\n");
-    		sql.append("   A.INVOICEE_PARTY_ID,				\n"); // ¾ÏÈ£È­ ÀÛ¾÷ ´ë»ó index
+    		sql.append("   A.INVOICEE_PARTY_ID,				\n"); // ì•”í˜¸í™” ì‘ì—… ëŒ€ìƒ index
     		sql.append("   A.INVOICER_PARTY_ID,				\n"); 
     		sql.append("   A.INVOICER_PARTY_NAME, 			\n");
     		sql.append("   A.INVOICEE_PARTY_NAME,			\n");
@@ -1287,7 +1287,7 @@ public class TaxMetaDao {
 
     				
     		
-    		System.out.println(" ¸ÅÃâ,sms,mail sql ");
+    		System.out.println(" ë§¤ì¶œ,sms,mail sql ");
     		System.out.println(sql.toString());
     		
     		ps = con.prepareStatement(sql.toString());

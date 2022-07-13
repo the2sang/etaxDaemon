@@ -46,10 +46,10 @@ public class TaxObjToVOUtil {
         setPayment(info, vo);
     }
 /**
- * 10  Çö±İ
- * 20  ¼öÇ¥
- * 2AA ¾îÀ½
- * 30  ¿Ü»ó
+ * 10  í˜„ê¸ˆ
+ * 20  ìˆ˜í‘œ
+ * 2AA ì–´ìŒ
+ * 30  ì™¸ìƒ
 */
     private void setPayment(Summary info,  TaxMainVO vo) {
         for(int i=0; i<info.getPaymentMethodCount(); i++){
@@ -118,7 +118,7 @@ public class TaxObjToVOUtil {
         vo.setDemand_type(info.getTax_Demand_Indicator().toString());
         vo.setTot_improt_cnt(info.getTotalImport_Quantity().getContent().toString());
         
-// 2006.04.28 ÀÌÁ¦Áß
+// 2006.04.28 ì´ì œì¤‘
         vo.setRef_inv_doc_id(info.getDocumentReferences().getInvoiceDocumentReference().getDocument_Identifier().getContent());
         vo.setRef_inv_doc_date(info.getDocumentReferences().getInvoiceDocumentReference().getDocument_DateTime().getContent());
         vo.setRef_other_doc_id(info.getDocumentReferences().getOtherDocumentReference().getDocument_Identifier().getContent());
@@ -171,7 +171,7 @@ public class TaxObjToVOUtil {
         if(buyer_contact.getTelephone_TextCount()==1)
             vo.setBuyer_contactor_tel(buyer_contact.getTelephone_Text(0).getContent());
 
-//      ERP ¿¬°è Ãß°¡ Ç×¸ñ 
+//      ERP ì—°ê³„ ì¶”ê°€ í•­ëª© 
         System.out.println("############################33");
         System.out.println("metaVO.getConstruct_no()::::::::::"+metaVO.getConstruct_no());
         Doc_Info docInfo = info.getExtension().getDoc_Info();

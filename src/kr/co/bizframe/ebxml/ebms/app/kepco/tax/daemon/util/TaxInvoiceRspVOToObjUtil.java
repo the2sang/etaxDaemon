@@ -99,7 +99,7 @@ public class TaxInvoiceRspVOToObjUtil {
     	si.setContent("1208200052");
     	appArea.setServiceID_Identifier(si);
     	
-/*/		½ÂÀÎ¹øÈ£    	
+/*/		ìŠ¹ì¸ë²ˆí˜¸    	
  */	    
 	    if (trVO.getIssue_id()!=null && !trVO.getIssue_id().equals("")) {
     		DocumentReferences documentRef =  new DocumentReferences();
@@ -109,7 +109,7 @@ public class TaxInvoiceRspVOToObjUtil {
 	    	invoice_Id.setContent(trVO.getIssue_id());
 	    	invoiceDocRef.setDocument_Identifier(invoice_Id);	    	
 	    	
-	    	//¼¼±İ°è»ê¼­ ±¹¼¼Ã»½Å°í¿Ï·áÀÏ½Ã 2013.04.22 ÀåÁöÈ£
+	    	//ì„¸ê¸ˆê³„ì‚°ì„œ êµ­ì„¸ì²­ì‹ ê³ ì™„ë£Œì¼ì‹œ 2013.04.22 ì¥ì§€í˜¸
 	    	Document_DateTime Esero_Finish_Ts = new Document_DateTime();
 	    	Esero_Finish_Ts.setContent(trVO.getEsero_finish_ts());
 	    	invoiceDocRef.setDocument_DateTime(Esero_Finish_Ts);

@@ -27,7 +27,7 @@ public class TaxInvRspVO implements Serializable{
 	private int doc_seq            ;
 	private String confirm_flag	   ;
 	
-	private String returned_datetime;		// Áö±Ş¿¹Á¤ÀÏ
+	private String returned_datetime;		// ì§€ê¸‰ì˜ˆì •ì¼
 	
 	private String issue_id;
 	
@@ -35,7 +35,7 @@ public class TaxInvRspVO implements Serializable{
 	private String issue_day;
 	//public BinDatVO binVO;
 	
-	//¼¼±İ°è»ê¼­ ±¹¼¼Ã»½Å°í¿Ï·áÀÏ½Ã 2013.04.22 ÀåÁöÈ£
+	//ì„¸ê¸ˆê³„ì‚°ì„œ êµ­ì„¸ì²­ì‹ ê³ ì™„ë£Œì¼ì‹œ 2013.04.22 ì¥ì§€í˜¸
 	private String esero_finish_ts;
 	
 	public TaxInvRspVO(){
@@ -63,7 +63,7 @@ public class TaxInvRspVO implements Serializable{
 		issue_day = "";
 		//binVO = new BinDatVO();
 		
-		//¼¼±İ°è»ê¼­ ±¹¼¼Ã»½Å°í¿Ï·áÀÏ½Ã 2013.04.22 ÀåÁöÈ£
+		//ì„¸ê¸ˆê³„ì‚°ì„œ êµ­ì„¸ì²­ì‹ ê³ ì™„ë£Œì¼ì‹œ 2013.04.22 ì¥ì§€í˜¸
 		esero_finish_ts ="";
 	}
 
@@ -297,7 +297,7 @@ public class TaxInvRspVO implements Serializable{
 	}
 
 
-	// ¼¼±İ°è»ê¼­ ±¹¼¼Ã»½Å°í¿Ï·áÀÏ½Ã 2013.04.22 ÀåÁöÈ£
+	// ì„¸ê¸ˆê³„ì‚°ì„œ êµ­ì„¸ì²­ì‹ ê³ ì™„ë£Œì¼ì‹œ 2013.04.22 ì¥ì§€í˜¸
 	public String getEsero_finish_ts() {
 		return esero_finish_ts;
 	}

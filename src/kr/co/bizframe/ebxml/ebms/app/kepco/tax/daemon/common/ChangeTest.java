@@ -1,49 +1,49 @@
-package kr.co.kepco.etax30.buyw;
+package kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.common;
 
 public class ChangeTest {
-	
-	
+
+
 	public static String checkTime (String t_time){
 		String time = "";
-		
-		// ÀÚ¸® ¼ö Ã¼Å©  (14ÀÚ¸®·Î µé¾î ¿Ã¶§¿¡ º¯°æ)  
+
+		// ìžë¦¬ ìˆ˜ ì²´í¬  (14ìžë¦¬ë¡œ ë“¤ì–´ ì˜¬ë•Œì— ë³€ê²½)
 		if(t_time.length() == 14){
-			
-			//½Ã°£¸¸ Àß¶ó¼­ Ã¼Å© 
+
+			//ì‹œê°„ë§Œ ìž˜ë¼ì„œ ì²´í¬
 			String t_hh  =   t_time.substring(8, 10);
-			
+
 			String s_dt  = t_time.substring(0, 8);
 			String e_dt  = t_time.substring(10, 14);
-			
+
 			//System.out.println("====t_hh====="+t_hh);
 			//System.out.println("====s_dt====="+s_dt);
 			//System.out.println("====e_dt====="+e_dt);
-			
+
 			if(t_hh.equals("24")){
 				time = s_dt+"00"+e_dt;
 			}else{
-				time = t_time;  // ½Ã°£ÀÌ 24½Ã°¡ ¾Æ´Ï¸é µé¾î¿Â ±×·¡µµ ¸®ÅÏ
+				time = t_time;  // ì‹œê°„ì´ 24ì‹œê°€ ì•„ë‹ˆë©´ ë“¤ì–´ì˜¨ ê·¸ëž˜ë„ ë¦¬í„´
 			}
 
 		}else{
-			time = t_time;   // ÀÚ¸®¼ö°¡ ÀÌ»óÇÏ°Ô µé¾î¿Íµµ µé¾î¿Â ±×·¡µµ ¸®ÅÏ
+			time = t_time;   // ìžë¦¬ìˆ˜ê°€ ì´ìƒí•˜ê²Œ ë“¤ì–´ì™€ë„ ë“¤ì–´ì˜¨ ê·¸ëž˜ë„ ë¦¬í„´
 		}
-		return time; 
+		return time;
 	}
-	
-	
-	
+
+
+
 	public static void main(String[] args){
-		
+
 		System.out.println("===test====");
-		
+
 		String  t_modifydt = "20180123212312321231233141116";
-		
-		System.out.println("±â Á¸   = >" + t_modifydt);
+
+		System.out.println("ê¸° ì¡´   = >" + t_modifydt);
 		String modifydt  = checkTime(t_modifydt);
-		System.out.println("º¯°æÈÄ = >" + modifydt);
-		
-		
-		
+		System.out.println("ë³€ê²½í›„ = >" + modifydt);
+
+
+
 	}
 }

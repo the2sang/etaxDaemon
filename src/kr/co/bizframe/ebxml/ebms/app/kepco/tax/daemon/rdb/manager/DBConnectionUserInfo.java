@@ -107,7 +107,7 @@ public class DBConnectionUserInfo {
 	        }
 	        catch(Exception e) { 
 	            e.printStackTrace();
-	            throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "SMS DB¼­¹ö CONNECTION »ı¼º½Ã ¿¡·¯ ");
+	            throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "SMS DBì„œë²„ CONNECTION ìƒì„±ì‹œ ì—ëŸ¬ ");
 	        }
 	    }
 	  

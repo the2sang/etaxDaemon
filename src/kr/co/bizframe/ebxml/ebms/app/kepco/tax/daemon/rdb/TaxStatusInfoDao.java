@@ -152,7 +152,7 @@ public class TaxStatusInfoDao {
                 "   AND CREATE_TIME <= TO_DATE(?||' 23:59:59','YYYY-MM-DD HH24:MI:SS')  " +
             	" order by CREATE_TIME desc	";
             
-            //»ç¾÷ÀÚ¹øÈ£ °Ë»ö Ãß°¡
+            //ì‚¬ì—…ìžë²ˆí˜¸ ê²€ìƒ‰ ì¶”ê°€
             
             ps = con.prepareStatement(sql);
             

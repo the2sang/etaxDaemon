@@ -4,34 +4,34 @@ import java.io.Serializable;
 
 public class TaxDetailVO extends Object implements Serializable {
 	
-	private String biz_no = "";				//°ø»ç¾÷Ã¼»ç¾÷ÀÚ¹øÈ£
+	private String biz_no = "";				//ê³µì‚¬ì—…ì²´ì‚¬ì—…ìë²ˆí˜¸
 
-	private String cons_no = "";			//°ø»ç¹øÈ£
+	private String cons_no = "";			//ê³µì‚¬ë²ˆí˜¸
 
-	private String req_no = "";				//¿ª¹ßÇà¿äÃ»ÀÏ½Ã
+	private String req_no = "";				//ì—­ë°œí–‰ìš”ì²­ì¼ì‹œ
 
-	private String acptno = "";				//Á¢¼ö¹øÈ£
+	private String acptno = "";				//ì ‘ìˆ˜ë²ˆí˜¸
 
-	private String cons_knd_cd = "";		//°ø»çÁ¾·ùÄÚµå
+	private String cons_knd_cd = "";		//ê³µì‚¬ì¢…ë¥˜ì½”ë“œ
 	
-//	private String meter_comp_amt = "";		//°è±â°ø»çºñ
+//	private String meter_comp_amt = "";		//ê³„ê¸°ê³µì‚¬ë¹„
 	
-//	private String inb_comp_amt = "";		//ÀÎÀÔ¼±°ø»çºñ
+//	private String inb_comp_amt = "";		//ì¸ì…ì„ ê³µì‚¬ë¹„
 	
-	private String matrbill_comp_amt = "";	//µµ±ŞÀç·áºñ
+	private String matrbill_comp_amt = "";	//ë„ê¸‰ì¬ë£Œë¹„
 	
-	private String comp_amt = "";			//µµ±Ş°ø»çºñ
+	private String comp_amt = "";			//ë„ê¸‰ê³µì‚¬ë¹„
 
-	private String acpt_knd_nm = "";		//Á¢¼öÁ¾·ù¸í
+	private String acpt_knd_nm = "";		//ì ‘ìˆ˜ì¢…ë¥˜ëª…
 
-	private String custnm = "";				//°í°´¸í
+	private String custnm = "";				//ê³ ê°ëª…
 
-	private String address = "";			//ÁÖ¼Ò
+	private String address = "";			//ì£¼ì†Œ
 
-	private String oper_ymd = "";			//½Ã°øÀÏÀÚ
+	private String oper_ymd = "";			//ì‹œê³µì¼ì
 
-	private String prof_comp_amt = "";		//¼öÀÍÀû°ø»çºñ
-//2015.08.20 vat_amt Ãß°¡(ppa½Ã½ºÅÛ ¼¼¾×)
+	private String prof_comp_amt = "";		//ìˆ˜ìµì ê³µì‚¬ë¹„
+//2015.08.20 vat_amt ì¶”ê°€(ppaì‹œìŠ¤í…œ ì„¸ì•¡)
 	private String vat_amt = "";
 
 	public String getAcpt_knd_nm() {
@@ -130,7 +130,7 @@ public class TaxDetailVO extends Object implements Serializable {
 	public void setProf_comp_amt(String prof_comp_amt) {
 		this.prof_comp_amt = prof_comp_amt;
 	}
-//2015.08.20 vat_amt Ãß°¡(ppa½Ã½ºÅÛ ¼¼¾×)
+//2015.08.20 vat_amt ì¶”ê°€(ppaì‹œìŠ¤í…œ ì„¸ì•¡)
 	/**
 	 * @return the vat_amt
 	 */

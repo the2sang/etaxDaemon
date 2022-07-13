@@ -26,7 +26,7 @@ public class PollerAdapter extends Thread {
 	/* add 2009.08.06 */
 	private final String sms_Sand	= "-7";//
 	
-	private final String tax_bill_sms_day = "-3"; // ¸ÅÃâ¼¼±İ°è»ê¼­ 
+	private final String tax_bill_sms_day = "-3"; // ë§¤ì¶œì„¸ê¸ˆê³„ì‚°ì„œ 
 
     public ServerProperties props = ServerProperties.getInstance();
 
@@ -61,49 +61,49 @@ public class PollerAdapter extends Thread {
 			String lastday_Sms = "";
 			boolean sms_SandOK = false;
 			
-			/* ¸ÅÃâ sms , mail Àü¼Û */
+			/* ë§¤ì¶œ sms , mail ì „ì†¡ */
 			String lastday_Sms_tax_bill = "";
-			boolean tax_bill_sms_sandOK = false; // ¸ÅÃâ°ü·Ã
+			boolean tax_bill_sms_sandOK = false; // ë§¤ì¶œê´€ë ¨
 
 			while(true) {
 
 				logger.debug(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 
 		        try {
-		          	//// ³»¼±°è±â½Ã½ºÅÛ ¿¬°è ¿ª¹ßÇà ¼¼±İ°è»ê¼­ ¹ßÇà
+		          	//// ë‚´ì„ ê³„ê¸°ì‹œìŠ¤í…œ ì—°ê³„ ì—­ë°œí–‰ ì„¸ê¸ˆê³„ì‚°ì„œ ë°œí–‰
 		            TaxManagementDao dao = new TaxManagementDao();
-		            ArrayList data = dao.getReceiveHeaderList(); // Header Á¤º¸ °¡Á®¿È WRM (¿äÃ»)ÀÎ°Í
+		            ArrayList data = dao.getReceiveHeaderList(); // Header ì •ë³´ ê°€ì ¸ì˜´ WRM (ìš”ì²­)ì¸ê²ƒ
 
-					for (int idx = 0; idx < data.size(); idx++) { // ÇØ´ç °¡Á®¿Â ¸¸Å­ µ¹¸²
+					for (int idx = 0; idx < data.size(); idx++) { // í•´ë‹¹ ê°€ì ¸ì˜¨ ë§Œí¼ ëŒë¦¼
 
 						TaxHeaderVO headerVO = new TaxHeaderVO();
-			            headerVO = (TaxHeaderVO)data.get(idx); // Çì´õÁ¤º¸ ÇÏ³ª¾¿ °¡Á®¿È
+			            headerVO = (TaxHeaderVO)data.get(idx); // í—¤ë”ì •ë³´ í•˜ë‚˜ì”© ê°€ì ¸ì˜´
 			            
-			            System.out.println(" ½Ã½ºÅÛID = "+headerVO.getRel_system_id());
-						//logger.debug(idx+" New bizno="+headerVO.getBiz_no()); // ÇØ´õÁ¤º¸¿¡ ¾÷Ã¼ »ç¾÷ÀÚ¹øÈ£¸¦ °¡Á®¿È
+			            System.out.println(" ì‹œìŠ¤í…œID = "+headerVO.getRel_system_id());
+						//logger.debug(idx+" New bizno="+headerVO.getBiz_no()); // í•´ë”ì •ë³´ì— ì—…ì²´ ì‚¬ì—…ìë²ˆí˜¸ë¥¼ ê°€ì ¸ì˜´
 
 						try {
 							String errMsg = "";
 							//logger.debug("::::::::::::::::::>>>>>>>>>>>>"+headerVO.getDoc_type_detail());
-							ArrayList detailArray = dao.getReceiveDetailList(headerVO); // ¾÷Ã¼ »ç¾÷ÀÚ¹øÈ£·Î »ó¼¼Á¤º¸ °¡Á®¿È
+							ArrayList detailArray = dao.getReceiveDetailList(headerVO); // ì—…ì²´ ì‚¬ì—…ìë²ˆí˜¸ë¡œ ìƒì„¸ì •ë³´ ê°€ì ¸ì˜´
 							
 							Hashtable finalData	= new Hashtable();
 							MakeTaxInvoice makeTax = new MakeTaxInvoice();
 							
-							finalData = makeTax.makeTaxinvoice(headerVO, detailArray); // Çì´õ Á¤º¸¿Í ±× ÇØ´ç¾øÃ¼ »ó¼¼Á¤º¸¸¦ ³Ñ±è ¼¼±İ°è»ê¼­ VO »ı¼º
+							finalData = makeTax.makeTaxinvoice(headerVO, detailArray); // í—¤ë” ì •ë³´ì™€ ê·¸ í•´ë‹¹ì—†ì²´ ìƒì„¸ì •ë³´ë¥¼ ë„˜ê¹€ ì„¸ê¸ˆê³„ì‚°ì„œ VO ìƒì„±
 
 							if (finalData.get("result").equals("ERR")) { errMsg = (String)finalData.get("resultMsg"); }
 							else {
 								PublishTaxinvoice publishTax = new PublishTaxinvoice();
 								
 								TaxInvoiceVO vo1 = (TaxInvoiceVO)finalData.get("taxVO");
-								errMsg = publishTax.publishData(finalData); // ¿¡·¯ ¾Æ´Ñ Á¤»óÃ³¸® µÇ¸é ÀÛ¼º
+								errMsg = publishTax.publishData(finalData); // ì—ëŸ¬ ì•„ë‹Œ ì •ìƒì²˜ë¦¬ ë˜ë©´ ì‘ì„±
 							}
 
-							dao.setStatusInfo(headerVO,((TaxInvoiceVO)finalData.get("taxVO")).getUuid(),errMsg);//¿¬°è Å×ÀÌºí ÇØ´ç°Ç  ¾÷µ¥ÀÌÆ®
+							dao.setStatusInfo(headerVO,((TaxInvoiceVO)finalData.get("taxVO")).getUuid(),errMsg);//ì—°ê³„ í…Œì´ë¸” í•´ë‹¹ê±´  ì—…ë°ì´íŠ¸
  
 						} catch (Exception e) {
-							logger.debug("¼¼±İ°è»ê¼­ »ı¼º Áß ¿À·ù ¹ß»ı :"+headerVO.getBiz_no()+":::"+headerVO.getCons_no()+":::"+headerVO.getReq_no());
+							logger.debug("ì„¸ê¸ˆê³„ì‚°ì„œ ìƒì„± ì¤‘ ì˜¤ë¥˜ ë°œìƒ :"+headerVO.getBiz_no()+":::"+headerVO.getCons_no()+":::"+headerVO.getReq_no());
 							e.printStackTrace();
 							//stop();
 							Shutdown sdc = new Shutdown(prop_path);
@@ -114,7 +114,7 @@ public class PollerAdapter extends Thread {
 					}
 					/*
 					////////////////////////////////////////////////////////////////////////////////////////
-					System.out.println("// ¿µ¾÷Á¤º¸¼¼±İ°è»ê¼­ ¹ßÇà Ã¼Å© //");
+					System.out.println("// ì˜ì—…ì •ë³´ì„¸ê¸ˆê³„ì‚°ì„œ ë°œí–‰ ì²´í¬ //");
 					////////////////////////////////////////////////////////////////////////////////////////
 					ArrayList ncis_data = dao.getNcisReceiveHeaderList();
 					try{
@@ -125,11 +125,11 @@ public class PollerAdapter extends Thread {
 					            ////////////////////////////////////////////////////////////////////////////////////////
 					            System.out.println(" ");
 					            ////////////////////////////////////////////////////////////////////////////////////////
-					            ArrayList ncis_detailArray = dao.getNcisReceiveDetailList(headerVO); // ¾÷Ã¼ »ç¾÷ÀÚ¹øÈ£·Î »ó¼¼Á¤º¸ °¡Á®¿È
+					            ArrayList ncis_detailArray = dao.getNcisReceiveDetailList(headerVO); // ì—…ì²´ ì‚¬ì—…ìë²ˆí˜¸ë¡œ ìƒì„¸ì •ë³´ ê°€ì ¸ì˜´
 					            
 					            Hashtable finalData	= new Hashtable();
 								MakeTaxInvoice makeTax = new MakeTaxInvoice();
-								finalData = makeTax.makeNcisTaxinvoice(headerVO, ncis_detailArray); // Çì´õ Á¤º¸¿Í ±× ÇØ´ç¾øÃ¼ »ó¼¼Á¤º¸¸¦ ³Ñ±è ¼¼±İ°è»ê¼­ VO »ı¼º
+								finalData = makeTax.makeNcisTaxinvoice(headerVO, ncis_detailArray); // í—¤ë” ì •ë³´ì™€ ê·¸ í•´ë‹¹ì—†ì²´ ìƒì„¸ì •ë³´ë¥¼ ë„˜ê¹€ ì„¸ê¸ˆê³„ì‚°ì„œ VO ìƒì„±
 
 							}
 						}
@@ -140,7 +140,7 @@ public class PollerAdapter extends Thread {
 					}
 					////////////////////////////////////////////////////////////////////////////////////////
 					*/
-					//// ERP½Ã½ºÅÛ °è¾à´ã´çÀÚ º¯°æ Á¤º¸ ¿¬°èÃ³¸®
+					//// ERPì‹œìŠ¤í…œ ê³„ì•½ë‹´ë‹¹ì ë³€ê²½ ì •ë³´ ì—°ê³„ì²˜ë¦¬
 		            ArrayList contractorData = dao.getReceiveContractorList();
 
 		            for (int idx2 = 0; idx2 < contractorData.size(); idx2++) {
@@ -154,7 +154,7 @@ public class PollerAdapter extends Thread {
 							dao.updateContractorInfo(financeVO);
 
 						} catch (Exception e) {
-							logger.debug("°è¾à´ã´çÀÚ º¯°æÃ³¸® Áß ¿À·ù ¹ß»ı : Uuid="+financeVO.getUuid()+":::contractor="+financeVO.getId());
+							logger.debug("ê³„ì•½ë‹´ë‹¹ì ë³€ê²½ì²˜ë¦¬ ì¤‘ ì˜¤ë¥˜ ë°œìƒ : Uuid="+financeVO.getUuid()+":::contractor="+financeVO.getId());
 							e.printStackTrace();
 //							Shutdown sdc = new Shutdown(prop_path);
 //					        sdc.start();
@@ -164,10 +164,10 @@ public class PollerAdapter extends Thread {
 
 		            }
 
-					//// 15ÀÏ Áö³­ ¿ª¹ßÇà ¼¼±İ°è»ê¼­ Æó±âÃ³¸®
+					//// 15ì¼ ì§€ë‚œ ì—­ë°œí–‰ ì„¸ê¸ˆê³„ì‚°ì„œ íê¸°ì²˜ë¦¬
 
-					String today = CommonUtil.getCurrentTimeFormat("yyyyMMdd"); //System ÇöÀç³¯ÀÚ
-					String currentTime = CommonUtil.getCurrentTimeFormat("kkmm"); // System ½ÃºĞ
+					String today = CommonUtil.getCurrentTimeFormat("yyyyMMdd"); //System í˜„ì¬ë‚ ì
+					String currentTime = CommonUtil.getCurrentTimeFormat("kkmm"); // System ì‹œë¶„
 
 					if (!lastday.equals(today) && updateOK) updateOK = false;
 
@@ -187,8 +187,8 @@ public class PollerAdapter extends Thread {
 						lastday = today;
 						updateOK = true;
 					}
-					// ÇöÀç³¯¿¡ 7ÀÏÀü ³¯ÀÚ°¡ ÀÛ¼ºÀÏÀÚ°ú °°Àº°Í = Æó±âÀü 7ÀÏÀü ¿ª¹ßÇà ¼¼±İ°è»ê¼­ SMS ¹ß¼Û
-					// ÇÏ·ç¿¡ ÇÑ¹ø °Ë»ö ÀÏ°ı Àü¼Û ½Ã°£ ¿ÀÀü 10:15 ~ 10:45
+					// í˜„ì¬ë‚ ì— 7ì¼ì „ ë‚ ìê°€ ì‘ì„±ì¼ìê³¼ ê°™ì€ê²ƒ = íê¸°ì „ 7ì¼ì „ ì—­ë°œí–‰ ì„¸ê¸ˆê³„ì‚°ì„œ SMS ë°œì†¡
+					// í•˜ë£¨ì— í•œë²ˆ ê²€ìƒ‰ ì¼ê´„ ì „ì†¡ ì‹œê°„ ì˜¤ì „ 10:15 ~ 10:45
 					/* sms_sand 2009.08.06 */
 					if (!lastday_Sms.equals(today) && sms_SandOK) sms_SandOK = false;
 					
@@ -203,19 +203,19 @@ public class PollerAdapter extends Thread {
 						logger.debug("today_sms : "+today);
 						logger.debug("currentTime_sms : "+currentTime);
 
-						String smsDate = CommonUtil.getPastDay("yyyyMMdd", sms_Sand); // -7ÀÏÀü³¯ÀÚ¸¦ ±¸ÇÑ´Ù.
+						String smsDate = CommonUtil.getPastDay("yyyyMMdd", sms_Sand); // -7ì¼ì „ë‚ ìë¥¼ êµ¬í•œë‹¤.
 						logger.debug("smsDate : "+smsDate);
 
-						//SMS ¹ß¼ÛÇÑ´Ù.
+						//SMS ë°œì†¡í•œë‹¤.
 						dao.sandBySmsDate(smsDate);
-						logger.debug(" SMS ¹ß¼Û_END ");
+						logger.debug(" SMS ë°œì†¡_END ");
 
 						lastday_Sms = today;
 						sms_SandOK = true;
 					}
 					
-					/* ÇÑÀü¸ÅÃâ sms , mail */
-					/* 2012³â 1¿ù 1ÀÏ ÀÌÈÄ·Î batch2¿¡¼­ sms¿Í mailÀ» º¸³»±â ¶§¹®¿¡ ÁÖ¼®Ã³¸®ÇÔ 2013.03.18 ÀåÁöÈ£.
+					/* í•œì „ë§¤ì¶œ sms , mail */
+					/* 2012ë…„ 1ì›” 1ì¼ ì´í›„ë¡œ batch2ì—ì„œ smsì™€ mailì„ ë³´ë‚´ê¸° ë•Œë¬¸ì— ì£¼ì„ì²˜ë¦¬í•¨ 2013.03.18 ì¥ì§€í˜¸.
 					if(!lastday_Sms_tax_bill.equals(today) && tax_bill_sms_sandOK) tax_bill_sms_sandOK = false;
 					if(!lastday_Sms_tax_bill.equals(today)
 							&& !tax_bill_sms_sandOK
@@ -223,9 +223,9 @@ public class PollerAdapter extends Thread {
 							&& Integer.parseInt(currentTime) < 1115 )
 						){
 						
-						String tax_Date = CommonUtil.getPastDay("yyyyMMdd", tax_bill_sms_day); // -3ÀÏÀü³¯ÀÚ¸¦ ±¸ÇÑ´Ù.
-						System.out.println("ÇÑÀü¸ÅÃâ SMS,MAIL ¹ßÇàÀÏÀÚ: "+tax_Date);
-						// sms,mail ¹ß¼Û
+						String tax_Date = CommonUtil.getPastDay("yyyyMMdd", tax_bill_sms_day); // -3ì¼ì „ë‚ ìë¥¼ êµ¬í•œë‹¤.
+						System.out.println("í•œì „ë§¤ì¶œ SMS,MAIL ë°œí–‰ì¼ì: "+tax_Date);
+						// sms,mail ë°œì†¡
 						dao.tax_sms_mail(tax_Date);
 						
 						lastday_Sms_tax_bill = today;
@@ -235,10 +235,10 @@ public class PollerAdapter extends Thread {
 					*/
 					
 					/*
-					 * »óÅÂÁ¤º¸ -> FI Àü¼Û 
+					 * ìƒíƒœì •ë³´ -> FI ì „ì†¡ 
 					 * */
 					logger.debug(" FI transmet Start ==>>> ");
-					System.out.println("//////////////// f /////////////////¡Ù");
+					System.out.println("//////////////// f /////////////////â˜†");
 					dao.transmitList_F();
 
 					System.out.println("//////////////// y /////////////////");

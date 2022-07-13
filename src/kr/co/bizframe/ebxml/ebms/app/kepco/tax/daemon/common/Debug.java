@@ -53,7 +53,7 @@ public final class Debug {
 //        log.debug(msg);
 //        log.debug("  " + t);
         System.out.println(msg);
-        java.lang.StackTraceElement st[] = t.getStackTrace();
+        StackTraceElement st[] = t.getStackTrace();
         for (int i = 0; i < st.length; i++){
 //            log.debug("  " + st[i].toString());
             System.out.println("  " + st[i].toString());

@@ -154,14 +154,14 @@ public class TaxMainDao {
 
             ps.setString(55, vo.getBusiness_type_code());
 
-            // 200911 Ãß°¡ KHS
-            //ps.setString(56, vo.getNts_issue_id()); 		// ±¹¼¼Ã» ½ÂÀÎ¹øÈ£
-            //ps.setString(57, vo.getBef_nts_issue_id()); 	// ±¹¼¼Ã» ÀÌÀü ½ÂÀÎ¹øÈ£
-            //ps.setString(58, vo.getModify_code()); 			// ¼öÁ¤»çÀ¯ÄÚµå
-            //ps.setString(59, vo.getSupplier_biz_cd());		// °ø±ŞÀÚ Á¾»ç¾÷Àå ¹øÈ£
-            ps.setString(56, vo.getBuyer_biz_cd());			// °ø±Ş¹Ş´ÂÀÚ Á¾»ç¾÷Àå ¹øÈ£
-            ps.setString(57, vo.getDoc_type_detail());		// ¼¼±İ°è»ê¼­ Á¾·ù ÄÚµå
-            ps.setString(58, "02");		// PURPOSE_CODE (01 : ¿µ¼ö, 02 : Ã»±¸)
+            // 200911 ì¶”ê°€ KHS
+            //ps.setString(56, vo.getNts_issue_id()); 		// êµ­ì„¸ì²­ ìŠ¹ì¸ë²ˆí˜¸
+            //ps.setString(57, vo.getBef_nts_issue_id()); 	// êµ­ì„¸ì²­ ì´ì „ ìŠ¹ì¸ë²ˆí˜¸
+            //ps.setString(58, vo.getModify_code()); 			// ìˆ˜ì •ì‚¬ìœ ì½”ë“œ
+            //ps.setString(59, vo.getSupplier_biz_cd());		// ê³µê¸‰ì ì¢…ì‚¬ì—…ì¥ ë²ˆí˜¸
+            ps.setString(56, vo.getBuyer_biz_cd());			// ê³µê¸‰ë°›ëŠ”ì ì¢…ì‚¬ì—…ì¥ ë²ˆí˜¸
+            ps.setString(57, vo.getDoc_type_detail());		// ì„¸ê¸ˆê³„ì‚°ì„œ ì¢…ë¥˜ ì½”ë“œ
+            ps.setString(58, "02");		// PURPOSE_CODE (01 : ì˜ìˆ˜, 02 : ì²­êµ¬)
             ps.executeUpdate();
             ps.close();
         }catch(SQLException e){
@@ -285,7 +285,7 @@ public class TaxMainDao {
 
             ps.setString(54, vo.getBusiness_type_code());
 
-            // 200911 Ãß°¡ KHS
+            // 200911 ì¶”ê°€ KHS
             ps.setString(55, vo.getNts_issue_id());
             ps.setString(56, vo.getBef_nts_issue_id());
             ps.setString(57, vo.getModify_code());
@@ -330,7 +330,7 @@ public class TaxMainDao {
                 "       PAYMENT_CASH_DC_AMT,     PAYMENT_CASH_FC_AMT,     PAYMENT_CHECK_DC_AMT, " +
                 "       PAYMENT_CHECK_FC_AMT,    PAYMENT_BILL_DC_AMT,     PAYMENT_BILL_FC_AMT, " +
                 "       PAYMENT_CREDIT_DC_AMT,   PAYMENT_CREDIT_FC_AMT,	  BUSINESS_TYPE_CODE,   "  +
-                "       ASP_ISSUE_ID   " +      //2011.12.15 Ãß°¡
+                "       ASP_ISSUE_ID   " +      //2011.12.15 ì¶”ê°€
                 "  FROM ETS_TAX_MAIN_INFO_TB " +
                 " WHERE UUID = ?  "  ;
 
@@ -414,7 +414,7 @@ public class TaxMainDao {
                 vo.setPayment_credit_fc_amt(CommonUtil.justNullToBlank(rs.getString(54)));
 
                 vo.setBusiness_type_code(CommonUtil.justNullToBlank(rs.getString(55)));
-              //2011.12.15 Ãß°¡
+              //2011.12.15 ì¶”ê°€
                 vo.setAsp_issue_id(CommonUtil.justNullToBlank(rs.getString(56)));
             }
             

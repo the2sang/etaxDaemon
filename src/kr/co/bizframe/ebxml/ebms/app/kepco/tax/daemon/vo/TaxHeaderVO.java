@@ -3,44 +3,44 @@ package kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.vo;
 import java.io.Serializable;
 
 public class TaxHeaderVO extends Object implements Serializable {
-	private String biz_no = "";				//°ø»ç¾÷Ã¼»ç¾÷ÀÚ¹øÈ£
+	private String biz_no = "";				//ê³µì‚¬ì—…ì²´ì‚¬ì—…ìë²ˆí˜¸
 
-	private String cons_no = "";			//°ø»ç¹øÈ£
+	private String cons_no = "";			//ê³µì‚¬ë²ˆí˜¸
 
-	private String req_no = "";				//¿ª¹ßÇà¿äÃ»ÀÏ½Ã
+	private String req_no = "";				//ì—­ë°œí–‰ìš”ì²­ì¼ì‹œ
 
-	private String prof_cons_no = "";		//¼öÀÍÀû°ø»ç¹øÈ£
+	private String prof_cons_no = "";		//ìˆ˜ìµì ê³µì‚¬ë²ˆí˜¸
 
-	private String status = "";				//½ÂÀÎ»óÅÂ
+	private String status = "";				//ìŠ¹ì¸ìƒíƒœ
 
-	private String cons_nm = "";			//°ø»ç¸í
+	private String cons_nm = "";			//ê³µì‚¬ëª…
 
-	private String comp_no = "";			//°ø»ç¾÷Ã¼ÄÚµå
+	private String comp_no = "";			//ê³µì‚¬ì—…ì²´ì½”ë“œ
 
-	private String pub_ymd = "";			//°è»ê¼­¹ßÇàÀÏÀÚ
+	private String pub_ymd = "";			//ê³„ì‚°ì„œë°œí–‰ì¼ì
 
-	private String buyer_biz_id = "";		//»ç¾÷¼Ò »ç¾÷ÀÚ¹øÈ£
+	private String buyer_biz_id = "";		//ì‚¬ì—…ì†Œ ì‚¬ì—…ìë²ˆí˜¸
 
-	private String inspector_id = "";		//°Ë¼öÀÚ ÀÌ¸§
+	private String inspector_id = "";		//ê²€ìˆ˜ì ì´ë¦„
 
-	private String contractor_id = "";		//°è¾àÀÚ ÀÌ¸§
+	private String contractor_id = "";		//ê³„ì•½ì ì´ë¦„
 
-	//Ãß°¡ 200912 KHS
-	private String bef_nts_issue_id 	= ""; // ±¹¼¼Ã»¼öÁ¤½ÂÀÎ¹øÈ£ // »ç¿ë¾ÈÇÔ
-	private String modify_code			= ""; // ¼öÁ¤»çÀ¯ÄÚµå	// »ç¿ë¾ÈÇÔ
+	//ì¶”ê°€ 200912 KHS
+	private String bef_nts_issue_id 	= ""; // êµ­ì„¸ì²­ìˆ˜ì •ìŠ¹ì¸ë²ˆí˜¸ // ì‚¬ìš©ì•ˆí•¨
+	private String modify_code			= ""; // ìˆ˜ì •ì‚¬ìœ ì½”ë“œ	// ì‚¬ìš©ì•ˆí•¨
 
-	private String supplier_biz_cd		= ""; // °ø±ŞÀÚÁ¾»ç¾÷Àå¹øÈ£ // ÇÊ¼ö¾Æ´Ô
-	private String buyer_biz_cd			= ""; // °ø±Ş¹Ş´ÂÀÚÁ¾»ç¾÷Àå¹øÈ£ // ¼¼±İ°è»ê¼­ »ı¼º½Ã ÇÊ¼ö
-	private String doc_type_detail		= ""; // ¼¼±İ°è»ê¼­Á¾·ù(3.0) // ÇÊ¼ö¹Ş¾Æ¾ßÇÔ
+	private String supplier_biz_cd		= ""; // ê³µê¸‰ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸ // í•„ìˆ˜ì•„ë‹˜
+	private String buyer_biz_cd			= ""; // ê³µê¸‰ë°›ëŠ”ìì¢…ì‚¬ì—…ì¥ë²ˆí˜¸ // ì„¸ê¸ˆê³„ì‚°ì„œ ìƒì„±ì‹œ í•„ìˆ˜
+	private String doc_type_detail		= ""; // ì„¸ê¸ˆê³„ì‚°ì„œì¢…ë¥˜(3.0) // í•„ìˆ˜ë°›ì•„ì•¼í•¨
 	
-	private String rel_system_id		= ""; // ¿¬°è½Ã½ºÅÛ ID
+	private String rel_system_id		= ""; // ì—°ê³„ì‹œìŠ¤í…œ ID
 	
 	
-	private String sms_yn  = "";  //SMS¹ß½Å¿©ºÎ
+	private String sms_yn  = "";  //SMSë°œì‹ ì—¬ë¶€
 	
-	private String sms_sender_name = ""; //SMS ¹ß½ÅÀÚ ÀÌ¸§
+	private String sms_sender_name = ""; //SMS ë°œì‹ ì ì´ë¦„
 	
-	private String sms_sender_tel = "";  //SMS ¹ß½ÅÀÚ ÀüÈ­¹øÈ£
+	private String sms_sender_tel = "";  //SMS ë°œì‹ ì ì „í™”ë²ˆí˜¸
 	
 	
 

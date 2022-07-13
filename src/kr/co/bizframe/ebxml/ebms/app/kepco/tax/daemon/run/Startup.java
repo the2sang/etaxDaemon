@@ -15,9 +15,9 @@ public class Startup {
 	
 	private static Logger logger = Logger.getLogger(Startup.class);
 	
-	static final int DEFAULT_PORT = 1234; // ¼­¹ö°¡ bindÇÏ´Â ÃÊ±â Æ÷Æ® °ª
+	static final int DEFAULT_PORT = 1234; // ì„œë²„ê°€ bindí•˜ëŠ” ì´ˆê¸° í¬íŠ¸ ê°’
 
-	public ConnectionManager cm = null; // ¿¬°áÀ» °ü¸®ÇÏ´Â ¾²·¹µå
+	public ConnectionManager cm = null; // ì—°ê²°ì„ ê´€ë¦¬í•˜ëŠ” ì“°ë ˆë“œ
 
 	public static PollerAdapter demon = null;
 
@@ -25,9 +25,9 @@ public class Startup {
 		logger.debug("Server is initializing to port " + port);
 		cm = new ConnectionManager(port, demon);
 		
-		// Á¢¼ÓÀ» °ü¸®ÇÏ´Â ¾²·¹µå »ı¼º.
+		// ì ‘ì†ì„ ê´€ë¦¬í•˜ëŠ” ì“°ë ˆë“œ ìƒì„±.
 		cm.start();
-		// ConnectionManagerÀÇ run() µµ±¸ È£Ãâ
+		// ConnectionManagerì˜ run() ë„êµ¬ í˜¸ì¶œ
 	}
 
 	public void shutDownServer() {
@@ -62,7 +62,7 @@ public class Startup {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);
-			logger.debug("shutdown port ¼³Á¤ÀÌ Àß¸ø µÇ¾ú½À´Ï´Ù.");
+			logger.debug("shutdown port ì„¤ì •ì´ ì˜ëª» ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}
 		Startup sc = new Startup(_port, poller);
         
@@ -71,7 +71,7 @@ public class Startup {
 	
 }
 /*
- * ConnectionManager´Â Á¢¼ÓÀ» ±â´Ù¸®´Ù°¡ Å¬¶óÀÌ¾ğÆ®°¡ ¿¬°áÇØ¿À¸é ÇØ´ç Å¬¶óÀÌ¾ğÆ®¸¦ Ã³¸®ÇÒ ServerConnection ¾²·¹µå¸¦ »ı¼ºÇÑ´Ù. ÀÏÁ¾ÀÇ µ¿±âÀûÀÎ ¸ÖÆ¼ÇÃ·º½ÌÀÌ´Ù.
+ * ConnectionManagerëŠ” ì ‘ì†ì„ ê¸°ë‹¤ë¦¬ë‹¤ê°€ í´ë¼ì´ì–¸íŠ¸ê°€ ì—°ê²°í•´ì˜¤ë©´ í•´ë‹¹ í´ë¼ì´ì–¸íŠ¸ë¥¼ ì²˜ë¦¬í•  ServerConnection ì“°ë ˆë“œë¥¼ ìƒì„±í•œë‹¤. ì¼ì¢…ì˜ ë™ê¸°ì ì¸ ë©€í‹°í”Œë ‰ì‹±ì´ë‹¤.
  */
 
 class ConnectionManager extends Thread {
@@ -84,7 +84,7 @@ class ConnectionManager extends Thread {
 	private PollerAdapter _demon = null;
 
 	/*
-	 * ÃÊ±âÄ¡ 5, Áõ°¡Ä¡ 2ÀÎ º¤ÅÍ¸¦ »ı¼ºÇÑ´Ù. ÀÌ º¤ÅÍ¿¡´Â ¼ÒÄÏÀÌ ¿¬°áµÇ¸é »ı¼ºµÇ´Â ServerConnection ¾²·¹ µå ÀÎ½ºÅÏ½ºµéÀÌ ÀúÀåµÈ´Ù.
+	 * ì´ˆê¸°ì¹˜ 5, ì¦ê°€ì¹˜ 2ì¸ ë²¡í„°ë¥¼ ìƒì„±í•œë‹¤. ì´ ë²¡í„°ì—ëŠ” ì†Œì¼“ì´ ì—°ê²°ë˜ë©´ ìƒì„±ë˜ëŠ” ServerConnection ì“°ë ˆ ë“œ ì¸ìŠ¤í„´ìŠ¤ë“¤ì´ ì €ì¥ëœë‹¤.
 	 */
 	private ServerSocket _main_socket = null;
 
@@ -110,22 +110,22 @@ class ConnectionManager extends Thread {
 
 	public void run() {
 		serverRequests();
-		// ¼­¹ö ¼ÒÄÏÀ» »ı¼ºÇÏ¿© ¹«ÇÑ ·çÇÁ¸¦ µ¹´Ù°¡ Å¬¶óÀÌ¾ğÆ®µéÀÌ Á¢¼ÓÇØ¿À¸é ¿¬°áÀ» »ı¼ºÇÏ¿©
-		// °¢°¢ÀÇ ¿¬°á¿¡ ÇÏ³ªÀÇ ¾²·¹µå¸¦ ¸¸µé¾îÁÖ´Â ·çÆ¾ÀÌ´Ù.
+		// ì„œë²„ ì†Œì¼“ì„ ìƒì„±í•˜ì—¬ ë¬´í•œ ë£¨í”„ë¥¼ ëŒë‹¤ê°€ í´ë¼ì´ì–¸íŠ¸ë“¤ì´ ì ‘ì†í•´ì˜¤ë©´ ì—°ê²°ì„ ìƒì„±í•˜ì—¬
+		// ê°ê°ì˜ ì—°ê²°ì— í•˜ë‚˜ì˜ ì“°ë ˆë“œë¥¼ ë§Œë“¤ì–´ì£¼ëŠ” ë£¨í‹´ì´ë‹¤.
 	}
 
 	private void serverRequests() {
 		System.out.println("start serverRequests");
 		try {
 			System.out.println("port::::" + _port);
-			_main_socket = new ServerSocket(_port); // ¼­¹ö ¼ÒÄÏ »ı¼º
+			_main_socket = new ServerSocket(_port); // ì„œë²„ ì†Œì¼“ ìƒì„±
 			System.out.println("_main_socket::::" + _main_socket);
 		} catch (Exception e) {
 			System.err.println(e);
 			// System.exit(1);
 		}
 		ServerConnection temp_sc = null;
-		while (_work) // ¹«ÇÑ ·çÇÁ. ÀÌ ·çÇÁÀÇ Æ÷Æ®´Â ÁöÁ¤ÇÑ ¼­¹öÀÇ Æ÷Æ®ÀÌ´Ù.
+		while (_work) // ë¬´í•œ ë£¨í”„. ì´ ë£¨í”„ì˜ í¬íŠ¸ëŠ” ì§€ì •í•œ ì„œë²„ì˜ í¬íŠ¸ì´ë‹¤.
 		{
 			System.out.println(_work);
 			System.out.println(1);
@@ -133,32 +133,32 @@ class ConnectionManager extends Thread {
 				System.out.println(2);
 				Socket this_connection = _main_socket.accept();
 				System.out.println(1);
-				// ¼­¹ö ¼ÒÄÏÀÌ Å¬¶óÀÌ¾ğÆ®¸¦ ±â´Ù·È´Ù°¡ ¿¬°áÀ» »ı¼ºÇÑ´Ù.
-				// accept()ÀÇ ¹İÈ¯°ªÀº Socket ÀÎ½ºÅÏ½ºÀÌ°í ¾ÕÀ¸·Î ¿¬°áµÈ Å¬¶óÀÌ¾ğÆ®¿Í
-				// ´ëÈ­´Â ÀÌ ÀÎ½ºÅÏ½º¸¦ ÅëÇØ¼­ ÇÑ´Ù.
-				// ¿¬°áÀÌ »ı¼ºµÇ¸é ÀÌ Socket ÀÎ½ºÅÏ½º·Î ServerConnection ¾²·¹µå¸¦ »ı¼º
+				// ì„œë²„ ì†Œì¼“ì´ í´ë¼ì´ì–¸íŠ¸ë¥¼ ê¸°ë‹¤ë ¸ë‹¤ê°€ ì—°ê²°ì„ ìƒì„±í•œë‹¤.
+				// accept()ì˜ ë°˜í™˜ê°’ì€ Socket ì¸ìŠ¤í„´ìŠ¤ì´ê³  ì•ìœ¼ë¡œ ì—°ê²°ëœ í´ë¼ì´ì–¸íŠ¸ì™€
+				// ëŒ€í™”ëŠ” ì´ ì¸ìŠ¤í„´ìŠ¤ë¥¼ í†µí•´ì„œ í•œë‹¤.
+				// ì—°ê²°ì´ ìƒì„±ë˜ë©´ ì´ Socket ì¸ìŠ¤í„´ìŠ¤ë¡œ ServerConnection ì“°ë ˆë“œë¥¼ ìƒì„±
 				temp_sc = new ServerConnection(this_connection, _demon);
 				temp_sc.start();
 				
-				// ServerConnection ÀÎ½ºÅÏ½ºÀÇ run() È£Ãâ
+				// ServerConnection ì¸ìŠ¤í„´ìŠ¤ì˜ run() í˜¸ì¶œ
 				_my_threads.addElement(temp_sc);
-				// ServerConnection ÀÎ½ºÅÏ½º¸¦ º¤ÅÍ¿¡ Ãß°¡
+				// ServerConnection ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë²¡í„°ì— ì¶”ê°€
 				/*
-				 * º¤ÅÍÀÇ Å©±â¸¸Å­ ·çÇÁ¸¦ ¹İº¹ÇÑ´Ù. º¤ÅÍ¿¡ ÀúÀåµÇ¾î ÀÖ´Â °¢ ServerConnection ¾²·¹µå°¡ ½ÇÇà ÁßÀÎÁö °Ë»çÇÏ°í ¾²·¹µå°¡ Á¾·áÇÏ¿´À¸¸é º¤ÅÍ¿¡¼­ Á¦°ÅÇÑ´Ù. ServerConnection ¾²·¹µå´Â ¼ÒÄÏÀ» Á¾·áÇÏ¸é ½ÇÇàÀ» Áß´ÜÇÑ´Ù.
+				 * ë²¡í„°ì˜ í¬ê¸°ë§Œí¼ ë£¨í”„ë¥¼ ë°˜ë³µí•œë‹¤. ë²¡í„°ì— ì €ì¥ë˜ì–´ ìˆëŠ” ê° ServerConnection ì“°ë ˆë“œê°€ ì‹¤í–‰ ì¤‘ì¸ì§€ ê²€ì‚¬í•˜ê³  ì“°ë ˆë“œê°€ ì¢…ë£Œí•˜ì˜€ìœ¼ë©´ ë²¡í„°ì—ì„œ ì œê±°í•œë‹¤. ServerConnection ì“°ë ˆë“œëŠ” ì†Œì¼“ì„ ì¢…ë£Œí•˜ë©´ ì‹¤í–‰ì„ ì¤‘ë‹¨í•œë‹¤.
 				 */
 				for (int i = 0; i < ConnectionManager._my_threads.size(); i++)
 					if (!((ServerConnection) (_my_threads.elementAt(i))).isAlive())
 						_my_threads.removeElementAt(i);
 				System.out.println(4);
 			} catch (Exception e) {
-				System.out.println("ÇÁ·Î¼¼½º°¡ ÀÌ¹Ì »ç¿ëÁßÀÔ´Ï´Ù. »ç¿ëÁßÀÎ ÇÁ·Î¼¼½º¸¦ kill ÇØ ÁÖ¼¼¿ä!");
+				System.out.println("í”„ë¡œì„¸ìŠ¤ê°€ ì´ë¯¸ ì‚¬ìš©ì¤‘ì…ë‹ˆë‹¤. ì‚¬ìš©ì¤‘ì¸ í”„ë¡œì„¸ìŠ¤ë¥¼ kill í•´ ì£¼ì„¸ìš”!");
 				System.exit(-1);
 			}
 		}
 	}
 }
 
-class ServerConnection extends Thread // ¿¬°áÀÌ »ı¼ºµÈ ÈÄ ½ÇÁ¦ Å¬¶óÀÌ¾ğÆ®¿Í ´ëÈ­¸¦ ÇÏ´Â ¾²·¹µå
+class ServerConnection extends Thread // ì—°ê²°ì´ ìƒì„±ëœ í›„ ì‹¤ì œ í´ë¼ì´ì–¸íŠ¸ì™€ ëŒ€í™”ë¥¼ í•˜ëŠ” ì“°ë ˆë“œ
 {
 	private Socket _mysocket;
 
@@ -169,19 +169,19 @@ class ServerConnection extends Thread // ¿¬°áÀÌ »ı¼ºµÈ ÈÄ ½ÇÁ¦ Å¬¶óÀÌ¾ğÆ®¿Í ´ëÈ­
 	private PollerAdapter _demon = null;
 
 	public ServerConnection(Socket s, PollerAdapter demon) {
-		_mysocket = s; // Å¬¶óÀÌ¾ğÆ®¿Í ¿¬°áÀÌ µÈ ¼ÒÄÏ ÀÎ½ºÅÏ½º¸¦ ³Ñ°Ü ¹Ş´Â´Ù.
+		_mysocket = s; // í´ë¼ì´ì–¸íŠ¸ì™€ ì—°ê²°ì´ ëœ ì†Œì¼“ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë„˜ê²¨ ë°›ëŠ”ë‹¤.
 		_demon = demon;
 	}
 
 	private void doServerWork() {
 		/*
-		 * ½ÇÁ¦ ¼­¹ö°¡ ÇÏ´Â ÀÏµéÀÌ ¿©±â¿¡ µé¾î°£´Ù. ÀÌ ÀÏÀ» ¼öÇàÇÑ ÈÄ ¼ÒÄÏÀ» Á¾·áÇÑ´Ù. ±× ´ÙÀ½ ¾²·¹µå¸¦ Á¾·áÇÑ´Ù.(Áï, stop()À» È£Ãâ) ¿©±â¼­´Â °£´ÜÇÏ°Ô ¸Ş½ÃÁö¸¦ PrintStreamÀ¸·Î 10¹ø ³»º¸³½´Ù.
+		 * ì‹¤ì œ ì„œë²„ê°€ í•˜ëŠ” ì¼ë“¤ì´ ì—¬ê¸°ì— ë“¤ì–´ê°„ë‹¤. ì´ ì¼ì„ ìˆ˜í–‰í•œ í›„ ì†Œì¼“ì„ ì¢…ë£Œí•œë‹¤. ê·¸ ë‹¤ìŒ ì“°ë ˆë“œë¥¼ ì¢…ë£Œí•œë‹¤.(ì¦‰, stop()ì„ í˜¸ì¶œ) ì—¬ê¸°ì„œëŠ” ê°„ë‹¨í•˜ê²Œ ë©”ì‹œì§€ë¥¼ PrintStreamìœ¼ë¡œ 10ë²ˆ ë‚´ë³´ë‚¸ë‹¤.
 		 */
 		try {
 			for (int i = 0; i < 10; i++) {
 				_output.println("This is a message from the server");
 				sleep((int) (Math.random() * 4000));
-				// Math.random()Àº 0.0°ú 1.0 »çÀÌÀÇ ¼ö¸¦ ³­¼ö ¹ß»ı
+				// Math.random()ì€ 0.0ê³¼ 1.0 ì‚¬ì´ì˜ ìˆ˜ë¥¼ ë‚œìˆ˜ ë°œìƒ
 			}
 		} catch (Exception e) {
 		}
@@ -189,7 +189,7 @@ class ServerConnection extends Thread // ¿¬°áÀÌ »ı¼ºµÈ ÈÄ ½ÇÁ¦ Å¬¶óÀÌ¾ğÆ®¿Í ´ëÈ­
 
 	public void run() {
 		System.out.println("Connected to: " + _mysocket.getInetAddress() + ":" + _mysocket.getPort());
-		// ¿¬°áµÈ ¼ÒÄÏÀÇ ÀÎÅÍ³İ ÁÖ¼Ò¿Í Æ÷Æ®¸¦ Ç¥ÁØ Ãâ·ÂÀ¸·Î Ãâ·ÂÇÑ´Ù.
+		// ì—°ê²°ëœ ì†Œì¼“ì˜ ì¸í„°ë„· ì£¼ì†Œì™€ í¬íŠ¸ë¥¼ í‘œì¤€ ì¶œë ¥ìœ¼ë¡œ ì¶œë ¥í•œë‹¤.
 		try {
 
 			byte[] temp = new byte[1024];
@@ -198,9 +198,9 @@ class ServerConnection extends Thread // ¿¬°áÀÌ »ı¼ºµÈ ÈÄ ½ÇÁ¦ Å¬¶óÀÌ¾ğÆ®¿Í ´ëÈ­
 			int len;
 			_output = new PrintStream(_mysocket.getOutputStream());
 			/*
-			 * ¿¬°áµÈ ¼ÒÄÏÀÇ Ãâ·Â ½ºÆ®¸²À¸·Î PrintStreamÀ» »ı¼ºÇÑ´Ù. ¼ÒÄÏÀÇ Ãâ·Â ½ºÆ®¸²Àº ¼­¹ö¿¡¼­ Å¬¶óÀÌ¾ğÆ®·Î Àü´ŞµÇ´Â ½ºÆ®¸²ÀÌ´Ù. ¹İ´ë·Î ÀÔ·Â ½ºÆ®¸²Àº Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¼­¹ö·Î Àü´ŞµÇ´Â ½ºÆ®¸²ÀÌ´Ù.
+			 * ì—°ê²°ëœ ì†Œì¼“ì˜ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œ PrintStreamì„ ìƒì„±í•œë‹¤. ì†Œì¼“ì˜ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ì€ ì„œë²„ì—ì„œ í´ë¼ì´ì–¸íŠ¸ë¡œ ì „ë‹¬ë˜ëŠ” ìŠ¤íŠ¸ë¦¼ì´ë‹¤. ë°˜ëŒ€ë¡œ ì…ë ¥ ìŠ¤íŠ¸ë¦¼ì€ í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì„œë²„ë¡œ ì „ë‹¬ë˜ëŠ” ìŠ¤íŠ¸ë¦¼ì´ë‹¤.
 			 */
-			_input = _mysocket.getInputStream(); // ÀÔ·Â ½ºÆ®¸²À» ¾ò´Â´Ù.
+			_input = _mysocket.getInputStream(); // ì…ë ¥ ìŠ¤íŠ¸ë¦¼ì„ ì–»ëŠ”ë‹¤.
 			int b = 0;
 			ByteArrayOutputStream bufferByteArray = new ByteArrayOutputStream();
 			while ((b = _input.read(temp)) != -1) {
@@ -239,10 +239,10 @@ class ServerConnection extends Thread // ¿¬°áÀÌ »ı¼ºµÈ ÈÄ ½ÇÁ¦ Å¬¶óÀÌ¾ğÆ®¿Í ´ëÈ­
 			System.out.println("Exception in getting data from monitering client:\n" + e);
 		}
 		System.out.println("Disconnecting: " + _mysocket.getInetAddress() + ":" + _mysocket.getPort());
-		stop(); // ¾²·¹µå¸¦ Áß´ÜÇÑ´Ù.
+		stop(); // ì“°ë ˆë“œë¥¼ ì¤‘ë‹¨í•œë‹¤.
 		this.notifyAll();
 		/*
-		 * ¾²·¹µåÀÇ stop() µµ±¸´Â ThreadDeath °´Ã¼ ÀÎ½ºÅÏ½º¸¦ ¸ñÀû °´Ã¼¿¡°Ô ´øÁ® ÁØ´Ù. ThreadDeath °´Ã¼´Â Exception Å¬·¡½º¿¡¼­ ÆÄ»ıµÈ °ÍÀÌ ¾Æ´Ï¶ó Error Å¬·¡½º¿¡¼­ ÆÄ»ıµÇ¾ú´Ù. Æ¯º°ÇÑ ÀÏÀÌ ¾ø´Ù¸é catch¸¦ ÇÒ ÇÊ¿ä°¡ ¾ø´Ù. catch¸¦ ÇÏÁö ¾ÊÀ¸¸é Áß´ÜµÈ ¾²·¹µå°¡ ½ÇÁ¦·Î Á¾·áµÈ´Ù.
+		 * ì“°ë ˆë“œì˜ stop() ë„êµ¬ëŠ” ThreadDeath ê°ì²´ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ëª©ì  ê°ì²´ì—ê²Œ ë˜ì ¸ ì¤€ë‹¤. ThreadDeath ê°ì²´ëŠ” Exception í´ë˜ìŠ¤ì—ì„œ íŒŒìƒëœ ê²ƒì´ ì•„ë‹ˆë¼ Error í´ë˜ìŠ¤ì—ì„œ íŒŒìƒë˜ì—ˆë‹¤. íŠ¹ë³„í•œ ì¼ì´ ì—†ë‹¤ë©´ catchë¥¼ í•  í•„ìš”ê°€ ì—†ë‹¤. catchë¥¼ í•˜ì§€ ì•Šìœ¼ë©´ ì¤‘ë‹¨ëœ ì“°ë ˆë“œê°€ ì‹¤ì œë¡œ ì¢…ë£Œëœë‹¤.
 		 */
 	}
 

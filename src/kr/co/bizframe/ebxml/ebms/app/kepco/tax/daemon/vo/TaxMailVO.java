@@ -53,10 +53,10 @@ public class TaxMailVO extends Object implements Serializable {
 		String enc_uuid;
 		TaxInvSecurityMgr SecuMgr = new TaxInvSecurityMgr();
 		enc_uuid = SecuMgr.TaxInvEncrypt(uuid);
-		enc_uuid = SecuMgr.encodeURIComponent(enc_uuid);//POST ³Ñ±â´Â °æ¿ì ¸î¸î ¹®ÀÚ¿­ ±úÁü ¹æÁö¸¦ À§ÇÑ encodeÃ³¸® 
+		enc_uuid = SecuMgr.encodeURIComponent(enc_uuid);//POST ë„˜ê¸°ëŠ” ê²½ìš° ëª‡ëª‡ ë¬¸ìì—´ ê¹¨ì§ ë°©ì§€ë¥¼ ìœ„í•œ encodeì²˜ë¦¬ 
 
 		try{
-    		/* ip Á¤º¸ÀĞ¾î¿È */
+    		/* ip ì •ë³´ì½ì–´ì˜´ */
     		String serverIP = InetAddress.getLocalHost().getHostAddress();
     		/* Test server */
 			if("168.78.201.224".equals(serverIP)){
@@ -67,7 +67,7 @@ public class TaxMailVO extends Object implements Serializable {
     		System.out.println(e.toString());
 		}
 
-		int date = Integer.parseInt(doc_date.substring(0, 4)); // ³¯Â¥±¸ºĞÀ§ÇØ Ãß°¡20100101
+		int date = Integer.parseInt(doc_date.substring(0, 4)); // ë‚ ì§œêµ¬ë¶„ìœ„í•´ ì¶”ê°€20100101
     	String ee = "N";
     	if(date >= 2010){ ee = "Y";}
     	System.out.println("doc_date ::: "+doc_date);
@@ -110,7 +110,7 @@ public class TaxMailVO extends Object implements Serializable {
 			name = vo.getMain().getBuyer_name();
 			biz_id = vo.getMain().getBuyer_biz_id();
 			//
-//2015.12.07 ³»¼±°è±â ¸ŞÀÏº¸³½ÀÌ¸¦ °è¾àÀÚ·Î º¯°æ CDH
+//2015.12.07 ë‚´ì„ ê³„ê¸° ë©”ì¼ë³´ë‚¸ì´ë¥¼ ê³„ì•½ìë¡œ ë³€ê²½ CDH
 //			contactor_name = vo.getMain().getBuyer_contactor_name();
 //			contactor_tel = vo.getMain().getBuyer_contactor_tel();
 //			mail = vo.getMain().getBuyer_contactor_email();
@@ -145,7 +145,7 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 						+ uuid + "&enc_uuid="+enc_uuid;
 				}else{
 					url = siteUrl +"/docView/ViewHanjunSand.jsp?uuid="
-						+ uuid + "&enc_uuid="+enc_uuid; // ½Å±Ô
+						+ uuid + "&enc_uuid="+enc_uuid; // ì‹ ê·œ
 				}
 			} else {
 				if(ee.equals("N")){
@@ -153,7 +153,7 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 						+ uuid + "&enc_uuid="+enc_uuid;
 				}else{
 					url = siteUrl +"/docView/ViewHanjunReceive.jsp?uuid="
-						+uuid + "&enc_uuid="+enc_uuid; // ½Å±Ô
+						+uuid + "&enc_uuid="+enc_uuid; // ì‹ ê·œ
 				}
 			}
 		} else {
@@ -162,14 +162,14 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 					url = siteUrl + "/docView/TaxInvOutterSendView.jsp?uuid="
 						+ uuid + "&enc_uuid="+enc_uuid;
 				}else{
-					url = siteUrl +"/index_EP.jsp?menu=mail&isHanjun=N&uuid="+uuid+"&enc_uuid="+enc_uuid; // ½Å±Ô
+					url = siteUrl +"/index_EP.jsp?menu=mail&isHanjun=N&uuid="+uuid+"&enc_uuid="+enc_uuid; // ì‹ ê·œ
 				}
 			} else {
 				if(ee.equals("N")){
 					url = siteUrl + "/docView/TaxInvOutterReceiveView.jsp?uuid="
 						+ uuid + "&enc_uuid="+enc_uuid;
 				}else{
-					url = siteUrl +"/index_EP.jsp?menu=mail&isHanjun=N&uuid="+uuid+"&enc_uuid="+enc_uuid; // ½Å±Ô
+					url = siteUrl +"/index_EP.jsp?menu=mail&isHanjun=N&uuid="+uuid+"&enc_uuid="+enc_uuid; // ì‹ ê·œ
 				}
 			}
 		}
@@ -181,7 +181,7 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 				+ "<meta http-equiv='Content-Type' content='text/html; charset=euc-kr'>\n"
 				+
 
-				// link,script,iframe,object,style µîµî Æ¯Á¤¸ŞÀÏ¿¡¼­´Â Àû¿ë¾ÈµÊ
+				// link,script,iframe,object,style ë“±ë“± íŠ¹ì •ë©”ì¼ì—ì„œëŠ” ì ìš©ì•ˆë¨
 				// "<link href='"+siteUrl+"/css/ur_ie6.css' rel='stylesheet'
 				// type='text/css'>\n"+
 				// "<script language='javascript'>\n"+
@@ -192,10 +192,10 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 				// "</script>\n"+
 				// "<style type='text/css'>\n"+
 				// " .urCellBgHeader{background-color:#C8E0E9;font-family:
-				// '±¼¸²';font-size: 12px;font-style: normal;font-weight:
+				// 'êµ´ë¦¼';font-size: 12px;font-style: normal;font-weight:
 				// normal;color: #666666;text-decoration: none;}\n"+
 				// " .urCellBgFill2{background-color:#FFFFFF;font-family:
-				// 'µ¸¿ò';font-size: 12px;font-style: normal;font-weight:
+				// 'ë‹ì›€';font-size: 12px;font-style: normal;font-weight:
 				// normal;color: #666666;text-decoration: none;}\n"+
 				// " .urTxtStd{font-family:Arial, Helvetica,
 				// sans-serif;font-size:12px;font-style:normal;color:#666666;font-weight:normal}\n"+
@@ -221,11 +221,11 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 				+ "					<td align='LEFT' valign='TOP'>\n"
 				+ "						<table width='100%' border='0' cellpadding='1' cellspacing='1' bgcolor='#DCD9D9'>\n"
 				+ "							<tr>\n"
-				+ "								<td height='21' colspan='2' align='CENTER' bgcolor='#C8E0E9'><strong> <font size=2>¼ö½ÅÇÑ ¼¼±İ°è»ê¼­ Á¤º¸ÀÔ´Ï´Ù.</font></strong></td>\n"
+				+ "								<td height='21' colspan='2' align='CENTER' bgcolor='#C8E0E9'><strong> <font size=2>ìˆ˜ì‹ í•œ ì„¸ê¸ˆê³„ì‚°ì„œ ì •ë³´ì…ë‹ˆë‹¤.</font></strong></td>\n"
 				+ "							</tr><tr>\n"
 				+ "								<td width='35%' height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"
 				+ siteUrl
-				+ "/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>¼Û½ÅÈ¸»ç¸í </font></td>\n"
+				+ "/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>ì†¡ì‹ íšŒì‚¬ëª… </font></td>\n"
 				+ "								<td width='65%' bgcolor='#FFFFFF'>&nbsp;<font size=2>"
 				+ name
 				+ "</font>\n"
@@ -233,7 +233,7 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 				+ "							</tr><tr>\n"
 				+ "								<td height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"
 				+ siteUrl
-				+ "/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>¼Û½ÅÈ¸»ç »ç¾÷ÀÚ¹øÈ£</font></td>\n"
+				+ "/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>ì†¡ì‹ íšŒì‚¬ ì‚¬ì—…ìë²ˆí˜¸</font></td>\n"
 				+ "								<td  bgcolor='#FFFFFF'>&nbsp;<font size=2>"
 				+ biz_id
 				+ "</font>\n"
@@ -241,7 +241,7 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 				+ "							</tr><tr>\n"
 				+ "								<td height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"
 				+ siteUrl
-				+ "/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>¼Û½ÅÈ¸»ç ´ã´çÀÚÀÌ¸§</font></td>\n"
+				+ "/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>ì†¡ì‹ íšŒì‚¬ ë‹´ë‹¹ìì´ë¦„</font></td>\n"
 				+ "								<td bgcolor='#FFFFFF'>&nbsp;<font size=2>"
 				+ contactor_name
 				+ "</font>\n"
@@ -249,7 +249,7 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 				+ "							</tr><tr>\n"
 				+ "								<td height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"
 				+ siteUrl
-				+ "/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>¼Û½ÅÈ¸»ç ´ã´çÀÚ ÀüÈ­¹øÈ£</font></td>\n"
+				+ "/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>ì†¡ì‹ íšŒì‚¬ ë‹´ë‹¹ì ì „í™”ë²ˆí˜¸</font></td>\n"
 				+ "								<td bgcolor='#FFFFFF'>&nbsp;<font size=2>"
 				+ contactor_tel
 				+ "</font>\n"
@@ -280,12 +280,12 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 				+ "					<td>&nbsp;</td>\n"
 				+ "					<td><font size='3'>\n"
 				+ name
-				+ " , ´õ¿í Ã»·ÅÇØÁöµµ·Ï ³ë·ÂÇÏ°Ú½À´Ï´Ù.</font></td>\n"
+				+ " , ë”ìš± ì²­ë ´í•´ì§€ë„ë¡ ë…¸ë ¥í•˜ê² ìŠµë‹ˆë‹¤.</font></td>\n"
 				+ "					<td>&nbsp;</td>\n"
 				+ "				</tr>\n"
 				+ "				<tr>\n"
 				+ " 				<td>&nbsp;</td>\n"
-				+ " 				<td align=''><font color='red' size='3'>ÀÌÀÇÁ¦±â ¹× Á¤º¸°ø°³</font> <font size='3'>Àü   È­ :"
+				+ " 				<td align=''><font color='red' size='3'>ì´ì˜ì œê¸° ë° ì •ë³´ê³µê°œ</font> <font size='3'>ì „   í™” :"
 				+ contactor_tel
 				+ " 					</font></td>\n"
 				+ "					<td>&nbsp;</td>\n"
@@ -301,16 +301,16 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 				+ "			<br>\n"
 				+ "			<table width='100%' border='0' cellspacing='0' cellpadding='0'>\n"
 				+ "				<tr>\n"
-				+ "					<td height='40' valign='BOTTOM'><font size=2>&nbsp;&nbsp;&nbsp;¡Ø [¼¼±İ°è»ê¼­ »ó¼¼Á¤º¸ º¸±â] ¹öÆ°ÀÌ ÀÛµ¿ÇÏÁö ¾ÊÀ» °æ¿ì ÆË¾÷ Â÷´ÜÀ» ÇÏ¿ëÀ¸·Î º¯°æÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>&nbsp;&nbsp;&nbsp;<font color=blue>(¼³Á¤ ¹æ¹ı : ºê¶ó¿ìÀú¸Ş´º Áß µµ±¸ > ÆË¾÷Â÷´Ü> ÆË¾÷Â÷´Ü »ç¿ë ¾ÈÇÔ ¼±ÅÃ)</font></font></td>\n"
+				+ "					<td height='40' valign='BOTTOM'><font size=2>&nbsp;&nbsp;&nbsp;â€» [ì„¸ê¸ˆê³„ì‚°ì„œ ìƒì„¸ì •ë³´ ë³´ê¸°] ë²„íŠ¼ì´ ì‘ë™í•˜ì§€ ì•Šì„ ê²½ìš° íŒì—… ì°¨ë‹¨ì„ í•˜ìš©ìœ¼ë¡œ ë³€ê²½í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br>&nbsp;&nbsp;&nbsp;<font color=blue>(ì„¤ì • ë°©ë²• : ë¸Œë¼ìš°ì €ë©”ë‰´ ì¤‘ ë„êµ¬ > íŒì—…ì°¨ë‹¨> íŒì—…ì°¨ë‹¨ ì‚¬ìš© ì•ˆí•¨ ì„ íƒ)</font></font></td>\n"
 				+ "				</tr><tr>\n"
-				+ "					<td height='40' valign='BOTTOM'><font size=2>¡Ø ¼¼±İ°è»ê¼­´Â [ÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ]À¸·Î µé¾î°¡¼Åµµ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</td>\n"
+				+ "					<td height='40' valign='BOTTOM'><font size=2>â€» ì„¸ê¸ˆê³„ì‚°ì„œëŠ” [ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ]ìœ¼ë¡œ ë“¤ì–´ê°€ì…”ë„ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</td>\n"
 				+ "				</tr><tr>\n"
 				+ "					<td valign='BOTTOM'>\n"
-				+ "						<font size=2> - ÇÑÀüÀüÀÚÁ¶´Ş : <font color=blue>https://srm.kepco.net</font> ·Î ·Î±×ÀÎÇÏ¿© ÇÏ´ÜÀÇ <font color=blue>[ÀüÀÚ¼¼±İ°è»ê]</font>½Ã½ºÅÛ Å¬¸¯</font><br>\n";
+				+ "						<font size=2> - í•œì „ì „ìì¡°ë‹¬ : <font color=blue>https://srm.kepco.net</font> ë¡œ ë¡œê·¸ì¸í•˜ì—¬ í•˜ë‹¨ì˜ <font color=blue>[ì „ìì„¸ê¸ˆê³„ì‚°]</font>ì‹œìŠ¤í…œ í´ë¦­</font><br>\n";
 
 		if (isHanjun.equals("Y")) {
 			contents = contents
-					+ "<font size=2> - ERP Powerpia : <font color=blue>ERP Powerpia -> Workplace -> Àç¹« -> ÀÏ¹İÈ¸°è -> ÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ</font> Å¬¸¯\n";
+					+ "<font size=2> - ERP Powerpia : <font color=blue>ERP Powerpia -> Workplace -> ì¬ë¬´ -> ì¼ë°˜íšŒê³„ -> ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ</font> í´ë¦­\n";
 		}
 
 		contents = contents
@@ -338,7 +338,7 @@ System.out.println("############################2222sender_comp_id "+ sender_com
 		/*
 		 * contents = " <html>\n" + " <head>\n"+ " <meta
 		 * http-equiv='Content-Type' content='text/html; charset=euc-kr'/>\n" + "
-		 * <title>¼¼±İ°è»ê¼­</title>\n" + " </head> \n"+ " <body>\n" + " <table
+		 * <title>ì„¸ê¸ˆê³„ì‚°ì„œ</title>\n" + " </head> \n"+ " <body>\n" + " <table
 		 * cellspacing=0 cellpadding=0 width=750>\n" + " <tr> \n" + "
 		 * <td width=704 height=82> \n" + " <div align=right>\n" + // " <iframe
 		 * src='http://cat.kepco.net/kepcobill/mail/"+jspPage+"?uuid="+uuid+"'

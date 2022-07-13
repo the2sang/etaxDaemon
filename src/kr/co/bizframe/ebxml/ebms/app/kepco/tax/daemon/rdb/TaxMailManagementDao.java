@@ -60,7 +60,7 @@ public class TaxMailManagementDao extends Object implements Serializable{
         }
         catch(Exception e) {
             e.printStackTrace();
-//            throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "¸ŞÀÏ Àü¼Û ¼­¹ö DATABASE CONNECTION »ı¼º½Ã ¿¡·¯");
+//            throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "ë©”ì¼ ì „ì†¡ ì„œë²„ DATABASE CONNECTION ìƒì„±ì‹œ ì—ëŸ¬");
         }
 		return conn;
     }
@@ -180,8 +180,8 @@ public class TaxMailManagementDao extends Object implements Serializable{
             pstmt.setInt(index++, 0);
             pstmt.setInt(index++, 0);
             pstmt.setInt(index++, 0);
-            pstmt.setString(index++, "ÀüÀÚ¼¼±İ°è»ê¼­");
-            pstmt.setString(index++, "°ü¸®ÀÚ");
+            pstmt.setString(index++, "ì „ìì„¸ê¸ˆê³„ì‚°ì„œ");
+            pstmt.setString(index++, "ê´€ë¦¬ì");
             pstmt.setInt(index++, 0);
             pstmt.setInt(index++, 1);
             pstmt.setInt(index++, 1);
@@ -264,7 +264,7 @@ public class TaxMailManagementDao extends Object implements Serializable{
 //	            mailQuery.append("ERRORSTO, HTML, ENCODING, CHARSET, SDATE, TDATE, DURATION_SET, CLICK_SET, SITE_SET, ATC_SET, GUBUN, RNAME, MTYPE, ");
 //	            mailQuery.append("U_IDX, G_IDX, MSGFLAG, CONTENT) VALUES(WEBADM.IM_DMAIL_SEQ_13.NEXTVAL@CYBER_MAIL_LNK, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
 //	            mailQuery.append("TO_CHAR(SYSDATE - 60/24/60, 'YYYYMMDDHH24MISS'), TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-	          //2016.05.12 EMAIL¹ß¼Û¹æ½Ä º¯°æ(º¯°æÀÚ : CDH)	            
+	          //2016.05.12 EMAILë°œì†¡ë°©ì‹ ë³€ê²½(ë³€ê²½ì : CDH)	            
 	            mailQuery.append("INSERT INTO IF_IM_DMAIL_INFO(ID,SEQIDX, SUBJECT, SQL, REJECT_SLIST_IDX, BLOCK_GROUP_IDX, MAILFROM, MAILTO, REPLYTO, ");
 	            mailQuery.append("ERRORSTO, HTML, ENCODING, CHARSET, SDATE, TDATE, DURATION_SET, CLICK_SET, SITE_SET, ATC_SET, GUBUN, RNAME, MTYPE, ");
 	            mailQuery.append("U_IDX, G_IDX, MSGFLAG, CONTENT, TABLE_GB,IF_STATUS ,CREATE_ID,CREATE_DT ,UPDATE_ID ,UPDATE_DT) VALUES('M'||IF_IM_DMAIL_INFO_ID.NEXTVAL,'', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
@@ -279,7 +279,7 @@ public class TaxMailManagementDao extends Object implements Serializable{
 
 	            pstmt.setString(index++, vo.getTitile());   //SUBJECT
 	            
-	            /* ip Á¤º¸ÀĞ¾î¿È */
+	            /* ip ì •ë³´ì½ì–´ì˜´ */
 				String serverIP = InetAddress.getLocalHost().getHostAddress();
 				/* Test server */
 				
@@ -293,16 +293,16 @@ public class TaxMailManagementDao extends Object implements Serializable{
 	            pstmt.setInt(index++, 0);
 	            pstmt.setString(index++, "\""+vo.getFromName()+"\"<"+vo.getFromMail()+">");
 	            pstmt.setString(index++, "\""+vo.getToName()+"\"<"+vo.getToMail()+">");
-	            pstmt.setString(index++, "\"±èµµ¿µ\"<kimdy@kdn.com>");
-	            pstmt.setString(index++, "\"±èµµ¿µ\"<kimdy@kdn.com>");
+	            pstmt.setString(index++, "\"ê¹€ë„ì˜\"<kimdy@kdn.com>");
+	            pstmt.setString(index++, "\"ê¹€ë„ì˜\"<kimdy@kdn.com>");
 	            pstmt.setInt(index++, 1);
 	            pstmt.setInt(index++, 0);
 	            pstmt.setString(index++, "euc-kr");
 	            pstmt.setInt(index++, 0);
 	            pstmt.setInt(index++, 0);
 	            pstmt.setInt(index++, 0);
-	            pstmt.setString(index++, "ÀüÀÚ¼¼±İ°è»ê¼­");
-	            pstmt.setString(index++, "ÇÏÁö¾ğ");
+	            pstmt.setString(index++, "ì „ìì„¸ê¸ˆê³„ì‚°ì„œ");
+	            pstmt.setString(index++, "í•˜ì§€ì–¸");
 	            pstmt.setInt(index++, 0);
 	            pstmt.setInt(index++, 1);
 	            pstmt.setInt(index++, 1);
@@ -327,8 +327,8 @@ public class TaxMailManagementDao extends Object implements Serializable{
 		           pstmt.setInt(index++, 0);          //CLICK_SET
 		           pstmt.setInt(index++, 0);          //SITE_SET
 		           pstmt.setInt(index++, 0);          //ATC_SET
-		           pstmt.setString(index++, "ÀüÀÚ¼¼±İ°è»ê¼­");  //GUBUN
-		           pstmt.setString(index++, "°ü¸®ÀÚ");  // RNAME
+		           pstmt.setString(index++, "ì „ìì„¸ê¸ˆê³„ì‚°ì„œ");  //GUBUN
+		           pstmt.setString(index++, "ê´€ë¦¬ì");  // RNAME
 		           pstmt.setInt(index++, 0);      //MTYPE
 		           pstmt.setInt(index++, 1);      //U_IDX
 		           pstmt.setInt(index++, 1);      //G_IDX
@@ -349,7 +349,7 @@ public class TaxMailManagementDao extends Object implements Serializable{
 	            	con.rollback();
 	            } catch (SQLException e1) {
 	                e1.printStackTrace();
-	//                throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "¸ŞÀÏ Àü¼Û¼­¹ö DB¿¡ DATA ISERT½Ã ¿¡·¯");
+	//                throw new TaxInvoiceException(TaxInvoiceException.RDB_EXCEPTION, "ë©”ì¼ ì „ì†¡ì„œë²„ DBì— DATA ISERTì‹œ ì—ëŸ¬");
 	            }
 	        } finally {
 	            if(pstmt != null)
@@ -398,15 +398,15 @@ public class TaxMailManagementDao extends Object implements Serializable{
 		String enc_taxid;
 		TaxInvSecurityMgr SecuMgr = new TaxInvSecurityMgr();
 		enc_taxid = SecuMgr.TaxInvEncrypt(issue_id2);
-		enc_taxid = SecuMgr.encodeURIComponent(enc_taxid);//POST ³Ñ±â´Â °æ¿ì ¸î¸î ¹®ÀÚ¿­ ±úÁü ¹æÁö¸¦ À§ÇÑ encodeÃ³¸® 
+		enc_taxid = SecuMgr.encodeURIComponent(enc_taxid);//POST ë„˜ê¸°ëŠ” ê²½ìš° ëª‡ëª‡ ë¬¸ìì—´ ê¹¨ì§ ë°©ì§€ë¥¼ ìœ„í•œ encodeì²˜ë¦¬ 
 
     	/* */
-    	//String invoicer_party_name = "";		// °ø±Ş¾÷Ã¼»ç¾÷Ã¼¸í
-    	//String invoicer_party_id = "";			// °ø±ŞÀÚ »ç¾÷ÀÚµî·Ï¹øÈ£
-    	//String invoicer_contact_name = "";		// °ø±Ş¾÷Ã¼ ´ã´çÀÚ¸í
-    	//String invoicer_contact_phone = "";		// °ø±Ş¾÷Ã¼ ´ã´çÀÚ ÀüÈ­¹øÈ£
-    	//String issue_id2 = "";					// ½ÂÀÎ¹øÈ£
-    	//String invoicee_contact_email1 = "";		// °ø±Ş¹Ş´Â¾÷Ã¼ ´ã´çÀÚ
+    	//String invoicer_party_name = "";		// ê³µê¸‰ì—…ì²´ì‚¬ì—…ì²´ëª…
+    	//String invoicer_party_id = "";			// ê³µê¸‰ì ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸
+    	//String invoicer_contact_name = "";		// ê³µê¸‰ì—…ì²´ ë‹´ë‹¹ìëª…
+    	//String invoicer_contact_phone = "";		// ê³µê¸‰ì—…ì²´ ë‹´ë‹¹ì ì „í™”ë²ˆí˜¸
+    	//String issue_id2 = "";					// ìŠ¹ì¸ë²ˆí˜¸
+    	//String invoicee_contact_email1 = "";		// ê³µê¸‰ë°›ëŠ”ì—…ì²´ ë‹´ë‹¹ì
     	try{
     		
     		con = DBConn.getConnection();
@@ -421,11 +421,11 @@ public class TaxMailManagementDao extends Object implements Serializable{
 	    		siteUrl = "https://cat.kepco.net/kepcobill2";
 	    	}
     	
-    	// °ø±Ş¾÷Ã¼»ç¾÷Ã¼¸í
-    	// °ø±ŞÀÚ »ç¾÷ÀÚµî·Ï¹øÈ£
-    	// °ø±Ş¾÷Ã¼ ´ã´çÀÚ¸í
-    	// °ø±Ş¾÷Ã¼ ´ã´çÀÚ ÀüÈ­¹øÈ£
-    	// ½ÂÀÎ¹øÈ£
+    	// ê³µê¸‰ì—…ì²´ì‚¬ì—…ì²´ëª…
+    	// ê³µê¸‰ì ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸
+    	// ê³µê¸‰ì—…ì²´ ë‹´ë‹¹ìëª…
+    	// ê³µê¸‰ì—…ì²´ ë‹´ë‹¹ì ì „í™”ë²ˆí˜¸
+    	// ìŠ¹ì¸ë²ˆí˜¸
     	
     	contents =
 			"<html>\n"+
@@ -446,24 +446,24 @@ public class TaxMailManagementDao extends Object implements Serializable{
 		    	"					<td align='LEFT' valign='TOP'>\n"+
 		    	"						<table width='100%' border='0' cellpadding='1' cellspacing='1' bgcolor='#DCD9D9'>\n"+
 		    	"							<tr>\n"+
-		    	"								<td height='21' colspan='2' align='CENTER' bgcolor='#C8E0E9'><strong> <font size=2>¼ö½ÅÇÑ ¼¼±İ°è»ê¼­ Á¤º¸ÀÔ´Ï´Ù.</font></strong></td>\n"+
+		    	"								<td height='21' colspan='2' align='CENTER' bgcolor='#C8E0E9'><strong> <font size=2>ìˆ˜ì‹ í•œ ì„¸ê¸ˆê³„ì‚°ì„œ ì •ë³´ì…ë‹ˆë‹¤.</font></strong></td>\n"+
 		    	"							</tr><tr>\n"+
-		    	"								<td width='35%' height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"+siteUrl+"/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>¼Û½ÅÈ¸»ç¸í </font></td>\n"+
+		    	"								<td width='35%' height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"+siteUrl+"/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>ì†¡ì‹ íšŒì‚¬ëª… </font></td>\n"+
 		    	"								<td width='65%' >&nbsp;<font size=2>"+invoicer_party_name+"</font></td>\n"+
 		    	"							</tr><tr>\n"+
-		    	"								<td height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"+siteUrl+"/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>¼Û½ÅÈ¸»ç »ç¾÷ÀÚ¹øÈ£</font></td>\n"+
+		    	"								<td height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"+siteUrl+"/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>ì†¡ì‹ íšŒì‚¬ ì‚¬ì—…ìë²ˆí˜¸</font></td>\n"+
 		    	"								<td  >&nbsp;<font size=2>"+invoicer_party_id+"</font></td>\n"+
 		    	"							</tr><tr>\n"+
-		    	"								<td height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"+siteUrl+"/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>¼Û½ÅÈ¸»ç ´ã´çÀÚÀÌ¸§</font></td>\n"+
+		    	"								<td height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"+siteUrl+"/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>ì†¡ì‹ íšŒì‚¬ ë‹´ë‹¹ìì´ë¦„</font></td>\n"+
 		    	"								<td >&nbsp;<font size=2>"+invoicer_contact_name+"</font></td>\n"+
 		    	"							</tr><tr>\n"+
-		    	"								<td height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"+siteUrl+"/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>¼Û½ÅÈ¸»ç ´ã´çÀÚ ÀüÈ­¹øÈ£</font></td>\n"+
+		    	"								<td height='21' bgcolor='#E9E9E9'>&nbsp;&nbsp;&nbsp;<img src='"+siteUrl+"/images/bullet08.gif' width='14' height='3' align='ABSMIDDLE'><font size=2>ì†¡ì‹ íšŒì‚¬ ë‹´ë‹¹ì ì „í™”ë²ˆí˜¸</font></td>\n"+
 		    	"								<td >&nbsp;<font size=2>"+invoicer_contact_phone+"</font></td>\n"+
 		    	"							</tr>\n"+
 		    	"						</table>\n"+
 		    	"						<table width='100%' border='0' cellspacing='0' cellpadding='0'>\n"+
 		    	//"							<tr><td height='40' align='CENTER' valign='BOTTOM'><a href='"+siteUrl+"/etax/etax_view.jsp?taxid="+issue_id2+"' target='_blank'><img src='"+siteUrl+"/images/b_taxsee.gif' width='145' height='20' align='ABSMIDDLE' border=0></a></td></tr>\n"+
-                //		    	2016.10.20 ¸µÅ©ÁÖ¼Ò¿¡ AES¾ÏÈ£È­¸¦ À§ÇÑ AES¾ÏÈ£È­ °ª Ãß°¡  
+                //		    	2016.10.20 ë§í¬ì£¼ì†Œì— AESì•”í˜¸í™”ë¥¼ ìœ„í•œ AESì•”í˜¸í™” ê°’ ì¶”ê°€  
 		    	"							<tr><td height='40' align='CENTER' valign='BOTTOM'><a href='"+siteUrl+"/etax/etax_view.jsp?taxid="+issue_id2+"&enc_taxid="+enc_taxid+"' target='_blank'><img src='"+siteUrl+"/images/b_taxsee.gif' width='145' height='20' align='ABSMIDDLE' border=0></a></td></tr>\n"+
 		    	"						</table><br>\n"+
 		    	"					</td>\n"+
@@ -471,12 +471,12 @@ public class TaxMailManagementDao extends Object implements Serializable{
 		    	"			</table>\n"+
 		    	"			<table width='100%' border='0' cellspacing='0' cellpadding='0'>\n"+
 		    	"				<tr>\n"+
-		    	"					<td height='40' valign='BOTTOM'><font size=2>&nbsp;&nbsp;&nbsp;¡Ø [¼¼±İ°è»ê¼­ »ó¼¼Á¤º¸ º¸±â] ¹öÆ°ÀÌ ÀÛµ¿ÇÏÁö ¾ÊÀ» °æ¿ì ÆË¾÷ Â÷´ÜÀ» ÇÏ¿ëÀ¸·Î º¯°æÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>&nbsp;&nbsp;&nbsp;<font color=blue>(¼³Á¤ ¹æ¹ı : ºê¶ó¿ìÀú¸Ş´º Áß µµ±¸ > ÆË¾÷Â÷´Ü> ÆË¾÷Â÷´Ü »ç¿ë ¾ÈÇÔ ¼±ÅÃ)</font></font></td>\n"+
+		    	"					<td height='40' valign='BOTTOM'><font size=2>&nbsp;&nbsp;&nbsp;â€» [ì„¸ê¸ˆê³„ì‚°ì„œ ìƒì„¸ì •ë³´ ë³´ê¸°] ë²„íŠ¼ì´ ì‘ë™í•˜ì§€ ì•Šì„ ê²½ìš° íŒì—… ì°¨ë‹¨ì„ í•˜ìš©ìœ¼ë¡œ ë³€ê²½í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.<br>&nbsp;&nbsp;&nbsp;<font color=blue>(ì„¤ì • ë°©ë²• : ë¸Œë¼ìš°ì €ë©”ë‰´ ì¤‘ ë„êµ¬ > íŒì—…ì°¨ë‹¨> íŒì—…ì°¨ë‹¨ ì‚¬ìš© ì•ˆí•¨ ì„ íƒ)</font></font></td>\n"+
 		    	"				</tr><tr>\n"+
-		    	"					<td height='40' valign='BOTTOM'><font size=2>¡Ø ¼¼±İ°è»ê¼­´Â [ÀüÀÚ¼¼±İ°è»ê¼­½Ã½ºÅÛ]À¸·Î µé¾î°¡¼Åµµ È®ÀÎÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.</td>\n"+
+		    	"					<td height='40' valign='BOTTOM'><font size=2>â€» ì„¸ê¸ˆê³„ì‚°ì„œëŠ” [ì „ìì„¸ê¸ˆê³„ì‚°ì„œì‹œìŠ¤í…œ]ìœ¼ë¡œ ë“¤ì–´ê°€ì…”ë„ í™•ì¸í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</td>\n"+
 		    	"				</tr><tr>\n"+
 		    	"					<td valign='BOTTOM'>\n"+
-		    	"						<font size=2> - ÇÑÀüÀüÀÚÁ¶´Ş : <font color=blue>https://srm.kepco.net</font> ·Î ·Î±×ÀÎÇÏ¿© ÇÏ´ÜÀÇ <font color=blue>[ÀüÀÚ¼¼±İ°è»ê]</font>½Ã½ºÅÛ Å¬¸¯</font>\n"+
+		    	"						<font size=2> - í•œì „ì „ìì¡°ë‹¬ : <font color=blue>https://srm.kepco.net</font> ë¡œ ë¡œê·¸ì¸í•˜ì—¬ í•˜ë‹¨ì˜ <font color=blue>[ì „ìì„¸ê¸ˆê³„ì‚°]</font>ì‹œìŠ¤í…œ í´ë¦­</font>\n"+
 		    	"				</td></tr>\n"+
 		    	"			</table>\n"+
 		    	"			<table width='685' border='0' cellspacing='0' cellpadding='0'>\n"+
@@ -495,18 +495,18 @@ public class TaxMailManagementDao extends Object implements Serializable{
 //		        .append("ERRORSTO, HTML, ENCODING, CHARSET, SDATE, TDATE, DURATION_SET, CLICK_SET,                         \n")
 //		        .append("SITE_SET, ATC_SET, GUBUN, RNAME, MTYPE, U_IDX, G_IDX, MSGFLAG, CONTENT)                           \n")
 //		        .append("VALUES (                                                                                          \n")
-//		        .append("WEBADM.IM_DMAIL_SEQ_13.NEXTVAL@CYBER_MAIL_LNK, 'ÀüÀÚ¼¼±İ °è»ê¼­', ?, 0, 0, ?, ?, ?, '1', 1, 0, 'euc-kr',         	   \n")
+//		        .append("WEBADM.IM_DMAIL_SEQ_13.NEXTVAL@CYBER_MAIL_LNK, 'ì „ìì„¸ê¸ˆ ê³„ì‚°ì„œ', ?, 0, 0, ?, ?, ?, '1', 1, 0, 'euc-kr',         	   \n")
 //		        .append("TO_CHAR(SYSDATE - 60/24/60, 'YYYYMMDDHH24MISS'), TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'), 0, 0,      \n")
-//		        .append("0, 0, 'ÀüÀÚ¼¼±İ °è»ê¼­', '°ü¸®ÀÚ', 0, 1, 1, 0, ?)                                                 	   \n");
+//		        .append("0, 0, 'ì „ìì„¸ê¸ˆ ê³„ì‚°ì„œ', 'ê´€ë¦¬ì', 0, 1, 1, 0, ?)                                                 	   \n");
 
 		        .append("INSERT INTO IF_IM_DMAIL_INFO(                                                              \n")
 		        .append("ID, SEQIDX, SUBJECT, SQL, REJECT_SLIST_IDX, BLOCK_GROUP_IDX, MAILFROM,MAILTO, REPLYTO,                \n")
 		        .append("ERRORSTO, HTML, ENCODING, CHARSET, SDATE, TDATE, DURATION_SET, CLICK_SET,                         \n")
 		        .append("SITE_SET, ATC_SET, GUBUN, RNAME, MTYPE, U_IDX, G_IDX, MSGFLAG, CONTENT, TABLE_GB,IF_STATUS ,CREATE_ID,CREATE_DT ,UPDATE_ID ,UPDATE_DT)                           \n")
 		        .append("VALUES (                                                                                          \n")
-		        .append("'M'||IF_IM_DMAIL_INFO_ID.NEXTVAL,'', 'ÀüÀÚ¼¼±İ°è»ê¼­', ?, 0, 0, ?, ?, ?, '1', 1, 0, 'euc-kr',         	   \n")
+		        .append("'M'||IF_IM_DMAIL_INFO_ID.NEXTVAL,'', 'ì „ìì„¸ê¸ˆê³„ì‚°ì„œ', ?, 0, 0, ?, ?, ?, '1', 1, 0, 'euc-kr',         	   \n")
 		        .append("TO_CHAR(SYSDATE - 60/24/60, 'YYYYMMDDHH24MISS'), TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'), 0, 0,      \n")
-		        .append("0, 0, 'ÀüÀÚ¼¼±İ°è»ê¼­', '°ü¸®ÀÚ', 0, 1, 1, 0, ?,'13','','TaxMailManagementDao',SYSDATE,'','')                                                 	   \n");
+		        .append("0, 0, 'ì „ìì„¸ê¸ˆê³„ì‚°ì„œ', 'ê´€ë¦¬ì', 0, 1, 1, 0, ?,'13','','TaxMailManagementDao',SYSDATE,'','')                                                 	   \n");
 				ps = con.prepareStatement(sb.toString());
 				
 				if("168.78.201.224".equals(serverIP)){
@@ -515,11 +515,11 @@ public class TaxMailManagementDao extends Object implements Serializable{
           			ps.setString(1,"SSV:"+invoicee_contact_email1);
           		}
 				
-				//ps.setString(2,  "ÇÑÀü ÀüÀÚ¼¼±İ°è»ê¼­");
-				ps.setString(2,  "\"ÇÑÀü¼¼±İ°è»ê¼­[¼Û½ÅÀü¿ë]\"<deliver@cat.kepco.net>");
+				//ps.setString(2,  "í•œì „ ì „ìì„¸ê¸ˆê³„ì‚°ì„œ");
+				ps.setString(2,  "\"í•œì „ì„¸ê¸ˆê³„ì‚°ì„œ[ì†¡ì‹ ì „ìš©]\"<deliver@cat.kepco.net>");
 				
 				if("168.78.201.224".equals(serverIP)){
-					invoicee_contact_name1 = "°ü¸®ÀÚ";
+					invoicee_contact_name1 = "ê´€ë¦¬ì";
 					invoicee_contact_email1 = "no-betterthan8@kdn.com";
 					ps.setString(3,"\""+invoicee_contact_name1+"\"<"+invoicee_contact_email1+">");
 					
@@ -564,11 +564,11 @@ public class TaxMailManagementDao extends Object implements Serializable{
         TaxMailManagementDao mailDao = new TaxMailManagementDao();
         TaxMailVO vo = new TaxMailVO("0000000000904344","buyer");
         vo.setDocUuid("0000000000904344");
-        vo.setTitile("Å×½ºÆ® ¸ŞÀÏ");
+        vo.setTitile("í…ŒìŠ¤íŠ¸ ë©”ì¼");
         vo.setFromMail("test");
-        vo.setFromName("Å×½ºÅÍ");
+        vo.setFromName("í…ŒìŠ¤í„°");
         vo.setToMail("pshpsy@nate.com");
-        vo.setToName("¹Ú¼±¿µ");
+        vo.setToName("ë°•ì„ ì˜");
         try {
             mailDao.sendMail(vo);
         } catch (Exception e) {

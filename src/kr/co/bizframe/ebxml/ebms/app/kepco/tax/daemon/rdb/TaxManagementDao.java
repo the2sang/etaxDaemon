@@ -42,7 +42,7 @@ import kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.vo.TaxPersonVO;
 public class TaxManagementDao {
 
 	private static Logger logger = Logger.getLogger(TaxManagementDao.class);
-/////////////////////////count°ü·Ã
+/////////////////////////countê´€ë ¨
     public TaxCountVO getCount() throws TaxInvoiceException{
         System.out.println("[START getCount]");
         Connection con = null;
@@ -167,9 +167,9 @@ public class TaxManagementDao {
     }
 
 
-//////////////////////////////////////////TaxInvoiceVO°ü·Ã
+//////////////////////////////////////////TaxInvoiceVOê´€ë ¨
     public TaxInvoiceVO saveTaxinvoice(TaxInvoiceVO vo) throws TaxInvoiceException{
-    	logger.debug("[START saveTaxinvoice]::¼¼±İ°è»ê¼­ Á¤º¸¸¦ ÀúÀå "+ vo.getUuid());
+    	logger.debug("[START saveTaxinvoice]::ì„¸ê¸ˆê³„ì‚°ì„œ ì •ë³´ë¥¼ ì €ì¥ "+ vo.getUuid());
         Connection con = null;
         TaxInvoiceVO selVO = new TaxInvoiceVO();
         DBConnector dbconn = new DBConnector();
@@ -190,8 +190,8 @@ public class TaxManagementDao {
 //            vo.getMeta().setExt_buyer_sabun(personDao.getPersonIdByEmailName(vo.getMain().getBuyer_contactor_name(), vo.getMain().getBuyer_contactor_email(), con));
             vo.getMain().setUuid(vo.getUuid());
 
-// ÀÌ°Å´Â ½Å±â¼ú·áÀÏ¶§.ºÎ¼­, ³â¿ù, ÀÏ·Ã¹øÈ£ Àç¹«ÂÊ¿¡ ¾È°¡°Ô ÇÏ±â À§ÇØ
-// 2006.04.27 ÀÌÁ¦Áß
+// ì´ê±°ëŠ” ì‹ ê¸°ìˆ ë£Œì¼ë•Œ.ë¶€ì„œ, ë…„ì›”, ì¼ë ¨ë²ˆí˜¸ ì¬ë¬´ìª½ì— ì•ˆê°€ê²Œ í•˜ê¸° ìœ„í•´
+// 2006.04.27 ì´ì œì¤‘
             String tempVaucher_Buseo = "";
             String tempVaucher_ym = "";
             String tempVaucher_seq = "";
@@ -205,7 +205,7 @@ public class TaxManagementDao {
                 vo.getMeta().setExt_voucher_yearMonth("");
                 vo.getMeta().setExt_voucher_seq("");
             }
-            //20100401 Á¾»ç¾÷Àå¹øÈ£ ÀúÀå½Ã
+            //20100401 ì¢…ì‚¬ì—…ì¥ë²ˆí˜¸ ì €ì¥ì‹œ
             if("0000".equals(vo.getMain().getBuyer_biz_cd())){
             	vo.getMain().setBuyer_biz_cd("");
             	System.out.println("vo.getMain().getBuyer_biz_cd() ::: "+vo.getMain().getBuyer_biz_cd());
@@ -238,7 +238,7 @@ public class TaxManagementDao {
             }
             
             selVO = this.selectTaxinvoice(vo.getUuid(), con);
-//2015.12.07 ³»¼±°è±â ¸ŞÀÏº¸³½ÀÌ¸¦ °è¾àÀÚ·Î º¯°æ CDH
+//2015.12.07 ë‚´ì„ ê³„ê¸° ë©”ì¼ë³´ë‚¸ì´ë¥¼ ê³„ì•½ìë¡œ ë³€ê²½ CDH
             selVO.getMeta().setContractor_email(vo.getMeta().getContractor_email());
             selVO.getMeta().setContractor_name(vo.getMeta().getContractor_name());
             selVO.getMeta().setContractor_phone(vo.getMeta().getContractor_phone());
@@ -272,9 +272,9 @@ public class TaxManagementDao {
         return selVO;
     }
 
-//////////////////////////////////////////TaxInvoiceVO°ü·Ã
+//////////////////////////////////////////TaxInvoiceVOê´€ë ¨
     public TaxInvoiceVO saveTaxinvoiceContents(String uuid, byte[] data) throws TaxInvoiceException{
-    	logger.debug("[START saveTaxinvoice]::¼¼±İ°è»ê¼­ÀÇ contentes Á¤º¸¸¦ ÀúÀå"+uuid);
+    	logger.debug("[START saveTaxinvoice]::ì„¸ê¸ˆê³„ì‚°ì„œì˜ contentes ì •ë³´ë¥¼ ì €ì¥"+uuid);
         Connection con = null;
         TaxInvoiceVO selVO = new TaxInvoiceVO();
         DBConnector dbconn = new DBConnector();
@@ -319,7 +319,7 @@ public class TaxManagementDao {
     }
 
     public TaxInvoiceVO getTaxInvoiceVO(String uuid) throws TaxInvoiceException{
-    	logger.debug("[START getTaxInvoiceVO]::¼¼±İ°è»ê¼­ÀÇ ¹®¼­ Á¤º¸¸¦ Á¶È¸");
+    	logger.debug("[START getTaxInvoiceVO]::ì„¸ê¸ˆê³„ì‚°ì„œì˜ ë¬¸ì„œ ì •ë³´ë¥¼ ì¡°íšŒ");
         Connection con = null;
         TaxInvoiceVO selVO = new TaxInvoiceVO();
         DBConnector dbconn = new DBConnector();
@@ -361,7 +361,7 @@ public class TaxManagementDao {
     }
 
 	public void insertTaxinvoice(TaxInvoiceVO vo, Connection con) throws TaxInvoiceException, SQLException{
-		logger.debug("[START insertTaxinvoice]:: ¼¼±İ°è»ê¼­ ÀúÀå insert");
+		logger.debug("[START insertTaxinvoice]:: ì„¸ê¸ˆê³„ì‚°ì„œ ì €ì¥ insert");
         String uuid = vo.getUuid();
         TaxMetaDao taxAppDao = new TaxMetaDao();
         vo.getMeta().setUuid(uuid);
@@ -383,7 +383,7 @@ public class TaxManagementDao {
 
 
     public void updateTaxinvoice(TaxInvoiceVO vo, Connection con) throws TaxInvoiceException, SQLException, EBXMLAppException{
-    	logger.debug("[START updateTaxinvoice]:: ¼¼±İ°è»ê¼­ ÀúÀå update");
+    	logger.debug("[START updateTaxinvoice]:: ì„¸ê¸ˆê³„ì‚°ì„œ ì €ì¥ update");
 
         TaxMetaDao taxAppDao = new TaxMetaDao();
         vo.getMeta().setUuid(vo.getUuid());
@@ -411,7 +411,7 @@ public class TaxManagementDao {
             delNum = i+1;
         }
 
-// ÀÌÁ¦Áß ¸ñ·Ï ÀúÀå½Ã »«°Å´Â »èÁ¦
+// ì´ì œì¤‘ ëª©ë¡ ì €ì¥ì‹œ ëº€ê±°ëŠ” ì‚­ì œ
 //        lineDao.delete(uuid, delNum, con);
 
         TaxContentsDao contentsDao = new TaxContentsDao();
@@ -420,7 +420,7 @@ public class TaxManagementDao {
     }
 
     public TaxInvoiceVO selectTaxinvoice(String uuid,  Connection con) throws TaxInvoiceException{
-        System.out.println("[START selectTaxinvoice]:: ¼¼±İ°è»ê¼­ Á¶È¸ select");
+        System.out.println("[START selectTaxinvoice]:: ì„¸ê¸ˆê³„ì‚°ì„œ ì¡°íšŒ select");
         TaxInvoiceVO vo = new TaxInvoiceVO();
         try{
             TaxMetaDao taxAppDao = new TaxMetaDao();
@@ -453,11 +453,11 @@ public class TaxManagementDao {
         try {
             con = dbconn.getConnection();
             con.setAutoCommit(false);
-            System.out.println("#$#$#$#$#$#$#$#$#$#$#¼¼±İ°è»ê¼­ »óÅÂ º¯°æ ¿Ï·á #$#$#$#$#$#$#$#$#$#$#");
-            System.out.println("¼¼±İ°è»ê¼­ ¹®¼­ ¹øÈ£:"+uuid);
-            System.out.println("º¯°æÈÄ ¹®¼­ »óÅÂ:"+status);
+            System.out.println("#$#$#$#$#$#$#$#$#$#$#ì„¸ê¸ˆê³„ì‚°ì„œ ìƒíƒœ ë³€ê²½ ì™„ë£Œ #$#$#$#$#$#$#$#$#$#$#");
+            System.out.println("ì„¸ê¸ˆê³„ì‚°ì„œ ë¬¸ì„œ ë²ˆí˜¸:"+uuid);
+            System.out.println("ë³€ê²½í›„ ë¬¸ì„œ ìƒíƒœ:"+status);
             dao.setStatus(uuid, status, con);
-            System.out.println("#$#$#$#$#$#$#$#$#$#$#¼¼±İ°è»ê¼­ »óÅÂ º¯°æ ¿Ï·á#$#$#$#$#$#$#$#$#$#$#");
+            System.out.println("#$#$#$#$#$#$#$#$#$#$#ì„¸ê¸ˆê³„ì‚°ì„œ ìƒíƒœ ë³€ê²½ ì™„ë£Œ#$#$#$#$#$#$#$#$#$#$#");
             dao.setComplateDate(uuid, con);
             con.commit();
         }
@@ -487,7 +487,7 @@ public class TaxManagementDao {
     }
 
     public void setResultMsg(String uuid, String msg)  throws TaxInvoiceException, SQLException{
-        System.out.println("[START setStatus in TaxManagementDao]:: ¹®¼­ Æó±â»çÀ¯ ÀúÀå ");
+        System.out.println("[START setStatus in TaxManagementDao]:: ë¬¸ì„œ íê¸°ì‚¬ìœ  ì €ì¥ ");
         Connection con = null;
         TaxMetaDao dao  = new TaxMetaDao();
         DBConnector dbconn = new DBConnector();
@@ -523,7 +523,7 @@ public class TaxManagementDao {
     }
 
     public void setReissueMsg(String uuid, String msg)  throws TaxInvoiceException, SQLException{
-        System.out.println("[START setStatus in TaxManagementDao]:: ¹®¼­ Àç¹ßÇà»çÀ¯ ÀúÀå ");
+        System.out.println("[START setStatus in TaxManagementDao]:: ë¬¸ì„œ ì¬ë°œí–‰ì‚¬ìœ  ì €ì¥ ");
         Connection con = null;
         TaxMetaDao dao  = new TaxMetaDao();
         DBConnector dbconn = new DBConnector();
@@ -650,7 +650,7 @@ public class TaxManagementDao {
 /*
 
 
-/////////////////////////////////¾÷Ã¼ ¹× ´ã´çÀÚ °ü·Ã
+/////////////////////////////////ì—…ì²´ ë° ë‹´ë‹¹ì ê´€ë ¨
     public ArrayList getTaxSupplierBuyer(String biz_id, String type)  throws TaxInvoiceException, SQLException{
         System.out.println("[START getTaxSupplierBuyer in TaxManagementDao]");
         Connection con = null;
@@ -817,7 +817,7 @@ public class TaxManagementDao {
         return isHanjunSeller;
     }
 
-// 2006.07.12 ÀÌÁ¦Áß
+// 2006.07.12 ì´ì œì¤‘
     public String IsNaubuSeller(String uuid) throws TaxInvoiceException{
         System.out.println("[START getTaxInvoiceVO]");
         Connection con = null;
@@ -1023,7 +1023,7 @@ public class TaxManagementDao {
 	}
 
 	public void setStatusInfo(TaxHeaderVO vo, String uuid, String errmsg)  throws TaxInvoiceException, SQLException{
-        logger.debug("[START setStatusInfo in TaxManagementDao]:: ¿¬°èÅ×ÀÌºí »óÅÂÁ¤º¸ ¾÷µ¥ÀÌÆ® ");
+        logger.debug("[START setStatusInfo in TaxManagementDao]:: ì—°ê³„í…Œì´ë¸” ìƒíƒœì •ë³´ ì—…ë°ì´íŠ¸ ");
         Connection con = null;
         TaxMetaDao dao  = new TaxMetaDao();
         DBConnector dbconn = new DBConnector();
@@ -1062,7 +1062,7 @@ public class TaxManagementDao {
     }
 
 	public void updateStatusByBasicDate(String basicDate)  throws TaxInvoiceException, SQLException{
-        logger.debug("[START updateStatusByBasicDate in TaxManagementDao]:: ÀÏÁ¤±â°£ ¹ÌÈ®ÀÎ ¼¼±İ°è»ê¼­ Æó±âÃ³¸® ");
+        logger.debug("[START updateStatusByBasicDate in TaxManagementDao]:: ì¼ì •ê¸°ê°„ ë¯¸í™•ì¸ ì„¸ê¸ˆê³„ì‚°ì„œ íê¸°ì²˜ë¦¬ ");
         Connection con = null;
         TaxMetaDao dao  = new TaxMetaDao();
         DBConnector dbconn = new DBConnector();
@@ -1136,20 +1136,20 @@ public class TaxManagementDao {
 			con = dbconn.getConnection();
 			con.setAutoCommit(false);
 
-			//¹®¼­°¡ ÀÖ´ÂÁö Ã¼Å©
+			//ë¬¸ì„œê°€ ìˆëŠ”ì§€ ì²´í¬
 			TaxMetaDao dao = new TaxMetaDao();
           	String isExist = dao.isExistSendTax(financeVO.getUuid(), con);
 
 			if (isExist.equals("Y")) {
 
-				//º¯°æÇÒ  ´ã´çÀÚ Á¤º¸°¡ ÀÖ´ÂÁö Ã¼Å©
+				//ë³€ê²½í•   ë‹´ë‹¹ì ì •ë³´ê°€ ìˆëŠ”ì§€ ì²´í¬
 				TaxPersonNewManagerDao persondao = new TaxPersonNewManagerDao();
 				ArrayList personlist = new ArrayList();
 				personlist = persondao.selectHanjunUserById(financeVO.getId());
 
 				if (personlist.size()<1) {
 					isExist = "E";
-					logger.debug("°è¾à´ã´çÀÚ º¯°æÃ³¸® Áß ¿À·ù  : Uuid="+financeVO.getUuid()+":::contractor="+financeVO.getId()+" ÇØ´ç »ç¹øÀÇ ´ã´çÀÚÁ¤º¸°¡ ¾ø½À´Ï´Ù.");
+					logger.debug("ê³„ì•½ë‹´ë‹¹ì ë³€ê²½ì²˜ë¦¬ ì¤‘ ì˜¤ë¥˜  : Uuid="+financeVO.getUuid()+":::contractor="+financeVO.getId()+" í•´ë‹¹ ì‚¬ë²ˆì˜ ë‹´ë‹¹ìì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 				} else {
 					TaxPersonVO PersonVO = new TaxPersonVO();
 					PersonVO = (TaxPersonVO)personlist.get(0);
@@ -1158,7 +1158,7 @@ public class TaxManagementDao {
 					financeVO.setEmail(CommonUtil.nullToBlank(PersonVO.getEmail()));
 					financeVO.setTel(CommonUtil.nullToBlank(PersonVO.getTel()));
 
-//					°è¾à´ã´çÀÚ ¾÷µ¥ÀÌÆ®
+//					ê³„ì•½ë‹´ë‹¹ì ì—…ë°ì´íŠ¸
 					TaxFinanceManagementDao fdao = new TaxFinanceManagementDao();
 					fdao.save(financeVO);
 
@@ -1167,7 +1167,7 @@ public class TaxManagementDao {
 
 			} else {
 				isExist = "E";
-				logger.debug("°è¾à´ã´çÀÚ º¯°æÃ³¸® Áß ¿À·ù  : Uuid="+financeVO.getUuid()+":::contractor="+financeVO.getId()+" ÇØ´ç ¹®¼­¹øÈ£ÀÇ Àü¼ÛµÈ ¼¼±İ°è»ê¼­°¡ ¾ø½À´Ï´Ù.");
+				logger.debug("ê³„ì•½ë‹´ë‹¹ì ë³€ê²½ì²˜ë¦¬ ì¤‘ ì˜¤ë¥˜  : Uuid="+financeVO.getUuid()+":::contractor="+financeVO.getId()+" í•´ë‹¹ ë¬¸ì„œë²ˆí˜¸ì˜ ì „ì†¡ëœ ì„¸ê¸ˆê³„ì‚°ì„œê°€ ì—†ìŠµë‹ˆë‹¤.");
 			}
 
 			TaxEaiContractorDao eaidao = new TaxEaiContractorDao();
@@ -1191,7 +1191,7 @@ public class TaxManagementDao {
 	}
 	/* 2009.08.06 */
 	public void sandBySmsDate(String smsDate) throws TaxInvoiceException {
-		logger.debug("[START sandBySmsDate in TaxManagementDao]:: Æó±âµÇ±â 7ÀÏÀü È®ÀÎ¿äÃ»ÁßÀÎ ¼¼±İ°è»ê¼­ SMS¹ß¼Û ");
+		logger.debug("[START sandBySmsDate in TaxManagementDao]:: íê¸°ë˜ê¸° 7ì¼ì „ í™•ì¸ìš”ì²­ì¤‘ì¸ ì„¸ê¸ˆê³„ì‚°ì„œ SMSë°œì†¡ ");
 
 		Connection con = null;
         TaxMetaDao dao  = new TaxMetaDao();
@@ -1213,28 +1213,28 @@ public class TaxManagementDao {
             String uuid_lms="";
             
             
-            /* ³»¼±°ÇÁß Æó±âµÇ±â 7ÀÏÀü RECEIVER_COMP_ID, RECEIVER_ID*/ 
+            /* ë‚´ì„ ê±´ì¤‘ íê¸°ë˜ê¸° 7ì¼ì „ RECEIVER_COMP_ID, RECEIVER_ID*/ 
             ArrayList receiverList = dao.selectStatusBySmsDate(smsDate, con);
             logger.debug("receiverList.size : "+receiverList.size());
             //System.out.println("smsDate=====================================>"+smsDate);
             if (receiverList.size()>0) {
-            	logger.debug("Æó±âµÇ±â 7ÀÏÀü receiverList.size() > 0 Start ");
+            	logger.debug("íê¸°ë˜ê¸° 7ì¼ì „ receiverList.size() > 0 Start ");
             	//sendSMS
             	for(int i=0;i<receiverList.size();i++){
             		Map map = (Map)receiverList.get(i);
-            		receiver_comp_id 	= map.get("RECEIVER_COMP_ID").toString();	//¼ö½Å¾÷Ã¼»ç¾÷ÀÚ¹øÈ£
-            		receiver_id 		= map.get("RECEIVER_ID").toString(); //¼ö½ÅÀÚ ¾ÆÀÌµğ	
-            		issueDay 			= map.get("DOC_DATE").toString();//ÀÛ¼ºÀÏÀÚ
-            		comName          	= map.get("SUPPLIER_NAME").toString();//È¸»ç¸í
-            		chaAmt 				= map.get("CHARGE_AMT").toString();//°ø±Ş°¡¾×
-            		taxAmt           	= map.get("TOT_TAX_AMT").toString();//¼¼¾×
-            		graAmt				= map.get("TOT_AMT").toString();//ÃÑ¾×
-            		email				= map.get("SUPPLIER_CONTACTOR_EMAIL").toString();//¸ŞÀÏ
-            		itemName			= map.get("NAME").toString();//Ç°¸ñ
+            		receiver_comp_id 	= map.get("RECEIVER_COMP_ID").toString();	//ìˆ˜ì‹ ì—…ì²´ì‚¬ì—…ìë²ˆí˜¸
+            		receiver_id 		= map.get("RECEIVER_ID").toString(); //ìˆ˜ì‹ ì ì•„ì´ë””	
+            		issueDay 			= map.get("DOC_DATE").toString();//ì‘ì„±ì¼ì
+            		comName          	= map.get("SUPPLIER_NAME").toString();//íšŒì‚¬ëª…
+            		chaAmt 				= map.get("CHARGE_AMT").toString();//ê³µê¸‰ê°€ì•¡
+            		taxAmt           	= map.get("TOT_TAX_AMT").toString();//ì„¸ì•¡
+            		graAmt				= map.get("TOT_AMT").toString();//ì´ì•¡
+            		email				= map.get("SUPPLIER_CONTACTOR_EMAIL").toString();//ë©”ì¼
+            		itemName			= map.get("NAME").toString();//í’ˆëª©
             		uuid_lms			= map.get("UUID").toString();//uuid
             		logger.debug("receiver_comp_id : "+receiver_comp_id);
             		logger.debug("receiver_id : "+receiver_id);
-            		//ÇØ´ç ¾÷Ã¼»ç¿ëÀÚ SMS ¹ß¼Û
+            		//í•´ë‹¹ ì—…ì²´ì‚¬ìš©ì SMS ë°œì†¡
             		String hp = dao.selectHpByReceiver(receiver_comp_id,receiver_id,con);
             		String uuid = vo.getUuid();
             		logger.debug("hp : "+hp);
@@ -1267,21 +1267,21 @@ public class TaxManagementDao {
 	 * @throws TaxInvoiceException
 	 */
 	public void transmitList_F()throws TaxInvoiceException, Exception{
-		logger.debug("[START transmitList in TaxManagementDao]:: FI ->> Àü¼Û");
-		boolean trans = false; // ¿Ï·á
+		logger.debug("[START transmitList in TaxManagementDao]:: FI ->> ì „ì†¡");
+		boolean trans = false; // ì™„ë£Œ
 		Connection con = null; 
         TaxMetaDao dao  = new TaxMetaDao();
         DBConnector dbconn = new DBConnector();
 			try{
 	            con = dbconn.getConnection();
 	            con.setAutoCommit(false);
-	            // STATUS_CODE = '02' , ELECTRONIC_REPORT_YN = 'F' : µ¿ÀÇ¾ÈÇÔ ´ë»óÀ» °¡Á®¿È
+	            // STATUS_CODE = '02' , ELECTRONIC_REPORT_YN = 'F' : ë™ì˜ì•ˆí•¨ ëŒ€ìƒì„ ê°€ì ¸ì˜´
 	            ArrayList transmitList_F = dao.selectTrunce_F(con);
 	            
 	            if(transmitList_F.size() > 0){
 	            	
 	            	for(int i=0;i<transmitList_F.size();i++){
-	            		//XML »ı¼º
+	            		//XML ìƒì„±
 	            		System.out.println("#########################BINDDING START:"+CommonUtil.getCurrentTime());
 	            		TaxInvRspVO vo = new TaxInvRspVO();
 
@@ -1307,22 +1307,22 @@ public class TaxManagementDao {
 		            		baos = xmlUtil.generateXML(tax);
 
 		            		TaxContentsDao contentsdao = new TaxContentsDao();
-		            		//xml »ı¼ºÈÄ ÀúÀå ETS_ERP_XML_INFO_TB insert
+		            		//xml ìƒì„±í›„ ì €ì¥ ETS_ERP_XML_INFO_TB insert
 		            		contentsdao.insert_FI(vo.getManagement_id(), baos.toByteArray(), con);
 		            		
 		            		//xml TB_TAX_BILL_INFO -> Y update
 		            		dao.UpdateIssue_id(vo.getIssue_id(),con);
 		            		
 	            		}else{
-	            			System.out.println(" f ÇØ´çÁ¤º¸ »ı¼ºµÇ¾îÁ® ÀÖÀ½");
+	            			System.out.println(" f í•´ë‹¹ì •ë³´ ìƒì„±ë˜ì–´ì ¸ ìˆìŒ");
 	            		}
 	            		System.out.println("##########################BINDDING END:"+CommonUtil.getCurrentTime());
 	            	}
 	            	con.commit();
-	            	System.out.println(">>>> f»ı¼º¿Ï·á Ã³¸®¿Ï·á. ");
+	            	System.out.println(">>>> fìƒì„±ì™„ë£Œ ì²˜ë¦¬ì™„ë£Œ. ");
 	            	
 	            }else{
-	            	System.out.println(">>>> fµ¥ÀÌÅÍ ¾øÀ½. ");
+	            	System.out.println(">>>> fë°ì´í„° ì—†ìŒ. ");
 	            }
 	            ////////////////////////////////////////////////////////////////////////////
 	            ////////////////////////////////////////////////////////////////////////////
@@ -1348,8 +1348,8 @@ public class TaxManagementDao {
 	 * @throws Exception
 	 */
 	public void transmitList_Y()throws TaxInvoiceException, Exception{
-		logger.debug("[START transmitList in TaxManagementDao]:: FI ->> Àü¼Û");
-		boolean trans = false; // ¿Ï·á
+		logger.debug("[START transmitList in TaxManagementDao]:: FI ->> ì „ì†¡");
+		boolean trans = false; // ì™„ë£Œ
 		Connection con = null; 
         TaxMetaDao dao  = new TaxMetaDao();
         DBConnector dbconn = new DBConnector();
@@ -1360,7 +1360,7 @@ public class TaxManagementDao {
             
             if(transmitList_Y.size() > 0){
             	for(int j=0;j<transmitList_Y.size();j++){
-            		//XML »ı¼º
+            		//XML ìƒì„±
             		logger.debug("#########################BINDDING START:"+CommonUtil.getCurrentTime());
             		TaxInvRspVO vo = new TaxInvRspVO();
             		Map map = (Map)transmitList_Y.get(j);
@@ -1377,7 +1377,7 @@ public class TaxManagementDao {
 	            		vo.setDel_flag(CommonUtil.nullToBlank(map.get("NTS_REGIST_YN").toString()));
 	            		vo.setStatus_txt(CommonUtil.nullToBlank(map.get("NTS_REGIST_TXT").toString()));
 	            		vo.setIssue_day(CommonUtil.nullToBlank(map.get("ISSUE_DAY").toString()));
-	            		vo.setEsero_finish_ts(CommonUtil.nullToBlank(map.get("ESERO_FINISH_TS").toString())); // ¼¼±İ°è»ê¼­ ±¹¼¼Ã»½Å°í¿Ï·áÀÏ½Ã 2013.04.22 ÀåÁöÈ£
+	            		vo.setEsero_finish_ts(CommonUtil.nullToBlank(map.get("ESERO_FINISH_TS").toString())); // ì„¸ê¸ˆê³„ì‚°ì„œ êµ­ì„¸ì²­ì‹ ê³ ì™„ë£Œì¼ì‹œ 2013.04.22 ì¥ì§€í˜¸
 	            		
 	            		TaxInvoiceRspUtil xmlUtil = new TaxInvoiceRspUtil();
 	            		TaxInvoiceRspVOToObjUtil util = new TaxInvoiceRspVOToObjUtil(vo);
@@ -1394,16 +1394,16 @@ public class TaxManagementDao {
 	            		
             		}else{
             			
-            			System.out.println(" f ÇØ´çÁ¤º¸ »ı¼ºµÇ¾îÁ® ÀÖÀ½");
+            			System.out.println(" f í•´ë‹¹ì •ë³´ ìƒì„±ë˜ì–´ì ¸ ìˆìŒ");
             			
             		}
             		logger.debug("##########################BINDDING END:"+CommonUtil.getCurrentTime());
             	}
             	logger.debug("Y-----");
             	con.commit();
-            	System.out.println(">>>> y»ı¼º¿Ï·á Ã³¸®¿Ï·á. ");
+            	System.out.println(">>>> yìƒì„±ì™„ë£Œ ì²˜ë¦¬ì™„ë£Œ. ");
             }else{
-            	System.out.println(">>>> yµ¥ÀÌÅÍ ¾øÀ½. ");
+            	System.out.println(">>>> yë°ì´í„° ì—†ìŒ. ");
             }
             ////////////////////////////////////////////////////////////////////////////
             ////////////////////////////////////////////////////////////////////////////
@@ -1429,7 +1429,7 @@ public class TaxManagementDao {
 	 * @throws Exception
 	 */
 	public void tax_sms_mail(String tax_Date)throws TaxInvoiceException, Exception{
-		System.out.println("[START sms,mail list in TaxManagementDao]:: ÇÑÀü¸ÅÃâ SMS , MAIL º¸³»±â ");
+		System.out.println("[START sms,mail list in TaxManagementDao]:: í•œì „ë§¤ì¶œ SMS , MAIL ë³´ë‚´ê¸° ");
 		Connection con = null; 
         TaxMetaDao dao  = new TaxMetaDao();							//
         DBConnector dbconn = new DBConnector();						//
@@ -1439,7 +1439,7 @@ public class TaxManagementDao {
         try{
 			con = dbconn.getConnection();
 			con.setAutoCommit(false);
-			/* ´ë»ó select */
+			/* ëŒ€ìƒ select */
 			ArrayList list = dao.getTax_Sms_Mail_List(tax_Date,con);
 			
 			if(list.size() > 0)
@@ -1464,8 +1464,8 @@ public class TaxManagementDao {
 					System.out.println("16 :"+map.get("ISSUE_ID").toString());
 					*/
 					
-					//20170213 À±±Ô¹Ì( ¹®¼­¹øÈ£ Ãß°¡)
-					//smsDao.tax_SendSMS(map.get("INVOICEE_CONTACT_PHONE1").toString(),map.get("ISSUE_ID").toString());// °ø±Ş¹Ş´ÂÀÚ ´ã´çÀÚ ÀüÈ­¹øÈ£1
+					//20170213 ìœ¤ê·œë¯¸( ë¬¸ì„œë²ˆí˜¸ ì¶”ê°€)
+					//smsDao.tax_SendSMS(map.get("INVOICEE_CONTACT_PHONE1").toString(),map.get("ISSUE_ID").toString());// ê³µê¸‰ë°›ëŠ”ì ë‹´ë‹¹ì ì „í™”ë²ˆí˜¸1
 					
 					
 					mailDao.tax_seadMail(map.get("INVOICER_PARTY_NAME").toString(), 
@@ -1479,7 +1479,7 @@ public class TaxManagementDao {
 					
 					
 					
-					//20180122 À±±Ô¹Ì(sms->lms)
+					//20180122 ìœ¤ê·œë¯¸(sms->lms)
 					System.out.println("=============================tax_sendLMS Start===================");
 					smsDao.tax_SendLMS(map.get("INVOICEE_CONTACT_PHONE1").toString(),
 									   map.get("SVC_MANAGE_ID").toString(),
@@ -1492,11 +1492,11 @@ public class TaxManagementDao {
 									   map.get("ITEM_NAME").toString());
 					System.out.println("=============================tax_sendLMS End===================");
 					
-					//20170213 À±±Ô¹Ì( ¹®¼­¹øÈ£ Ãß°¡)
-					//SmsDao.tax_SendSMS(map.get("INVOICEE_CONTACT_PHONE2").toString(),map.get("ISSUE_ID").toString());// °ø±Ş¹Ş´ÂÀÚ ´ã´çÀÚ ÀüÈ­¹øÈ£2
+					//20170213 ìœ¤ê·œë¯¸( ë¬¸ì„œë²ˆí˜¸ ì¶”ê°€)
+					//SmsDao.tax_SendSMS(map.get("INVOICEE_CONTACT_PHONE2").toString(),map.get("ISSUE_ID").toString());// ê³µê¸‰ë°›ëŠ”ì ë‹´ë‹¹ì ì „í™”ë²ˆí˜¸2
 					
 					
-					//20180122 À±±Ô¹Ì(sms->lms)
+					//20180122 ìœ¤ê·œë¯¸(sms->lms)
 					System.out.println("=============================tax_sendLMS Start===================");
 					smsDao.tax_SendLMS(map.get("INVOICEE_CONTACT_PHONE2").toString(),
 							   map.get("SVC_MANAGE_ID").toString(),
@@ -1524,7 +1524,7 @@ public class TaxManagementDao {
 			// TODO: handle exception
 			e1.printStackTrace();
 		}
-		System.out.println("[END sms,mail list in TaxManagementDao]:: ÇÑÀü¸ÅÃâ SMS , MAIL º¸³»±â ");
+		System.out.println("[END sms,mail list in TaxManagementDao]:: í•œì „ë§¤ì¶œ SMS , MAIL ë³´ë‚´ê¸° ");
 	}
 	
 	/**

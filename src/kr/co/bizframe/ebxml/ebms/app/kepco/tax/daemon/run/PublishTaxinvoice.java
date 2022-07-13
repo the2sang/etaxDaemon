@@ -31,7 +31,7 @@ public class PublishTaxinvoice {
 	private static Logger logger = Logger.getLogger(PublishTaxinvoice.class);	
 	
     public String publishData(Hashtable data) throws SQLException, TaxInvoiceException{
-    	logger.debug("¿ª¹ßÇà ¼¼±İ°è»ê¼­ ÀúÀå  publishData(ArrayList data)" );
+    	logger.debug("ì—­ë°œí–‰ ì„¸ê¸ˆê³„ì‚°ì„œ ì €ì¥  publishData(ArrayList data)" );
          
     	String errMsg = "";
     	
@@ -51,7 +51,7 @@ public class PublishTaxinvoice {
            fdao.save(financeVO);
            
            
-           //20180321 À¯Á¾ÀÏ ÇÑÀü ´ã´çÀÚ ÀüÈ­¹øÈ£ Ãß°¡ 
+           //20180321 ìœ ì¢…ì¼ í•œì „ ë‹´ë‹¹ì ì „í™”ë²ˆí˜¸ ì¶”ê°€ 
            vo.setSms_yn((String)data.get("sms_yn"));
 	   	   vo.setSms_sender_name((String)data.get("sms_name"));
 	   	   vo.setSms_sender_tel((String)data.get("sms_tel"));
@@ -71,11 +71,11 @@ public class PublishTaxinvoice {
            
        
     	} catch (Exception e) {
-    		errMsg = "¼¼±İ°è»ê¼­ ÀúÀå Áß ¿À·ù ¹ß»ı";
+    		errMsg = "ì„¸ê¸ˆê³„ì‚°ì„œ ì €ì¥ ì¤‘ ì˜¤ë¥˜ ë°œìƒ";
             logger.debug("publishData Error.. " + e);
         }    
            
-       logger.debug("¿ª¹ßÇà ¼¼±İ°è»ê¼­ ÀúÀå  publishData(ArrayList data)");
+       logger.debug("ì—­ë°œí–‰ ì„¸ê¸ˆê³„ì‚°ì„œ ì €ì¥  publishData(ArrayList data)");
        
        return errMsg; 
    }

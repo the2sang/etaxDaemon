@@ -14,15 +14,15 @@ public class TaxCompanyNewDao {
 
 	public TaxCompanyVO getCompInfoByBizId(String biz_id, String comp_type, Connection con) throws SQLException, TaxInvoiceException {
 		System.out.println("[START getCompInfoByBizId in TaxCompanyNewDao]");
-		//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+		//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 		String BUSI_ENC = CommonUtil.getString("BUSI_ENC");		
 		TaxCompanyVO vo = new TaxCompanyVO();
 		PreparedStatement ps = null;
 		try {
 			String sql = "";
-			//¿ÜºÎ ¾÷Ã¼ ÀÏ¶§.				
+			//ì™¸ë¶€ ì—…ì²´ ì¼ë•Œ.				
 			if(comp_type.equals("N")){
-				//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+				//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 				if(BUSI_ENC.equals("1")){
 					sql =
 //						"  SELECT DECODE_SF@USER_LINK(BUSINESS_NO), DECODE_SF@USER_LINK(BUSINESS_NO),		"   +
@@ -33,66 +33,66 @@ public class TaxCompanyNewDao {
 //						"  	   	  TP_OWNERLST_TBL@USER_LINK B												"   +
 //						"   WHERE BUSINESS_NO = ENCODE_SF@USER_LINK(?)										"   +
 //						"     AND A.SUPPLIER_NO = B.SUPPLIER_NO												"  ;
-						//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+						//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 						"   SELECT DECODE_SF64@D_EDI2SRM(BUSINESS_NO), DECODE_SF64@D_EDI2SRM(BUSINESS_NO),	"   +
 //						"   SELECT DECODE_SF_SNM(BUSINESS_NO), DECODE_SF_SNM(BUSINESS_NO),					"   +
 						"   	   	 KORNAME, OWNER_NAME, A.ADDR1 ||' '|| A.ADDR2 ,							"   +
 						"   	     TEL_NO, FAX_NO,  BUSINESS_STATUS , INDUSTRY_TYPE ,						"   +
 						"   	     'N' EX_IN_TYPE , '0'													"   +
-						//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+						//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //						"    FROM TP_SUPPLIER_TBL@USER_LINK A,												"   +
 						"    FROM TP_SUPPLIER_TBL_VIEW A,													"   +
 //						"    	  (SELECT  SUPPLIER_NO,   OWNER_NAME        									"   +
 						"    	  (SELECT  ID, SUPPLIER_NO,   OWNER_NAME        									"   +
-						//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+						//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //						" 		     FROM TP_OWNERLST_TBL@USER_LINK B      									"   +
 						" 		     FROM TP_OWNERLST_TBL_VIEW B      										"   +
 						" 		    WHERE STATUS = 'Y'                     									"   +
 						" 			  AND OWNER_PRIOR = '1'                									"   +
 						" 			)B                                     									"	+
-						//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+						//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 						"    WHERE BUSINESS_NO = ENCODE_SF64@D_EDI2SRM(?)									"   +
 //						"    WHERE BUSINESS_NO = ENCODE_SF_SNM(?)											"   +
 						"      AND A.SUPPLIER_NO = B.SUPPLIER_NO											"   +
-						//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+						//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 						"      	AND B.ID = A.ID																			"   +
 						" 	 																				"  ;
 				}else{	
 					sql =
-						//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+						//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 						"   SELECT BUSINESS_NO, BUSINESS_NO,												"   +
 //						"   SELECT DECODE_SF_SNM(BUSINESS_NO), DECODE_SF_SNM(BUSINESS_NO),					"   +
 						"   	   	 KORNAME, OWNER_NAME, A.ADDR1 ||' '|| A.ADDR2 ,							"   +
 						"   	     TEL_NO, FAX_NO,  BUSINESS_STATUS , INDUSTRY_TYPE ,						"   +
 						"   	     'N' EX_IN_TYPE , '0'													"   +
-						//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+						//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //						"    FROM TP_SUPPLIER_TBL@USER_LINK A,												"   +
 						"    FROM TP_SUPPLIER_TBL_VIEW A,													"   +
 						"    	  (SELECT ID, SUPPLIER_NO,   OWNER_NAME											"   +
-						//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+						//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //						" 		     FROM TP_OWNERLST_TBL@USER_LINK B										"   +
 						" 		     FROM TP_OWNERLST_TBL_VIEW B											"   +
 						" 		    WHERE STATUS = 'Y'														"   +
 						" 			  AND OWNER_PRIOR = '1'													"   +
 						" 			)B																		"	+
-						//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+						//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 						"    WHERE BUSINESS_NO = ?															"   +
 						"      AND A.SUPPLIER_NO = B.SUPPLIER_NO											"   +
-						//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+						//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 						"      	AND B.ID = A.ID																			"   +
 						"																					"  ;
 				}
 				ps = con.prepareStatement(sql);
 				ps.setString(1, biz_id);
 
-			//ÇÑ±¹Àü·Â°ø»ç
+			//í•œêµ­ì „ë ¥ê³µì‚¬
 			}else if(comp_type.equals("K")){
 				sql =
 					"   SELECT BUSINESS_NO, BUSINESS_NO, KORNAME,"   +
 					" 		  OWNER_NAME, ADDR,"   +
 					"          '' TEL, '' FAX, BUSINESS_STATUS,"   +
 					"         INDUSTRY_TYPE, 'K', '00'"   +
-					// Ãß°¡º¯°æ 200912
+					// ì¶”ê°€ë³€ê²½ 200912
 					//"	"+
 					//" FROM TP_BRANCH_VIEW@SUP A"+
 					"   FROM TP_BRANCH_VIEW2 A"  +
@@ -100,7 +100,7 @@ public class TaxCompanyNewDao {
 				ps = con.prepareStatement(sql);
 				ps.setString(1, biz_id);
 
-			//¹ßÀü
+			//ë°œì „
 			}else {
             	sql =
 //            		" SELECT MAIN_BIZ_ID, BIZ_ID, NAME, PRESIDENT_NAME, ADDR, TEL, FAX, BIZ_TYPE, BIZ_CLASS, TYPE, COMP_CODE "   +
@@ -153,7 +153,7 @@ public class TaxCompanyNewDao {
 
 	public ArrayList selectCompanyList(String biz_id, String comp_name, String comp_type, Connection con) throws SQLException, TaxInvoiceException {
 		System.out.println("[START selectCompanyList in TaxCompanyNewDao]");
-		//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+		//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 		String BUSI_ENC = CommonUtil.getString("BUSI_ENC");			
 		ArrayList data = new ArrayList();
 		PreparedStatement ps = null;
@@ -161,12 +161,12 @@ public class TaxCompanyNewDao {
 		String join_comp_name = "";
 		String sql = "";
 		try {
-			//¿ÜºÎ ¾÷Ã¼ ÀÏ¶§.
+			//ì™¸ë¶€ ì—…ì²´ ì¼ë•Œ.
 			if(comp_type.equals("N")){
 				if(biz_id != null && !biz_id.equals("")){
-					//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºÐ±âÃ³¸® CDH
+					//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
 					if(BUSI_ENC.equals("1")){
-						//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+						//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 						join_biz_id = "     AND A.BUSINESS_NO = ENCODE_SF64@D_EDI2SRM(?)" ;
 //						join_biz_id = "     AND A.BUSINESS_NO = ENCODE_SF_SNM(?)" ;
 					}else{
@@ -188,24 +188,24 @@ public class TaxCompanyNewDao {
 //					"    FROM TP_SUPPLIER_TBL@USER_LINK A,											"   +
 //					"  	   	  TP_OWNERLST_TBL@USER_LINK B											"   +
 //					"   WHERE A.SUPPLIER_NO = B.SUPPLIER_NO											"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 					"   SELECT DECODE_SF64@D_EDI2SRM(BUSINESS_NO), DECODE_SF64@D_EDI2SRM(BUSINESS_NO),"	+
 //					"   SELECT DECODE_SF_SNM(BUSINESS_NO), DECODE_SF_SNM(BUSINESS_NO),				"   +
 					"   	   KORNAME, OWNER_NAME, A.ADDR1 ||' '|| A.ADDR2 ,						"   +
 					"   	   TEL_NO, FAX_NO,  BUSINESS_STATUS , INDUSTRY_TYPE,					"	+
 					"          'N' EX_IN_TYPE , '0'													"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					"    FROM TP_SUPPLIER_TBL@USER_LINK A,											"   +
 					"    FROM TP_SUPPLIER_TBL_VIEW A,												"   +
 					"    	  (SELECT ID, SUPPLIER_NO,   OWNER_NAME        								"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					" 		     FROM TP_OWNERLST_TBL@USER_LINK B      								"   +
 					" 		     FROM TP_OWNERLST_TBL_VIEW B      									"   +
 					" 		    WHERE STATUS = 'Y'                     								"   +
 					" 			  AND OWNER_PRIOR = '1'                								"   +
 					" 			)B                                     								"	+
 					"    WHERE A.SUPPLIER_NO = B.SUPPLIER_NO										"   +
-					//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+					//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 					"      	AND B.ID = A.ID																			"   +
 					join_biz_id +
 					join_comp_name;
@@ -220,24 +220,24 @@ public class TaxCompanyNewDao {
 //					"    FROM TP_SUPPLIER_TBL@USER_LINK A,											"   +
 //					"  	   	  TP_OWNERLST_TBL@USER_LINK B											"   +
 //					"   WHERE A.SUPPLIER_NO = B.SUPPLIER_NO											"   +			
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 					"   SELECT BUSINESS_NO, BUSINESS_NO,											"   +
 //					"   SELECT DECODE_SF_SNM(BUSINESS_NO), DECODE_SF_SNM(BUSINESS_NO),				"   +
 					"   	   KORNAME, OWNER_NAME, A.ADDR1 ||' '|| A.ADDR2 ,						"   +
 					"   	   TEL_NO, FAX_NO,  BUSINESS_STATUS , INDUSTRY_TYPE,					"	+
 					"          'N' EX_IN_TYPE , '0'													"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					"    FROM TP_SUPPLIER_TBL@USER_LINK A,											"   +
 					"    FROM TP_SUPPLIER_TBL_VIEW A,												"   +
 					"    	  (SELECT ID, SUPPLIER_NO,   OWNER_NAME        								"   +
-					//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+					//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					" 		     FROM TP_OWNERLST_TBL@USER_LINK B      								"   +
 					" 		     FROM TP_OWNERLST_TBL_VIEW B      									"   +
 					" 		    WHERE STATUS = 'Y'                     								"   +
 					" 			  AND OWNER_PRIOR = '1'                								"   +
 					" 			)B                                     								"	+
 					"    WHERE A.SUPPLIER_NO = B.SUPPLIER_NO										"   +
-						//2016.08.17 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷ CDH
+						//2016.08.17 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—… CDH
 					"      	AND B.ID = A.ID																			"   +
 					
 					join_biz_id +
@@ -252,7 +252,7 @@ public class TaxCompanyNewDao {
 
 				if(biz_id != null && !biz_id.equals("")){
 					//join_biz_id = "    AND BUSINESS_NO = ?"    ;
-					join_biz_id = "    AND BUY_REGIST_ID = ? "    ;//º¯°æ
+					join_biz_id = "    AND BUY_REGIST_ID = ? "    ;//ë³€ê²½
 				}
 				if(comp_name != null && !comp_name.equals("")){
 					join_comp_name = "    AND KORNAME LIKE '%'||?||'%'"  ;
@@ -265,18 +265,18 @@ public class TaxCompanyNewDao {
 					//
 					" 		, ZBRAN_NAME, A.BUY_REGIST_ID "+
 					//"   FROM TP_BRANCH_VIEW2 A"  +
-//2015.12.02 Â÷¼¼´ëÀÔÂû °ü·Ã ÀÛ¾÷  CDH
+//2015.12.02 ì°¨ì„¸ëŒ€ìž…ì°° ê´€ë ¨ ìž‘ì—…  CDH
 //					"   FROM TP_BRANCH_VIEW@SUP A	"  +
 					"   FROM FI_KEPCO_BIZ_VIEW A	"  +
 
 					"  WHERE A.BUSINESS_NO IS NOT NULL "   +
-					// Ãß°¡ 200912
+					// ì¶”ê°€ 200912
 					" AND A.BUY_REGIST_ID IS NOT NULL "+
 					join_biz_id +
 					join_comp_name;
 				ps = con.prepareStatement(sql);
 
-			//³²µ¿¹ßÀü
+			//ë‚¨ë™ë°œì „
 			}else if(comp_type.equals("D")){
 
 				if(biz_id != null && !biz_id.equals("")){
@@ -324,9 +324,9 @@ public class TaxCompanyNewDao {
 				vo.setBiz_class(CommonUtil.justNullToBlank(rs.getString(9)));
 				vo.setComp_type(CommonUtil.justNullToBlank(rs.getString(10)));
 				vo.setComp_code(CommonUtil.justNullToBlank(rs.getString(11)));
-				// ¼öÁ¤Ãß°¡ 200912
-				vo.setZbran_name(CommonUtil.justNullToBlank(rs.getString(12))); // ÁöÁ¡¸í
-				vo.setBuy_regist_id(CommonUtil.justNullToBlank(rs.getString(13))); // ÇÑÀüÁ¾»ç¾÷Àå¹øÈ£
+				// ìˆ˜ì •ì¶”ê°€ 200912
+				vo.setZbran_name(CommonUtil.justNullToBlank(rs.getString(12))); // ì§€ì ëª…
+				vo.setBuy_regist_id(CommonUtil.justNullToBlank(rs.getString(13))); // í•œì „ì¢…ì‚¬ì—…ìž¥ë²ˆí˜¸
 
 				data.add(vo);
 			}
@@ -353,7 +353,7 @@ public class TaxCompanyNewDao {
 		String sql = "";
 		try {
 
-			//SE: ³²µ¿, SS: ³²ºÎ, EW: µ¿¼­, WW: ¼­ºÎ
+			//SE: ë‚¨ë™, SS: ë‚¨ë¶€, EW: ë™ì„œ, WW: ì„œë¶€
 
 			if(biz_id != null && !biz_id.equals("")){
 				join_biz_id = "    AND BIZ_NO = ?"    ;
@@ -482,7 +482,7 @@ public class TaxCompanyNewDao {
 		return data;
 	}
 
-	// KDN ERP¿¬°è °ü·Ã »ç¾÷ÀÚ¹øÈ£ °ü¸®
+	// KDN ERPì—°ê³„ ê´€ë ¨ ì‚¬ì—…ìžë²ˆí˜¸ ê´€ë¦¬
     public boolean getBiznumInfo(String biznum, String comp, Connection con) throws SQLException, TaxInvoiceException {
         System.out.println("[START getBiznumInfo]");
         boolean adminYN = false;

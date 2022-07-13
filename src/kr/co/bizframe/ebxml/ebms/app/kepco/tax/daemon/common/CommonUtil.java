@@ -18,11 +18,11 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.rdb.TaxManagementDao;
 
 public class CommonUtil {
-	
-	public static String SMS_SENDER_NAME = "°ü¸®ÀÚ";
+
+	public static String SMS_SENDER_NAME = "ê´€ë¦¬ì";
 	public static String SMS_SENDER_TEL1 = "0619317583";
 	public static String SMS_SENDER_TEL2 = "0613451249";
-	
+
 	public static void viewObj(Object obj) {
 		System.out.println(ToStringBuilder.reflectionToString(obj));
 	}
@@ -45,20 +45,20 @@ public class CommonUtil {
 	public static String getCompCodeToString(String value) {
 		String ret = "";
 		if (value == null || value.equals(""))
-			ret = "ÇÑÀü";
+			ret = "í•œì „";
 		else if (value.equals("00"))
-			ret = "ÇÑÀü";
+			ret = "í•œì „";
 		else if (value.equals("01"))
-			ret = "³²µ¿";
+			ret = "ë‚¨ë™";
 		else if (value.equals("99"))
-			ret = "¾÷Ã¼";
-		else 
-			ret = "¾÷Ã¼";
+			ret = "ì—…ì²´";
+		else
+			ret = "ì—…ì²´";
 		return ret;
 	}
 
 	public static String getCurrentTime() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ kk:mm:ss SS");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyë…„ MMì›” ddì¼ kk:mm:ss SS");
 		Date date = new Date(System.currentTimeMillis());
 		String m_date = "";
 		try {
@@ -69,8 +69,8 @@ public class CommonUtil {
 		return m_date;
 	}
 
-	//////////////////////////////////////////////////////////////  
-	//ÁöÁ¤µÈ Çü½ÄÀ¸·Î ³¯Â¥ °¡Á®¿À±â
+	//////////////////////////////////////////////////////////////
+	//ì§€ì •ëœ í˜•ì‹ìœ¼ë¡œ ë‚ ì§œ ê°€ì ¸ì˜¤ê¸°
 	public static String getCurrentTimeFormat(String format) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		Date date = new Date(System.currentTimeMillis());
@@ -83,7 +83,7 @@ public class CommonUtil {
 		return m_date;
 	}
 
-	//Áö³­³¯Â¥±¸ÇÏ±â
+	//ì§€ë‚œë‚ ì§œêµ¬í•˜ê¸°
 	public static String getPastDay(String format, String term) {
 		String gDate = "";
 		Calendar cal = Calendar.getInstance(Locale.KOREAN);
@@ -95,12 +95,12 @@ public class CommonUtil {
 		return gDate;
 	}
 
-	//³¯Â¥¹üÀ§°¡ ¸Â´ÂÁö Ã¼Å©(¹ß¼Û ¹× ½ÂÀÎ½Ã)
+	//ë‚ ì§œë²”ìœ„ê°€ ë§ëŠ”ì§€ ì²´í¬(ë°œì†¡ ë° ìŠ¹ì¸ì‹œ)
 	public static boolean isDateTermCheck(String today, String docDate, String fixed) {
 		boolean isok = false;
 		long diff = 0;
 		long nFixed = Long.parseLong(fixed);
-		nFixed = 24 * 60 * nFixed; //24½Ã°£*60ºĞ*15ÀÏ
+		nFixed = 24 * 60 * nFixed; //24ì‹œê°„*60ë¶„*15ì¼
 		try {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 			Date beginDate = formatter.parse(today);
@@ -160,8 +160,8 @@ public class CommonUtil {
 		return value;
 	}
 
-	
-	
+
+
 	public static String getDotFormatDate(String date) {
 		String value = "";
 		System.out.println(date);
@@ -177,8 +177,8 @@ public class CommonUtil {
 		String value = "";
 		if (date.length() >= 8) {
 			value = date.substring(0, 4);
-			value = value + "³â " + date.substring(4, 6);
-			value = value + "¿ù " + date.substring(6, 8) + "ÀÏ";
+			value = value + "ë…„ " + date.substring(4, 6);
+			value = value + "ì›” " + date.substring(6, 8) + "ì¼";
 		}
 		return value;
 	}
@@ -385,8 +385,8 @@ public class CommonUtil {
 			return dcf.format(Long.parseLong(value));
 		}
 	}
-	
-	
+
+
 	public static String moneyFormatInt(int value) {
 		System.out.println(value);
 		if (value==0) {
@@ -396,7 +396,7 @@ public class CommonUtil {
 			return dcf.format(value);
 		}
 	}
-	
+
 	public static String moneyFormatLong(long value) {
 		System.out.println(value);
 		if (value==0) {
@@ -406,7 +406,7 @@ public class CommonUtil {
 			return dcf.format(value);
 		}
 	}
-	
+
 
 	public static String generateDocId(String docType) {
 		String head = docType.substring(0, 1);
@@ -531,7 +531,7 @@ public class CommonUtil {
 
 	/**
 	 * 2005-03-08 pka
-	 * TextArea¿¡¼­ ÀÔ·Â¹ŞÀº Ä³¸®Áö ¸®ÅÏ°ªÀ» <BR>ÅÂ±×·Î º¯È¯
+	 * TextAreaì—ì„œ ì…ë ¥ë°›ì€ ìºë¦¬ì§€ ë¦¬í„´ê°’ì„ <BR>íƒœê·¸ë¡œ ë³€í™˜
 	 */
 	public static String nl2br(String saComment) {
 		StringBuffer slBuffer = new StringBuffer();
@@ -553,7 +553,7 @@ public class CommonUtil {
 
 	}
 	/**
-	 * ÀÏ¹İ ½ºÆ®¸µÀ» ¾ÏÈ£È­ StringÀ¸·Î º¯È¯ÇÏ´Â ÇÔ¼ö
+	 * ì¼ë°˜ ìŠ¤íŠ¸ë§ì„ ì•”í˜¸í™” Stringìœ¼ë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜
 	 * @param String TempString
 	 * @return String
 	 */
@@ -566,7 +566,7 @@ public class CommonUtil {
 		return ReturnString;
 	}
 	/**
-	 * ¾ÏÈ£È­ ½ºÆ®¸µÀ»  ÀÏ¹İ ½ºÆ®¸µÀ¸·Î º¹¿øÇÏ´Â ÇÔ¼ö
+	 * ì•”í˜¸í™” ìŠ¤íŠ¸ë§ì„  ì¼ë°˜ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë³µì›í•˜ëŠ” í•¨ìˆ˜
 	 * @param String TempString
 	 * @return String
 	 */
@@ -580,89 +580,89 @@ public class CommonUtil {
 	}
 
 	/**
-	 * ¹ÙÀÌÆ® ¹è¿­À» Hex StringÀ¸·Î...by Á¤¸í¼ö 2005.3.8
+	 * ë°”ì´íŠ¸ ë°°ì—´ì„ Hex Stringìœ¼ë¡œ...by ì •ëª…ìˆ˜ 2005.3.8
 	 * @param byte[] TempByte
 	 * @return String
 	 */
 	private static String BytesToHexString(byte[] TempByte) throws Exception {
-        String ReturnString = "";
-        for (int i=0; i<TempByte.length; i++){
-            if( (TempByte[i] > 15) || (TempByte[i] < 0) ){
-                ReturnString += java.lang.Integer.toHexString(TempByte[i] & 0xff).toUpperCase();
-            }else{
-                ReturnString += "0"+java.lang.Integer.toHexString(TempByte[i] & 0xff).toUpperCase();
-            }
-        }
-        return ReturnString;
-    }
+		String ReturnString = "";
+		for (int i=0; i<TempByte.length; i++){
+			if( (TempByte[i] > 15) || (TempByte[i] < 0) ){
+				ReturnString += java.lang.Integer.toHexString(TempByte[i] & 0xff).toUpperCase();
+			}else{
+				ReturnString += "0"+java.lang.Integer.toHexString(TempByte[i] & 0xff).toUpperCase();
+			}
+		}
+		return ReturnString;
+	}
 
 	/**
-	 * Hex String À» ¹ÙÀÌÆ® ¹è¿­·Î...by Á¤¸í¼ö 2005.3.8
+	 * Hex String ì„ ë°”ì´íŠ¸ ë°°ì—´ë¡œ...by ì •ëª…ìˆ˜ 2005.3.8
 	 * @param String TempString
 	 * @return byte[]
 	 */
 	private static byte[] HexStringToBytes(String TempString) throws Exception {
 
 		byte[] ReturnByte = new byte[TempString.length()/2];
-        int ReturnBytePointer=0;
+		int ReturnBytePointer=0;
 
-        for (int i=0; i<TempString.length(); i++){
-            if(TempString.charAt(i)=='0'){
-                i++;
-                if((TempString.charAt(i)>='0') && (TempString.charAt(i)<='9')){
-                    ReturnByte[ReturnBytePointer]=(byte)(TempString.charAt(i)-'0');
-                }
-                else if((TempString.charAt(i)>='A') && (TempString.charAt(i)<='F')){
-                    ReturnByte[ReturnBytePointer]=(byte)(10+TempString.charAt(i)-'A');
-                }
-                ReturnBytePointer++;
-            }else{
-                byte TempUpper;
-                byte TempLower;
-                TempUpper=0;
-                if((TempString.charAt(i)>='0') && (TempString.charAt(i)<='9')){
-                    TempUpper=(byte)(TempString.charAt(i)-'0');
-                }else if((TempString.charAt(i)>='A') && (TempString.charAt(i)<='F')){
-                    TempUpper=(byte)(10+TempString.charAt(i)-'A');
-                }
+		for (int i=0; i<TempString.length(); i++){
+			if(TempString.charAt(i)=='0'){
+				i++;
+				if((TempString.charAt(i)>='0') && (TempString.charAt(i)<='9')){
+					ReturnByte[ReturnBytePointer]=(byte)(TempString.charAt(i)-'0');
+				}
+				else if((TempString.charAt(i)>='A') && (TempString.charAt(i)<='F')){
+					ReturnByte[ReturnBytePointer]=(byte)(10+TempString.charAt(i)-'A');
+				}
+				ReturnBytePointer++;
+			}else{
+				byte TempUpper;
+				byte TempLower;
+				TempUpper=0;
+				if((TempString.charAt(i)>='0') && (TempString.charAt(i)<='9')){
+					TempUpper=(byte)(TempString.charAt(i)-'0');
+				}else if((TempString.charAt(i)>='A') && (TempString.charAt(i)<='F')){
+					TempUpper=(byte)(10+TempString.charAt(i)-'A');
+				}
 
-                TempUpper=(byte)(TempUpper*16);
-                i++;
-                TempLower=0;
+				TempUpper=(byte)(TempUpper*16);
+				i++;
+				TempLower=0;
 
-                if((TempString.charAt(i)>='0') && (TempString.charAt(i)<='9')){
-                    TempLower=(byte)(TempString.charAt(i)-'0');
-                }else if((TempString.charAt(i)>='A') && (TempString.charAt(i)<='F')){
-                    TempLower=(byte)(10+TempString.charAt(i)-'A');
-                }
-                ReturnByte[ReturnBytePointer]=(byte)(TempUpper+TempLower);
-                ReturnBytePointer++;
-            }
-        }
-        return ReturnByte;
-    }
-//20160229 TP_SUPPLIER_TBL_VIEWÀÇ BUSINESS_NO ¾Ïº¹È£È­ À¯¹«¿¡ µû¸¥ ºĞ±âÃ³¸® CDH	
-	  /**
-     * <PRE>
-     * ÁöÁ¤µÈ À§Ä¡(/{WEB-ROOT}/WEB-INF/classes)ÀÇ propertiesÆÄÀÏÀ» ÀĞ¾î key¿¡ ´ëÇÑ value¸®ÅÏ
-     *
-     * </PRE>
-     * @param   String Key
-     * @return  String Value         
-     */
-    public static String getString(String key)
-    {
-        Properties props   = null;
+				if((TempString.charAt(i)>='0') && (TempString.charAt(i)<='9')){
+					TempLower=(byte)(TempString.charAt(i)-'0');
+				}else if((TempString.charAt(i)>='A') && (TempString.charAt(i)<='F')){
+					TempLower=(byte)(10+TempString.charAt(i)-'A');
+				}
+				ReturnByte[ReturnBytePointer]=(byte)(TempUpper+TempLower);
+				ReturnBytePointer++;
+			}
+		}
+		return ReturnByte;
+	}
+//20160229 TP_SUPPLIER_TBL_VIEWì˜ BUSINESS_NO ì•”ë³µí˜¸í™” ìœ ë¬´ì— ë”°ë¥¸ ë¶„ê¸°ì²˜ë¦¬ CDH
+	/**
+	 * <PRE>
+	 * ì§€ì •ëœ ìœ„ì¹˜(/{WEB-ROOT}/WEB-INF/classes)ì˜ propertiesíŒŒì¼ì„ ì½ì–´ keyì— ëŒ€í•œ valueë¦¬í„´
+	 *
+	 * </PRE>
+	 * @param   String Key
+	 * @return  String Value
+	 */
+	public static String getString(String key)
+	{
+		Properties props   = null;
 		//InputStream  in = null;
 		FileInputStream in = null;
 		String strReturn = "";
-		
- 		/**
-		 * ÇÁ·ÎÆÛÆ¼ ÆÄÀÏ¸í
+
+		/**
+		 * í”„ë¡œí¼í‹° íŒŒì¼ëª…
 		 */
 		final String CONFIG_FILE = "ap.property";
 //		final String CONFIG_FILE = "kr/co/kepco/etax30/selling/util/ap.property";
-        
+
 		try {
 			//File f = new File(CommProperties.class.getResource(CONFIG_FILE).getPath());
 			File f = new File("/data5/ebxml/kepcobill2/kepcobill2/WEB-INF/batch/ap.property");
@@ -671,45 +671,45 @@ public class CommonUtil {
 			in = new FileInputStream(f);
 		}
 		catch (Exception e) {
-			System.out.println(CONFIG_FILE+" È­ÀÏÀÌ ¾ø½À´Ï´Ù.");
+			System.out.println(CONFIG_FILE+" í™”ì¼ì´ ì—†ìŠµë‹ˆë‹¤.");
 			e.printStackTrace();
 		}
-		
-            
-        if (in == null)
-        {
-			System.out.println(CONFIG_FILE+" È­ÀÏÀÌ ¾ø½À´Ï´Ù.");
+
+
+		if (in == null)
+		{
+			System.out.println(CONFIG_FILE+" í™”ì¼ì´ ì—†ìŠµë‹ˆë‹¤.");
 			return strReturn;
-        }
-        else
-        {
-	        try
-	        {
-				props = new Properties();     
-	            props.load(in);
+		}
+		else
+		{
+			try
+			{
+				props = new Properties();
+				props.load(in);
 
 				strReturn = props.getProperty(key);
-	        }
-	        catch (IOException ioe)
-	        {
-	                System.out.println("Exception ¹ß»ı(CommProperties.java) : " + ioe.getMessage());
-					ioe.printStackTrace();                
-	        }
-	        finally
-	        {
-	            try 
-	            { 
-	                if(in != null) in.close(); 
-	            } 
-	            catch (Exception e)                 
-	            { 
-	                System.out.println("[CommProperties.java] ½ºÆ®¸² ÇØÁ¦ ¿¡·¯");
-	                e.printStackTrace(); 
-	            }
-	        }
-	        return strReturn;
-        }
-    }//END METHOD 	
+			}
+			catch (IOException ioe)
+			{
+				System.out.println("Exception ë°œìƒ(CommProperties.java) : " + ioe.getMessage());
+				ioe.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					if(in != null) in.close();
+				}
+				catch (Exception e)
+				{
+					System.out.println("[CommProperties.java] ìŠ¤íŠ¸ë¦¼ í•´ì œ ì—ëŸ¬");
+					e.printStackTrace();
+				}
+			}
+			return strReturn;
+		}
+	}//END METHOD
 	public static void main(String args[]) {
 		//       int i=0; 
 		//       while(i<50){

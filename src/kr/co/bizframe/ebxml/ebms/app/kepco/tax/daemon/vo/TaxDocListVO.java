@@ -39,10 +39,10 @@ public class TaxDocListVO extends Object implements Serializable {
 
 	private String status_code = "";
 
-	// 2006.06.13 ÀÌÁ¦Áß °è»ê¼­ ±¸ºĞ
+	// 2006.06.13 ì´ì œì¤‘ ê³„ì‚°ì„œ êµ¬ë¶„
 	private String doc_type_code = "";
 
-	// ¿ª¹ßÇà, ¸ÅÃâ ±¸ºĞÀ§ÇØ
+	// ì—­ë°œí–‰, ë§¤ì¶œ êµ¬ë¶„ìœ„í•´
 	private String write_type = "";
 
 	private String construct_no = "";

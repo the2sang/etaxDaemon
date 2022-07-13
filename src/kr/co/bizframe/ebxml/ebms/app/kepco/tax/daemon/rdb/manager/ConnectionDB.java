@@ -2,24 +2,24 @@ package kr.co.bizframe.ebxml.ebms.app.kepco.tax.daemon.rdb.manager;
 import java.sql.*;
 public class ConnectionDB {
 	public static void main(String[] args){
-	 String oracleDriver = "oracle.jdbc.driver.OracleDriver"; //<-- µå¶óÀÌ¹ö ¼³Á¤
-	 String url = "jdbc:oracle:thin:@168.78.201.50:1521:EDIDEV9I"; //<-- ½ÇÁ÷ÀûÀÎ DBÀÇ À§Ä¡¸¦ ¾Ë·ÁÁÖ´Â °Í ÀÔ´Ï´Ù.
-	 String userid = "EXEDITEST"; //<-- Á¢¼Ó °èÁ¤
-	 String userpw = "XEDI1515"; //<-- °èÁ¤ ºñ¹ø
+	 String oracleDriver = "oracle.jdbc.driver.OracleDriver"; //<-- ë“œë¼ì´ë²„ ì„¤ì •
+	 String url = "jdbc:oracle:thin:@168.78.201.50:1521:EDIDEV9I"; //<-- ì‹¤ì§ì ì¸ DBì˜ ìœ„ì¹˜ë¥¼ ì•Œë ¤ì£¼ëŠ” ê²ƒ ìž…ë‹ˆë‹¤.
+	 String userid = "EXEDITEST"; //<-- ì ‘ì† ê³„ì •
+	 String userpw = "XEDI1515"; //<-- ê³„ì • ë¹„ë²ˆ
 	 Connection con = null; //<-- Connection  
 	 try{
 		 
 		 System.out.println("con start1:"+con);
-	  Class.forName(oracleDriver); //<-- µå¶óÀÌ¹ö ·Îµå 
-	  System.out.println("µå¸®ÀÌ¹ö°¡ ¼º°øÀûÀ¸·Î ·Îµå ÇÏ¿´½À´Ï´Ù.");
+	  Class.forName(oracleDriver); //<-- ë“œë¼ì´ë²„ ë¡œë“œ 
+	  System.out.println("ë“œë¦¬ì´ë²„ê°€ ì„±ê³µì ìœ¼ë¡œ ë¡œë“œ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	  	System.out.println("con start2:"+con);
 	 }catch(ClassNotFoundException e){e.printStackTrace();}
 	 
 	
 	try{
-	  con=DriverManager.getConnection(url,userid,userpw); //<-- ¿¬°áÇÒ DBÀÇ ÁÖ¼Ò¿Í °èÁ¤, °èÁ¤ ºñ¹øÀ» ³Ñ°ÜÁÝ´Ï´Ù.
+	  con=DriverManager.getConnection(url,userid,userpw); //<-- ì—°ê²°í•  DBì˜ ì£¼ì†Œì™€ ê³„ì •, ê³„ì • ë¹„ë²ˆì„ ë„˜ê²¨ì¤ë‹ˆë‹¤.
 	  System.out.println("con start3:"+con);
-	  System.out.println("µ¥ÀÌÅÍ º£ÀÌ½º ¿¬°á ¼º°ø ¤»¤»");
+	  System.out.println("ë°ì´í„° ë² ì´ìŠ¤ ì—°ê²° ì„±ê³µ ã…‹ã…‹");
 	  con.close();
 	  System.out.println("con start4:"+con);
 	 }catch(SQLException e){e.printStackTrace();}

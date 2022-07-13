@@ -40,7 +40,7 @@ public class TaxinvUtil {
     }
 
     // ////////////////////////////////////////////////////////////////
-    // ¡÷πÆ¿¿¥‰º≠ ª˝º∫(As XML OutputStream)
+    // Ï£ºÎ¨∏ÏùëÎãµÏÑú ÏÉùÏÑ±(As XML OutputStream)
     // ////////////////////////////////////////////////////////////////
     public ByteArrayOutputStream generateXML(TaxInvoice taxinv) throws EBXMLAppException {
 
@@ -96,7 +96,7 @@ public class TaxinvUtil {
     }
 
     // ////////////////////////////////////////////////////////////////
-    // TaxInvoice Object(Castor) <== æ∏∂º£∏µ (XML InputStream)
+    // TaxInvoice Object(Castor) <== Ïñ∏ÎßàÏÉ¨ÎßÅ (XML InputStream)
     // ////////////////////////////////////////////////////////////////
     public TaxInvoice getTaxinv(InputStream xml_in) throws EBXMLAppException {
         System.out.println("  TaxinvUtil[getTaxinv(InputStream xml_in)]  starts ...    ");

@@ -57,11 +57,11 @@ public class TaxStatusInfoManagementDao {
 //			if (YN) 			
 //				dao.insertStatusInfo(uuid, status, comp, con);
 			
-			if ( status.equals("CFR") && (!dao.getStatusGroupInfo(uuid, status, "KDN", con)) ) { //ÇöÀç»óÅÂ±×·ìÃ¼Å©
+			if ( status.equals("CFR") && (!dao.getStatusGroupInfo(uuid, status, "KDN", con)) ) { //í˜„ì¬ìƒíƒœê·¸ë£¹ì²´í¬
 				dao.insertStatusInfo(uuid, status+"SED", "KDN", con);
 			} else if ( status.equals("DEL") 
-						&& (dao.getStatusGroupInfo(uuid, "CFR", "KDN", con))  //ÀÌÀü»óÅÂ±×·ìÃ¼Å©
-						&& (!dao.getStatusGroupInfo(uuid, status, "KDN", con)) //ÇöÀç»óÅÂ±×·ìÃ¼Å©
+						&& (dao.getStatusGroupInfo(uuid, "CFR", "KDN", con))  //ì´ì „ìƒíƒœê·¸ë£¹ì²´í¬
+						&& (!dao.getStatusGroupInfo(uuid, status, "KDN", con)) //í˜„ì¬ìƒíƒœê·¸ë£¹ì²´í¬
 						) {
 				dao.insertStatusInfo(uuid, status+"SED", "KDN", con);
 			}
